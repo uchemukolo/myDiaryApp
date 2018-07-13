@@ -34,10 +34,8 @@ body {
 }
 .background-logout {
     background-size: cover;
-    background-color: black;
-    background-image: url("../images/background.png");
-    background-blend-mode: screen;
     background-repeat: no-repeat;
+    background-image: url("../images/background.png");
     height: 100%;
     padding: 10px auto;
 }
@@ -115,7 +113,7 @@ body {
     align-content: center;
     align-items: center;
     display: block;
-    border: 2px solid #2eb2ff;
+    border: 2px solid #d7e5f3;
     border-radius: 5px;
     background-color: #ffffff;
     height: 100%;
@@ -128,7 +126,7 @@ body {
 .container-entry-detail {
 
     justify-content: center;
-    border: 2px solid #2eb2ff;
+    border: 2px solid #d7e5f3;
     border-radius: 5px;
     background-color: #ffffff;
     height: 100%;
@@ -173,7 +171,7 @@ body {
     display: -webkit-flex;
     -webkit-flex-flow: row wrap;
     justify-content: center;
-    border: 2px solid #2eb2ff;
+    border: 2px solid #d7e5f3;
     border-radius: 5px;
     background-color: #ffffff;
     color: black;
@@ -255,7 +253,7 @@ body {
   .headline {
     align-items: center;
     background-color: transparent;
-    color: #000000;
+    color: #ffffff;
     height: 20vh;
     margin: 10px auto;
     padding: 20px 0px 0px 20px;
@@ -336,12 +334,13 @@ label {
     margin-left: 20px;
 }
 .main {
-    border: 2px solid #2eb2ff;
+    border: 2px solid #d7e5f3;
     border-radius: 5px;
     background-size: cover;
-    background-repeat: no-repeat;
-    background-image: url("../images/background1.png");
-    color: #000000;
+    background-repeat: no-repeat, repeat;
+    background-image: url("../images/background1.png"), url("../images/pexels-photo-880687.jpeg");
+    background-blend-mode: overlay;
+    color: #ffffff;
     height: 50vh;
     justify-content: center;
     margin: 20px auto;
@@ -360,7 +359,7 @@ label {
     display: -webkit-flex;
     -webkit-flex-flow: row wrap;
     justify-content: center;
-    border: 2px solid #2eb2ff;
+    border: 2px solid #d7e5f3;
     border-radius: 5px;
     background-color: #fdfafa;
     color: black;
@@ -372,10 +371,10 @@ label {
 }
 .main-logout {
     align-items: center;
-    border: 2px solid #2eb2ff;
+    border: 2px solid #d7e5f3;
     border-radius: 5px;
-    background-color: #ffffff;
-    color: black;
+    background-color: transparent;
+    color: white;
     height: 15vh;
     margin: 200px auto;
     padding: 0px;
@@ -401,7 +400,7 @@ label {
     display: -webkit-flex;
     -webkit-flex-flow: row wrap;
     justify-content: center;
-    border: 2px solid #2eb2ff;
+    border: 2px solid #d7e5f3;
     border-radius: 5px;
     background-color: #fdfafa;
     color: black;
@@ -411,29 +410,10 @@ label {
     padding: 0px auto;
 
 }
-.main-reminder {
-    text-align: left;
-    display: flex;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    -webkit-flex-flow: row wrap;
-    justify-content: center;
-    border: 2px solid #2eb2ff;
-    border-radius: 5px;
-    background-color: #fdfafa;
-    color: black;
-    float: left;
-    height: 100%;
-    margin: 0px 0px 0px 10px;
-    padding:    0px auto;
-    width: 27vw;
-}
 
 .main-wel {
     align-items: center;
-    border: 2px solid #2eb2ff;
+    border: 2px solid #d7e5f3;
     background-color: #ffffff;
     border-radius: 5px;
     color: #000000;
@@ -463,11 +443,7 @@ label {
 }
 .navigation {
   list-style: none;
-
-
-
-margin: 0px auto;
-
+ margin: 0px auto;
   display: block;
   float: right;
 
@@ -477,7 +453,7 @@ margin: 0px auto;
   text-decoration: none;
   display: block;
   padding: 5px;
-  color: black;
+  color: #000000;
 }
 
 .navigation a:hover {
