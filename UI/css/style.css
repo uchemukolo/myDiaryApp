@@ -1,32 +1,5 @@
 @import "compass/css3";
 
-* {
-    /* Calculation */
-    --diff: calc(var(--max-size) - var(--min-size));
-    --responsive: calc((var(--min-size) * 1px) + var(--diff) * ((100vw - 420px) / (1200 - 420))); /* Ranges from 421px to 1199px */
-  }
-
-  h1 {
-    --max-size: 50;
-    --min-size: 25;
-    font-size: var(--responsive);
-  }
-
-  h2 {
-    --max-size: 40;
-    --min-size: 20;
-    font-size: var(--responsive);
-  }
-  h2 {
-    --max-size: 30;
-    --min-size: 15;
-    font-size: var(--responsive);
-  }
-
-p {
-   font-size:1.5vw;
-}
-
 .acct-head  {
     float: left;
     margin: auto;
@@ -278,6 +251,33 @@ body {
     text-align: center;
     text-emphasis: strong;
 
+}
+
+* {
+    /* Calculation */
+    --diff: calc(var(--max-size) - var(--min-size));
+    --responsive: calc((var(--min-size) * 1px) + var(--diff) * ((100vw - 420px) / (1200 - 420))); /* Ranges from 421px to 1199px */
+  }
+
+  h1 {
+    --max-size: 50;
+    --min-size: 25;
+    font-size: var(--responsive);
+  }
+
+  h2 {
+    --max-size: 40;
+    --min-size: 20;
+    font-size: var(--responsive);
+  }
+  h2 {
+    --max-size: 30;
+    --min-size: 15;
+    font-size: var(--responsive);
+  }
+
+p {
+   font-size:1.5vw;
 }
 
 
