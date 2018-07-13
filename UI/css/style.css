@@ -130,24 +130,6 @@ body {
     flex: 1 100%;
     justify-content: center;
 }
-.container-acct {
-    display: flex;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    -webkit-flex-flow: row wrap;
-    justify-content: center;
-    border: 2px solid #2eb2ff;
-    border-radius: 5px;
-    background-color: transparent;
-    color: black;
-    float: left;
-    height: 100%;
-    margin: 0px 10px 10px 30px;
-    padding: 10px auto;
-    width: 70%;
-}
 .container-entry {
     display: block;
     border: 2px solid #2eb2ff;
