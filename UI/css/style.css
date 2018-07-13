@@ -137,20 +137,19 @@ body {
     background-color: #ffffff;
     height: 100%;
     justify-content: center;
-    margin: 0px auto;
+    margin: 150px auto;
     padding: 0px auto;
-    width: 70%;
+    width: 98%;
 }
 .container-entry-detail {
-    display: block;
+
+    justify-content: center;
     border: 2px solid #2eb2ff;
     border-radius: 5px;
     background-color: #ffffff;
     height: 100%;
-    justify-content: center;
-    margin: 100px auto;
-    paddingt: 0px auto;
-    width: 60%;
+    margin: 150px auto;
+    width: 98%;
 }
 .container-signup {
     display: flex;
@@ -202,14 +201,14 @@ body {
 .col-25 {
     float: left;
     width: 10%;
-    margin-top: 6px;
+    margin-top: 10px auto;
     padding: 10px auto
 }
 
 .col-75 {
     float: left;
     width: 90%;
-    margin-top: 6px;
+
 }
 
 .col-25a {
@@ -504,7 +503,7 @@ label {
 
 .new_entry {
     text-align: center;
-    margin: 100px 0px 0px 10px;
+    margin: 10px 0px 0px 10px;
 
 }
 .or {
