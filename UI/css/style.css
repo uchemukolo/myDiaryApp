@@ -380,14 +380,14 @@ label {
     align-items: center;
     border: 2px solid #2eb2ff;
     border-radius: 5px;
-    background-image: url("../images/pexels-photo-311039.jpeg");
+    background-color: #ffffff;
     color: black;
-    height: 20vh;
-    margin: 145px auto;
+    height: 15vh;
+    margin: 200px auto;
     padding: 0px;
     width: 60vw;
     text-align: center;
-    font-size: 30px;
+
 }
 .main-signup-button {
  justify-content: center;
