@@ -11,8 +11,11 @@
 }
 
 body {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;;
-    height: 100%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 10px 10px 10px 10px;
+    padding: 10px 10px 10px 10px;
+    align-content: center;
+    width: 96%;
 }
 
 .background {
@@ -20,18 +23,23 @@ body {
     background-image: url("../images/background.png");
     background-repeat: no-repeat;
     height: 100%;
+    padding: 10px auto;
 }
 .background-index {
-    background-size: cover;
-    background-color: #ffffff;
-    background-repeat: no-repeat;
-    height: 100%;
-}
-.background-logout {
     background-size: cover;
     background-image: url("../images/background.png");
     background-repeat: no-repeat;
     height: 100%;
+    padding: 10px auto;
+}
+.background-logout {
+    background-size: cover;
+    background-color: black;
+    background-image: url("../images/background.png");
+    background-blend-mode: screen;
+    background-repeat: no-repeat;
+    height: 100%;
+    padding: 10px auto;
 }
 .button- {
     background-color: #2eb2ff;
@@ -104,6 +112,8 @@ body {
     justify-content: center;
 }
 .container-entry {
+    align-content: center;
+    align-items: center;
     display: block;
     border: 2px solid #2eb2ff;
     border-radius: 5px;
@@ -112,7 +122,8 @@ body {
     justify-content: center;
     margin: 150px auto;
     padding: 0px auto;
-    width: 98%;
+    width: 96%;
+
 }
 .container-entry-detail {
 
@@ -234,11 +245,12 @@ body {
     width: 100%;
     background-color: #000000;
     color: white;
-    padding: 10px;
+    padding: 5px;
     text-align: center;
   }
   .header {
     overflow: hidden;
+    margin-right: 0px;
   }
   .headline {
     align-items: center;
@@ -321,6 +333,7 @@ label {
 .logo {
     float: left;
     position: relative;
+    margin-left: 20px;
 }
 .main {
     border: 2px solid #2eb2ff;
@@ -450,29 +463,25 @@ label {
 }
 .navigation {
   list-style: none;
-  margin: 0;
 
-  background: transparent;
 
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
+
+margin: 0px auto;
+
+  display: block;
   float: right;
-  -webkit-flex-flow: row-wrap;
-  justify-content: flex-end;
+
 }
 
 .navigation a {
   text-decoration: none;
   display: block;
-  padding: 1em;
+  padding: 5px;
   color: black;
 }
 
 .navigation a:hover {
-  background: darken(#28b5e4, 2%);
+  background: darken(#2eb2ff, 2%);
   color: #2eb2ff;
 }
 
