@@ -1,15 +1,5 @@
 @import "compass/css3";
 
-.acct-head  {
-    float: left;
-    margin: auto;
-    margin-top:7px;
-    margin-bottom: 7px;
-    padding:10px auto;
-    text-align:center;
-    width: 100%;
-}
-
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin: 10px 10px 10px 10px;
@@ -17,7 +7,6 @@ body {
     align-content: center;
     width: 96%;
 }
-
 .background {
     background-size: cover;
     background-image: url("../images/background.png");
@@ -118,9 +107,9 @@ body {
     background-color: #ffffff;
     height: 100%;
     justify-content: center;
-    margin: 150px auto;
+    margin: 120px auto;
     padding: 0px auto;
-    width: 96%;
+    width: 70%;
 
 }
 .container-entry-detail {
@@ -131,7 +120,7 @@ body {
     background-color: #ffffff;
     height: 100%;
     margin: 150px auto;
-    width: 98%;
+    width: 70%;
 }
 .container-signup {
     display: flex;
@@ -176,20 +165,26 @@ body {
     background-color: #ffffff;
     color: black;
     height: 100%;
-    margin: 0px auto;
-    padding: 0px 30px 30px 0px;
+    margin: 120px auto;
+    padding: 0px auto;
     width: 70%;
+}
+.container-note {
+    padding: 20px;
+    background-color: #f1f1f1;
+    display: block;
 }
 .col-25 {
     float: left;
-    width: 10%;
+    width: 20%;
     margin-top: 10px auto;
-    padding: 10px auto
+    padding: 10px 10px 20px 10px;
 }
 
 .col-75 {
     float: left;
-    width: 90%;
+    width: 70%;
+    padding: 10px 10px 20px 10px;
 
 }
 
@@ -246,6 +241,10 @@ body {
     padding: 5px;
     text-align: center;
   }
+  #form {
+    border: 3px solid #f1f1f1;
+
+}
   .header {
     overflow: hidden;
     margin-right: 0px;
@@ -263,34 +262,20 @@ body {
 
 }
 
-* {
-    /* Calculation */
-    --diff: calc(var(--max-size) - var(--min-size));
-    --responsive: calc((var(--min-size) * 1px) + var(--diff) * ((100vw - 420px) / (1200 - 420))); /* Ranges from 421px to 1199px */
-  }
 
-  h1 {
-    --max-size: 50;
-    --min-size: 25;
-    font-size: var(--responsive);
-  }
 
-  h2 {
-    --max-size: 40;
-    --min-size: 20;
-    font-size: var(--responsive);
-  }
-  h2 {
-    --max-size: 30;
-    --min-size: 15;
-    font-size: var(--responsive);
-  }
-
-p {
-   font-size:1.5vw;
+input[name=name], input[name=mail] {
+    width: 100%;
+    padding: 5px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
 }
+input[type=checkbox] {
+    margin-top: 16px;
 
-
+}
 input[type=text], select, textarea, password, email {
 
     border: 1px solid #ccc;
@@ -307,7 +292,6 @@ input[type=submit] {
     border-radius: 4px;
     color: #000000;
     cursor: pointer;
-    float: right;
     margin: 5px auto;
     padding: 12px 20px;
   }
@@ -373,8 +357,8 @@ label {
     align-items: center;
     border: 2px solid #d7e5f3;
     border-radius: 5px;
-    background-color: transparent;
-    color: white;
+    background-color: #ffffff;
+    color: #000000;
     height: 15vh;
     margin: 200px auto;
     padding: 0px;
@@ -428,6 +412,44 @@ label {
     text-decoration: none;
     color: white;
 }
+/* The Modal (background) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #000000;
+    background-color: #00000066;
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #ffffff;
+    margin: auto;
+    padding: 10px;
+    border: 2px solid #d7e5f3;
+    width: 50%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000000;
+    text-decoration: none;
+    cursor: pointer;
+}
 #mood {
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -436,6 +458,21 @@ label {
     padding: 10px 20px;
     resize: vertical;
     width: 50%;
+  }
+  #myBtn {
+    background-color: #2eb2ff;
+    border: none;
+    border-radius: 10px;
+    margin: 5px 0px 20px 0px;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 20px auto;
+
+  }
+  #myBtn:hover {
+    background-color: #ffffff;
+    color:#2eb2ff;
+    cursor: pointer;
   }
   nav ul li{
     display: inline-block;
@@ -473,7 +510,7 @@ label {
     flex-flow: column wrap;
     padding: 0;
   }
-  
+
 .navigation a {
     text-align: center; 
     padding: 10px;

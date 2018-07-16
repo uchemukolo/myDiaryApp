@@ -25,7 +25,34 @@
           <div class="entry-list">
               <h2>Welcome!</h2>
               <p>3 total Entries</p>
-              </div>
+               <!-- Trigger/Open The Modal -->
+        <button id="myBtn">Set Reminder</button>
+
+        <div id="myModal" class="modal">
+
+          <div class="modal-content">
+            <span class="close">&times;</span>
+<form id="form" action="#">
+  <div class="container-note">
+    <h2>Get Notified</h2>
+    <p>Do not forget to pen down your precious thoughts and feeling. Subscribe and get a notification daily.</p>
+  </div>
+  <div class="container-note">
+    <input type="text" placeholder="Name" name="name" required>
+    <input type="text" placeholder="Email address" name="mail" required>
+    <label>
+      <input type="checkbox" checked="checked" name="subscribe"> Daily Reminder
+    </label>
+  </div>
+  <div class="container-note">
+    <input type="submit" value="Subscribe">
+  </div>
+</form>
+          </div>
+
+        </div>
+      </div>
+
       <table>
         <tr>
           <th>ID</th>
@@ -89,6 +116,7 @@
   <div class="footer">
       <h6>© Copyright 2018 Template By Muche - All Rights Reserved. For Questions/feedback/problems? Contact me on support@mydiary.com</h6>
   </div>
+  <script src="JS/main.js"></script>
 </body>
 
 </html>
