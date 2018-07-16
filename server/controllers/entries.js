@@ -11,8 +11,8 @@ const entry = data;
  */
 class Entry {
   /**
-   *@description - Get all entries by a User
-   *@param {object} req - request object
+   *@description - Fetch all entries
+  *@param {object} req - request object
    *
    * @param {object} res - responce object
    *
@@ -27,5 +27,30 @@ class Entry {
       error: false
     });
   }
+    /**
+   *@description - Fetch one entry
+   *@param {object} req - request object
+   *
+   * @param {object} res - responce object
+   *
+   * @return {object} return object as response
+   *
+   * @memberof Request
+     */
+  static getOne(req,res){
+		for(let i=0; i < entry.length; i++){
+			if(request[i].entryId === parseInt(req.params.entryId, 10)){
+				return res.send({
+					message: 'Successful',
+					entry: data[i],
+					error: false
+				});
+			}
+		}
+		return res.status(404).send({
+			message: 'Entry not found!',
+			error: true
+		});
+	}
 }
 export default Entry;
