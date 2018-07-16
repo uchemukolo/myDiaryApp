@@ -1,6 +1,7 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import logger from 'morgan';
+import entry from './routes/entryRoute'
 
 
 const app = express();
@@ -11,6 +12,8 @@ app.use(logger('dev'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use('/api/v1/entries', entry);
 
 app.get('*', (req, res) => res.status(200).send({
   message: 'Welcome To myDiary API!!!',
