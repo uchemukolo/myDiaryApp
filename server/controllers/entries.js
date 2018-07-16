@@ -35,7 +35,7 @@ class Entry {
    *
    * @return {object} return object as response
    *
-   * @memberof Request
+   * @memberof Entry
      */
   static getOne(req,res){
 		for(let i=0; i < entry.length; i++){
@@ -51,6 +51,33 @@ class Entry {
 			message: 'Entry not found!',
 			error: true
 		});
-	}
+  }
+  		/**
+	 *@description - Create an Enrty
+ 	 *
+   *@param {object} request - request object
+   *
+   * @param {object} response - response object
+   *
+   * @return {object} return object as response
+   *
+   * @memberof Entry
+   */
+  static createEntry(req, res) {
+    const {
+      title, mood, entry, date
+    } = req.body;
+
+    const entryId = data.length + 1;
+
+    data.push({
+      entryId, userId: 1, title, mood, entry, date
+    });
+    return res.status(201).send({
+      message: 'Entry Created Successfully',
+      entry: data,
+      error: false
+    });
+  }
 }
 export default Entry;
