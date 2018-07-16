@@ -1,4 +1,4 @@
-import validator from 'validatorjs';
+import Validator from 'validatorjs';
 /**
  *
  *
@@ -46,7 +46,7 @@ class Entry {
 
     const entryDataRules = {
       title: 'required|string|min:6',
-      mood: 'required|string',
+      mood: 'required|string|alpha',
       entry: 'required|string|min:6'
     };
 
