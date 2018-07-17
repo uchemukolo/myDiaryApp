@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --watch server --exec babel-node server/app.js",
-    "test": "nyc --reporter=html --reporter=text mocha --compilers js:babel-core/register server/tests/entry.tests.js --timeout 5000 --exit"
+    "test": "nyc --reporter=html --reporter=text mocha --compilers js:babel-core/register server/tests/entry.tests.js --timeout 5000 --exit",
+    "coverage": "npm test && nyc report --reporter=text-lcov | coveralls",
+    "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test"
   },
   "repository": {
     "type": "git",
