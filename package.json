@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --watch server --exec babel-node server/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nyc --reporter=html --reporter=text mocha --compilers js:babel-core/register server/tests/entry.tests.js"
   },
   "repository": {
     "type": "git",

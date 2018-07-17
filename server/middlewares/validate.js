@@ -7,28 +7,6 @@ import Validator from 'validatorjs';
 class Entry {
   /**
    *
-   * @param {request} request
-   *
-   * @param {response} response
-   *
-   * @param {function} next
-   *
-   * @returns {Object} - JSON object and status code
-   *
-   * @memberof Entry
-   */
-  static entryId(request, response, next) {
-    const { entryId } = entry.params;
-
-    if (isNaN(entryId)) {
-      return response.status(400).json({
-        message: 'Parameter must be a number!'
-      });
-    }
-    return next();
-  }
-  /**
-   *
    * @param {object} request
    *
    * @param {object} response
