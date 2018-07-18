@@ -48,7 +48,7 @@ class Validate {
       title: 'required|string|min:6',
       mood: 'required|string|alpha',
       entry: 'required|string|min:6',
-      entry: 'required|date'
+      entry: 'required|string'
     };
 
     const validation = new Validator(entryData, entryDataRules);
@@ -81,7 +81,7 @@ class Validate {
     title: 'string|min:6',
     mood: 'string|alpha',
     entry: 'string|min:6',
-    entry: 'date'
+    entry: 'string'
   };
 
   const validation = new Validator(entryData, entryDataRules);
