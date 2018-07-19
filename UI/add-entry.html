@@ -1,26 +1,21 @@
 <!DOCTYPE html>
-<html>
-
-<head>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8'/>
     <title>My Diary</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="css/style.css">
-    <link href="lib/css/emoji.css" rel="stylesheet">
-</head>
-
-<body class="background-logout">
-        <div class="header">
-                <img class="logo" src="./images/logo3.png" alt="Logo">
-            <nav class="navigation">
-                <ul>
-                  <li><a href="../index.html"><strong>Home</strong></a></li>
-                <li><a href="entries.html"><strong>My Entries</strong></a></li>
-                <li><a href="logout.html"><strong>Logout</strong></a></li>
-                </ul>
-            </nav>
+  </head>
+  <body class="background">
+    <div class="topnav" id="myTopnav">
+        <a href="#" class="active">MY DIARY</a>
+        <a href="../index.html">Home</a>
+        <a href="entries.html">My Entries</a>
+        <a href="logout.html">Logout</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars">Menu</i>
+        </a>
+      </div>
             
     <div class="container-entry">
             <div class="new_entry">
@@ -59,6 +54,6 @@
     <div class="footer">
             <h6>© Copyright 2018 Template By Muche - All Rights Reserved. For Questions/feedback/problems? Contact me on support@mydiary.com</h6>
         </div>
+        <script src="JS/main.js"></script>
 </body>
-
 </html>
