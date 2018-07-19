@@ -178,14 +178,8 @@ describe('API Integration Tests', () => {
           date: '11/01/2018'
         })
         .end((err, res) => {
-          // const message = {
-          //   title: [
-          //     'The title field is required.'
-          //   ]
-          // };
           expect(res.status).to.equal(400);
           expect(res.body.should.be.a('object'));
-          // expect(res.body).to.haveOwnProperty('message').to.eql(message);
           done();
         });
     });
