@@ -18,7 +18,7 @@ class Validate {
    * @memberof Validate
    */
   static entryId(req, res, next) {
-    const { entryId } = request.params;
+    const { entryId } = req.params;
 
     if (isNaN(entryId)) {
       return res.status(400).json({
@@ -42,13 +42,12 @@ class Validate {
   static createEntry(req, res, next) {
     const { title, mood, entry } = req.body;
 
-    const entryData = { title, mood, entry};
+    const entryData = { title, mood, entry };
 
     const entryDataRules = {
       title: 'required|string|min:6',
       mood: 'required|string|alpha',
-      entry: 'required|string|min:6',
-      entry: 'required|string'
+      entry: 'required|string|min:6'
     };
 
     const validation = new Validator(entryData, entryDataRules);
@@ -80,8 +79,7 @@ class Validate {
   const entryDataRules = {
     title: 'string|min:6',
     mood: 'string|alpha',
-    entry: 'string|min:6',
-    entry: 'string'
+    entry: 'string|min:6'
   };
 
   const validation = new Validator(entryData, entryDataRules);
@@ -89,7 +87,7 @@ class Validate {
     next();
   } else {
     const errors = validation.errors.all();
-    return response.status(400)
+    return res.status(400)
       .json({ message: errors });
   }
 }
