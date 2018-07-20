@@ -17,6 +17,8 @@ describe('API Integration Tests', () => {
         .send()
         .end((err, res) => {
           expect(res.status).to.equal(200);
+          expect(res.body.should.be.a('object'));
+          expect(res.body.message).to.equal('Successful')
           done();
         });
     });
@@ -28,6 +30,8 @@ describe('API Integration Tests', () => {
         .send()
         .end((err, res) => {
           expect(res.status).to.equal(200);
+          expect(res.body.should.be.a('object'));
+          expect(res.body.message).to.equal('Successful')
           done();
         });
     });
@@ -37,6 +41,7 @@ describe('API Integration Tests', () => {
         .send()
         .end((err, res) => {
           expect(res.status).to.equal(404);
+          expect(res.body.message).to.equal('Entry not found!')
           done();
         });
     });
@@ -54,6 +59,7 @@ describe('API Integration Tests', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(201);
+          expect(res.body.should.be.a('object'));
           expect(res.body.message).to.equal('Entry Created Successfully')
           done();
         });
@@ -98,7 +104,7 @@ describe('API Integration Tests', () => {
           ]
         };
         expect(res.status).to.equal(400);
-        // expect(res.body.should.be.a('object'));
+        expect(res.body.should.be.a('object'));
         expect(res.body).to.haveOwnProperty('message').to.eql(message);
         done();
       });
@@ -141,6 +147,8 @@ describe('API Integration Tests', () => {
         })
         .end((err, res) => {
           expect(res.status).to.equal(200);
+          expect(res.body.should.be.a('object'));
+        expect(res.body).to.haveOwnProperty('message').to.eql('Update Successful');
           done();
         });
     });
@@ -175,6 +183,38 @@ describe('API Integration Tests', () => {
           userId: 1,
           mood: 'Happy',
           entry: 'Set in the former city archive of Cologne, this design hotel is the perfect place to immerse yourself in the history of the city while enjoying a luxurious experience. The suites are to-die-for, and its location in a quiet but central neighborhood puts you right in the middle of the action in minutes.',
+          date: '11/01/2018'
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body.should.be.a('object'));
+          done();
+        });
+    });
+    it('should return 400 if mood is not a string', (done) => {
+      chai.request(app)
+        .put('/api/v1/entries/2')
+        .send({
+          title:'My first entry',
+          userId: 1,
+          mood: 6538,
+          entry: 'Set in the former city archive of Cologne, this design hotel is the perfect place to immerse yourself in the history of the city while enjoying a luxurious experience. The suites are to-die-for, and its location in a quiet but central neighborhood puts you right in the middle of the action in minutes.',
+          date: '11/01/2018'
+        })
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.body.should.be.a('object'));
+          done();
+        });
+    });
+    it('should return 400 if mood is not a string', (done) => {
+      chai.request(app)
+        .put('/api/v1/entries/2')
+        .send({
+          title:'My first entry',
+          userId: 1,
+          mood: 'Happy',
+          entry: 456987,
           date: '11/01/2018'
         })
         .end((err, res) => {
