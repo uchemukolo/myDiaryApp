@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/api/v1/entries', entry);
 
-app.get('*', (req, res) => res.status(200).send({
+app.get('*', (request, response) => response.status(200).send({
   message: 'Welcome To myDiary API!!!',
 }));
 
