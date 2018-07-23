@@ -15,10 +15,10 @@ describe('API Integration Tests', () => {
       chai.request(app)
         .get('/api/v1/entries')
         .send()
-        .end((err, res) => {
-          expect(res.status).to.equal(200);
-          expect(res.body.should.be.a('object'));
-          expect(res.body.message).to.equal('Successful')
+        .end((err, response) => {
+          expect(response.status).to.equal(200);
+          expect(response.body.should.be.a('object'));
+          expect(response.body.message).to.equal('Successful')
           done();
         });
     });
@@ -28,10 +28,10 @@ describe('API Integration Tests', () => {
       chai.request(app)
         .get('/api/v1/entries/1')
         .send()
-        .end((err, res) => {
-          expect(res.status).to.equal(200);
-          expect(res.body.should.be.a('object'));
-          expect(res.body.message).to.equal('Successful')
+        .end((err, response) => {
+          expect(response.status).to.equal(200);
+          expect(response.body.should.be.a('object'));
+          expect(response.body.message).to.equal('Successful')
           done();
         });
     });
@@ -39,9 +39,9 @@ describe('API Integration Tests', () => {
       chai.request(app)
         .get('/api/v1/entries/6')
         .send()
-        .end((err, res) => {
-          expect(res.status).to.equal(404);
-          expect(res.body.message).to.equal('Entry not found!')
+        .end((err, response) => {
+          expect(response.status).to.equal(404);
+          expect(response.body.message).to.equal('Entry not found!')
           done();
         });
     });
@@ -57,10 +57,10 @@ describe('API Integration Tests', () => {
           entry: 'Set in the former city archive of Cologne, this design hotel is the perfect place to immerse yourself in the history of the city while enjoying a luxurious experience. The suites are to-die-for, and its location in a quiet but central neighborhood puts you right in the middle of the action in minutes.',
           date: '11/01/2018'
         })
-        .end((err, res) => {
-          expect(res.status).to.equal(201);
-          expect(res.body.should.be.a('object'));
-          expect(res.body.message).to.equal('Entry Created Successfully')
+        .end((err, response) => {
+          expect(response.status).to.equal(201);
+          expect(response.body.should.be.a('object'));
+          expect(response.body.message).to.equal('Entry Created Successfully')
           done();
         });
     });
@@ -75,15 +75,15 @@ describe('API Integration Tests', () => {
         entry: 'Set in the former city archive of Cologne, this design hotel is the perfect place to immerse yourself in the history of the city while enjoying a luxurious experience. The suites are to-die-for, and its location in a quiet but central neighborhood puts you right in the middle of the action in minutes.',
         date: '11/01/2018'
       })
-      .end((err, res) => {
+      .end((err, response) => {
         const message = {
           title: [
             'The title field is required.'
           ]
         };
-        expect(res.status).to.equal(400);
-        expect(res.body.should.be.a('object'));
-        expect(res.body).to.haveOwnProperty('message').to.eql(message);
+        expect(response.status).to.equal(400);
+        expect(response.body.should.be.a('object'));
+        expect(response.body).to.haveOwnProperty('message').to.eql(message);
         done();
       });
   });
@@ -97,15 +97,15 @@ describe('API Integration Tests', () => {
         entry: 'Set in the former city archive of Cologne, this design hotel is the perfect place to immerse yourself in the history of the city while enjoying a luxurious experience. The suites are to-die-for, and its location in a quiet but central neighborhood puts you right in the middle of the action in minutes.',
         date: '11/01/2018'
       })
-      .end((err, res) => {
+      .end((err, response) => {
         const message = {
           mood: [
             'The mood field is required.'
           ]
         };
-        expect(res.status).to.equal(400);
-        expect(res.body.should.be.a('object'));
-        expect(res.body).to.haveOwnProperty('message').to.eql(message);
+        expect(response.status).to.equal(400);
+        expect(response.body.should.be.a('object'));
+        expect(response.body).to.haveOwnProperty('message').to.eql(message);
         done();
       });
   });
@@ -120,15 +120,15 @@ describe('API Integration Tests', () => {
         mood: 'Happy',
         date: '11/01/2018'
       })
-      .end((err, res) => {
+      .end((err, response) => {
         const message = {
           entry: [
             'The entry field is required.'
           ]
         };
-        expect(res.status).to.equal(400);
-        expect(res.body.should.be.a('object'));
-        expect(res.body).to.haveOwnProperty('message').to.eql(message);
+        expect(response.status).to.equal(400);
+        expect(response.body.should.be.a('object'));
+        expect(response.body).to.haveOwnProperty('message').to.eql(message);
         done();
       });
   });
@@ -145,10 +145,10 @@ describe('API Integration Tests', () => {
           Entry: 'Set in the former city archive of Cologne, this design hotel is the perfect place to immerse yourself in the history of the city while enjoying a luxurious experience. The suites are to-die-for, and its location in a quiet but central neighborhood puts you right in the middle of the action in minutes.',
           date: '11/01/2018'
         })
-        .end((err, res) => {
-          expect(res.status).to.equal(200);
-          expect(res.body.should.be.a('object'));
-        expect(res.body).to.haveOwnProperty('message').to.eql('Update Successful');
+        .end((err, response) => {
+          expect(response.status).to.equal(200);
+          expect(response.body.should.be.a('object'));
+        expect(response.body).to.haveOwnProperty('message').to.eql('Update Successful');
           done();
         });
     });
@@ -157,10 +157,10 @@ describe('API Integration Tests', () => {
       chai.request(app)
         .put('/api/v1/entries/6')
         .send()
-        .end((err, res) => {
+        .end((err, response) => {
           const message = 'Entry not found';
-          expect(res.status).to.equal(404);
-          expect(res.body).to.haveOwnProperty('message').to.eql(message);
+          expect(response.status).to.equal(404);
+          expect(response.body).to.haveOwnProperty('message').to.eql(message);
           done();
         });
     });
@@ -168,10 +168,10 @@ describe('API Integration Tests', () => {
       chai.request(app)
       .put('/api/v1/entries/okkkk')
       .send()
-      .end((err, res) => {
+      .end((err, response) => {
         const message = 'Parameter must be a number!';
-        expect(res.status).to.equal(400);
-        expect(res.body).to.haveOwnProperty('message').to.eql(message);
+        expect(response.status).to.equal(400);
+        expect(response.body).to.haveOwnProperty('message').to.eql(message);
         done();
       });
     });
@@ -185,9 +185,9 @@ describe('API Integration Tests', () => {
           entry: 'Set in the former city archive of Cologne, this design hotel is the perfect place to immerse yourself in the history of the city while enjoying a luxurious experience. The suites are to-die-for, and its location in a quiet but central neighborhood puts you right in the middle of the action in minutes.',
           date: '11/01/2018'
         })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(res.body.should.be.a('object'));
+        .end((err, response) => {
+          expect(response.status).to.equal(400);
+          expect(response.body.should.be.a('object'));
           done();
         });
     });
@@ -201,9 +201,9 @@ describe('API Integration Tests', () => {
           entry: 'Set in the former city archive of Cologne, this design hotel is the perfect place to immerse yourself in the history of the city while enjoying a luxurious experience. The suites are to-die-for, and its location in a quiet but central neighborhood puts you right in the middle of the action in minutes.',
           date: '11/01/2018'
         })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(res.body.should.be.a('object'));
+        .end((err, response) => {
+          expect(response.status).to.equal(400);
+          expect(response.body.should.be.a('object'));
           done();
         });
     });
@@ -217,9 +217,9 @@ describe('API Integration Tests', () => {
           entry: 456987,
           date: '11/01/2018'
         })
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(res.body.should.be.a('object'));
+        .end((err, response) => {
+          expect(response.status).to.equal(400);
+          expect(response.body.should.be.a('object'));
           done();
         });
     });

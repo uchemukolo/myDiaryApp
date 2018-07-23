@@ -12,16 +12,16 @@ const entry = data;
 class Entry {
   /**
    *@description - Fetch all entries
-  *@param {object} req - request object
+  *@param {object} request - request object
    *
-   * @param {object} res - responce object
+   * @param {object} response - responce object
    *
    * @return {object} return object as response
    *
    * @memberof Entry
    * */
-  static getAll(req, res) {
-    return res.status(200).send({
+  static getAll(request, response) {
+    return response.status(200).send({
       message: 'Successful',
       entry: data,
       error: false
@@ -29,25 +29,25 @@ class Entry {
   }
   /**
  *@description - Fetch one entry
- *@param {object} req - request object
+ *@param {object} request - request object
  *
- * @param {object} res - responce object
+ * @param {object} response - responce object
  *
  * @return {object} return object as response
  *
  * @memberof Entry
 */
-  static getOne(req, res) {
+  static getOne(request, response) {
     for (let i = 0; i < entry.length; i++) {
-      if (entry[i].entryId === parseInt(req.params.entryId, 10)) {
-        return res.send({
+      if (entry[i].entryId === parseInt(request.params.entryId, 10)) {
+        return response.send({
           message: 'Successful',
           entry: data[i],
           error: false
         });
       }
     }
-    return res.status(404).send({
+    return response.status(404).send({
       message: 'Entry not found!',
       error: true
     });
@@ -63,17 +63,17 @@ class Entry {
 *
 * @memberof Entry
 */
-  static createEntry(req, res) {
+  static createEntry(request, response) {
     const {
       title, mood, entry, date
-    } = req.body;
+    } = request.body;
 
     const entryId = data.length + 1;
 
     data.push({
       entryId, userId: 1, title, mood, entry, date
     });
-    return res.status(201).send({
+    return response.status(201).send({
       message: 'Entry Created Successfully',
       entry: data,
       error: false
@@ -82,29 +82,29 @@ class Entry {
   /**
    *@description - Modify details of an entry
    *
-   *@param {object} req - HTTP request
+   *@param {object} request - HTTP request
    *
-   * @param {object} res
+   * @param {object} response
    *
    * @return {object} this - Class instance
    *
    * @memberof Entry
    */
-  static modifyEntry(req, res) {
+  static modifyEntry(request, response) {
     for (let i = 0; i < entry.length; i++) {
-      if (entry[i].entryId === parseInt(req.params.entryId, 10)) {
-        entry[i].title = req.body.title;
-        entry[i].mood = req.body.mood;
-        entry[i].entry = req.body.entry;
-        entry[i].date = req.body.date;
-        return res.send({
+      if (entry[i].entryId === parseInt(request.params.entryId, 10)) {
+        entry[i].title = request.body.title;
+        entry[i].mood = request.body.mood;
+        entry[i].entry = request.body.entry;
+        entry[i].date = request.body.date;
+        return response.send({
           message: 'Update Successful',
           entry: data[i],
           error: false
         });
       }
     }
-    return res.status(404).send({
+    return response.status(404).send({
       message: 'Entry not found',
       error: true
     });

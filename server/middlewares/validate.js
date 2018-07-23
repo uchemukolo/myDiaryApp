@@ -7,9 +7,9 @@ import Validator from 'validatorjs';
 class Validate {
   /**
    *
-   * @param {request} req
+   * @param {request} request
    *
-   * @param {response} res
+   * @param {response} response
    *
    * @param {function} next
    *
@@ -17,11 +17,11 @@ class Validate {
    *
    * @memberof Validate
    */
-  static entryId(req, res, next) {
-    const { entryId } = req.params;
+  static entryId(request, response, next) {
+    const { entryId } = request.params;
 
     if (isNaN(entryId)) {
-      return res.status(400).json({
+      return response.status(400).json({
         message: 'Parameter must be a number!'
       });
     }
@@ -29,9 +29,9 @@ class Validate {
   }
   /**
    *
-   * @param {object} req
+   * @param {object} request
    *
-   * @param {object} res
+   * @param {object} response
    *
    * @param {unctionf} next
    *
@@ -39,8 +39,8 @@ class Validate {
    *
    * @memberof Validate
   */
-  static createEntry(req, res, next) {
-    const { title, mood, entry } = req.body;
+  static createEntry(request, response, next) {
+    const { title, mood, entry } = request.body;
 
     const entryData = { title, mood, entry };
 
@@ -55,15 +55,15 @@ class Validate {
       next();
     } else {
       const errors = validation.errors.all();
-      return res.status(400)
+      return response.status(400)
         .json({ message: errors });
     }
   }
     /**
    *
-   * @param {object} req
+   * @param {object} request
    *
-   * @param {object} res
+   * @param {object} response
    *
    * @param {unctionf} next
    *
@@ -71,8 +71,8 @@ class Validate {
    *
    * @memberof Validate
   */
- static modifyEntry(req, res, next) {
-  const { title, mood, entry } = req.body;
+ static modifyEntry(request, response, next) {
+  const { title, mood, entry } = request.body;
 
   const entryData = { title, mood, entry};
 
@@ -87,7 +87,7 @@ class Validate {
     next();
   } else {
     const errors = validation.errors.all();
-    return res.status(400)
+    return response.status(400)
       .json({ message: errors });
   }
 }
