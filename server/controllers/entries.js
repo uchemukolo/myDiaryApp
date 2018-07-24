@@ -1,4 +1,4 @@
-import data from '../models/data';
+import data from '../models/data'
 
 const entry = data;
 /**
@@ -37,21 +37,21 @@ class Entry {
  *
  * @memberof Entry
 */
-  static getOne(request, response) {
-    for (let i = 0; i < entry.length; i++) {
-      if (entry[i].entryId === parseInt(request.params.entryId, 10)) {
-        return response.send({
-          message: 'Successful',
-          entry: data[i],
-          error: false
-        });
-      }
+static getOne(request, response) {
+  const index = entry.findIndex(item => item.entryId === parseInt(request.params.entryId, 10)); {
+    if (!index) {
+      return response.send({
+        message: 'Successful',
+        entry: data[index],
+        error: false
+      });
     }
-    return response.status(404).send({
-      message: 'Entry not found!',
-      error: true
-    });
-  }
+    }
+  return response.status(404).send({
+    message: 'Entry not found!',
+    error: true
+  });
+}
   /**
 *@description - Create an Enrty
  *
@@ -91,20 +91,20 @@ class Entry {
    * @memberof Entry
    */
   static modifyEntry(request, response) {
-    for (let i = 0; i < entry.length; i++) {
-      if (entry[i].entryId === parseInt(request.params.entryId, 10)) {
-        entry[i].title = request.body.title;
-        entry[i].mood = request.body.mood;
-        entry[i].entry = request.body.entry;
-        entry[i].date = request.body.date;
-        return response.send({
+    const index = entry.findIndex(item => item.entryId === parseInt(request.params.entryId, 10)); {
+      if (!index) {
+        entry[index].title = request.body.title;
+        entry[index].mood = request.body.mood;
+        entry[index].entry = request.body.entry;
+        entry[index].date = request.body.date;
+        return response.status(200).send({
           message: 'Update Successful',
-          entry: data[i],
+          entry: data[index],
           error: false
         });
       }
-    }
-    return response.status(404).send({
+      }
+      return response.status(404).send({
       message: 'Entry not found',
       error: true
     });

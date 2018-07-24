@@ -37,7 +37,7 @@ describe('API Integration Tests', () => {
           done();
         });
     });
-    it('should return 404 if request is not found', (done) => {
+    it('should return 404 if entry is not found', (done) => {
       chai.request(app)
         .get('/api/v1/entries/6')
         .send()
