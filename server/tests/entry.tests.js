@@ -240,4 +240,39 @@ describe('API Integration Tests', () => {
         });
     });
   });
+  describe('Delete an Entry', () => {
+    it('should return 200 for successful delete', (done) => {
+      chai.request(app)
+        .delete('/api/v1/entries/1')
+        .send()
+        .end((err, response) => {
+          expect(response.status).to.equal(200);
+        expect(response.body).to.haveOwnProperty('message').to.eql('Entry Deleted');
+        expect(response.body).to.haveOwnProperty('error').to.eql(false);
+          done();
+        });
+    });
+    it('should return 404 error if entryId params is not valid', (done) => {
+      chai.request(app)
+      .delete('/api/v1/entries/okkkk')
+      .send()
+      .end((err, response) => {
+        const message = 'Parameter must be a number!';
+        expect(response.status).to.equal(400);
+        expect(response.body).to.haveOwnProperty('message').to.eql(message);
+        done();
+      });
+    });
+    it('return 404 error if entry is not found', (done) => {
+      chai.request(app)
+        .delete('/api/v1/entries/600')
+        .send()
+        .end((err, response) => {
+          const message = 'Entry not found';
+          expect(response.status).to.equal(404);
+          expect(response.body).to.haveOwnProperty('message').to.eql(message);
+          done();
+        });
+    });
 });
+})
