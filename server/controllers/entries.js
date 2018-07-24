@@ -37,21 +37,21 @@ class Entry {
  *
  * @memberof Entry
 */
-static getOne(request, response) {
-  const index = entry.findIndex(item => item.entryId === parseInt(request.params.entryId, 10)); {
-    if (!index) {
-      return response.send({
-        message: 'Successful',
-        entry: data[index],
-        error: false
-      });
+  static getOne(request, response) {
+    const index = entry.findIndex(item => item.entryId === parseInt(request.params.entryId, 10)); {
+      if (!index) {
+        return response.send({
+          message: 'Successful',
+          entry: data[index],
+          error: false
+        });
+      }
     }
-    }
-  return response.status(404).send({
-    message: 'Entry not found!',
-    error: true
-  });
-}
+    return response.status(404).send({
+      message: 'Entry not found!',
+      error: true
+    });
+  }
   /**
 *@description - Create an Enrty
  *
@@ -103,8 +103,23 @@ static getOne(request, response) {
           error: false
         });
       }
-      }
-      return response.status(404).send({
+    }
+    return response.status(404).send({
+      message: 'Entry not found',
+      error: true
+    });
+  }
+  static deleteEntry(request, response) {
+    const index = entry.findIndex(item => item.entryId === parseInt(request.params.entryId, 10)); {
+      entry.splice(index, 1)
+      if (!index) {
+      return response.status(200).send({
+        message: 'Entry Deleted',
+        error: false
+      });
+    }
+  }
+    return response.status(404).send({
       message: 'Entry not found',
       error: true
     });
