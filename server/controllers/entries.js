@@ -1,5 +1,4 @@
-import data from '../models/data';
-import { runInDebugContext } from 'vm';
+import data from '../models/data'
 
 const entry = data;
 /**
@@ -39,7 +38,7 @@ class Entry {
  * @memberof Entry
 */
 static getOne(request, response) {
-  let index = entry.findIndex(item => item.entryId === parseInt(request.params.entryId, 10)); {
+  const index = entry.findIndex(item => item.entryId === parseInt(request.params.entryId, 10)); {
     if (!index) {
       return response.send({
         message: 'Successful',
@@ -92,7 +91,7 @@ static getOne(request, response) {
    * @memberof Entry
    */
   static modifyEntry(request, response) {
-    let index = entry.findIndex(item => item.entryId === parseInt(request.params.entryId, 10)); {
+    const index = entry.findIndex(item => item.entryId === parseInt(request.params.entryId, 10)); {
       if (!index) {
         entry[index].title = request.body.title;
         entry[index].mood = request.body.mood;
