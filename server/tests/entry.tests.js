@@ -11,20 +11,21 @@ const expect = chai.expect;
 
 describe('API Integration Tests', () => {
   describe('Get All Entries', () => {
-    it('return 200 for successful', (done) => {
+    it('should return 200 for successful', (done) => {
       chai.request(app)
         .get('/api/v1/entries')
         .send()
         .end((err, response) => {
           expect(response.status).to.equal(200);
           expect(response.body.should.be.a('object'));
-          expect(response.body.message).to.equal('Successful')
+          expect(response.body.message).to.equal('Successful');
+          expect(response.body).to.haveOwnProperty('error').to.eql(false);
           done();
         });
     });
   });
   describe('Gets a specific  Entry', () => {
-    it('return 200 for successful', (done) => {
+    it('should return 200 for successful', (done) => {
       chai.request(app)
         .get('/api/v1/entries/1')
         .send()
@@ -32,22 +33,35 @@ describe('API Integration Tests', () => {
           expect(response.status).to.equal(200);
           expect(response.body.should.be.a('object'));
           expect(response.body.message).to.equal('Successful')
+          expect(response.body).to.haveOwnProperty('error').to.eql(false);
           done();
         });
     });
-    it('return 404 if request is not found', (done) => {
+    it('should return 404 if request is not found', (done) => {
       chai.request(app)
         .get('/api/v1/entries/6')
         .send()
         .end((err, response) => {
           expect(response.status).to.equal(404);
           expect(response.body.message).to.equal('Entry not found!')
+          expect(response.body).to.haveOwnProperty('error').to.eql(true);
           done();
         });
     });
+    it('should return 404 error if entryId params is not valid', (done) => {
+      chai.request(app)
+      .put('/api/v1/entries/okkkk')
+      .send()
+      .end((err, response) => {
+        const message = 'Parameter must be a number!';
+        expect(response.status).to.equal(400);
+        expect(response.body).to.haveOwnProperty('message').to.eql(message);
+        done();
+      });
+    });
   });
   describe('Create a New Entry', () => {
-    it('return 201 for successful', (done) => {
+    it('should return 201 for successful', (done) => {
       chai.request(app)
         .post('/api/v1/entries')
         .send({
@@ -60,7 +74,8 @@ describe('API Integration Tests', () => {
         .end((err, response) => {
           expect(response.status).to.equal(201);
           expect(response.body.should.be.a('object'));
-          expect(response.body.message).to.equal('Entry Created Successfully')
+          expect(response.body.message).to.equal('Entry Created Successfully');
+          expect(response.body).to.haveOwnProperty('error').to.eql(false);
           done();
         });
     });
@@ -134,7 +149,7 @@ describe('API Integration Tests', () => {
   });
 
   describe('Modify an Entry', () => {
-    it('return 200 for successful update', (done) => {
+    it('should return 200 for successful update', (done) => {
       chai.request(app)
         .put('/api/v1/entries/1')
         .send({
@@ -149,6 +164,7 @@ describe('API Integration Tests', () => {
           expect(response.status).to.equal(200);
           expect(response.body.should.be.a('object'));
         expect(response.body).to.haveOwnProperty('message').to.eql('Update Successful');
+        expect(response.body).to.haveOwnProperty('error').to.eql(false);
           done();
         });
     });
@@ -164,7 +180,7 @@ describe('API Integration Tests', () => {
           done();
         });
     });
-    it('return 404 error if entryId params is not valid', (done) => {
+    it('should return 404 error if entryId params is not valid', (done) => {
       chai.request(app)
       .put('/api/v1/entries/okkkk')
       .send()
