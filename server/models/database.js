@@ -37,6 +37,7 @@ DROP TABLE IF EXISTS entries cascade;
 CREATE TABLE entries(
   entryId SERIAL PRIMARY KEY,
   userId int,
+  username VARCHAR(40) not null unique,
   title VARCHAR(40) not null,
   mood VARCHAR(40) not null,
   entry TEXT not null,
@@ -49,7 +50,6 @@ DROP TABLE IF EXISTS authentication cascade;
 CREATE TABLE authentication(
 	loginId SERIAL PRIMARY KEY,
 	userId int unique,
-	username VARCHAR(40) not null unique,
 	password VARCHAR(255) not null,
 	FOREIGN KEY (userId) REFERENCES userDetails(userId)
 )`;
