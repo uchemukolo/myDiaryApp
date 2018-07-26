@@ -13,7 +13,12 @@
     "migrate": "babel-node server/migrations/database.js",
     "migrate-prod": "cross-env NODE_ENV=production npm run migrate",
     "migrate-dev": "cross-env NODE_ENV=development npm run migrate",
-    "migrate-test": "cross-env NODE_ENV=test npm run migrate"
+    "migrate-test": "cross-env NODE_ENV=test npm run migrate",
+    "migrate-dropDb": "babel-node server/migrations/database.drop.js",
+    "drop-prod": "cross-env NODE_ENV=production npm run migrate-dropDb",
+    "drop-dev": "cross-env NODE_ENV=development npm run migrate-dropDb",
+    "drop-test": "cross-env NODE_ENV=test npm run migrate-dropDb"
+
   },
   "repository": {
     "type": "git",
