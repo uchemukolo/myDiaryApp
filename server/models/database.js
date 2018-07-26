@@ -3,17 +3,17 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 let connectionString;
-const env = process.env.NODE_ENV;
+// const env = process.env.NODE_ENV;
 
-if (env === 'production') {
-	connectionString = process.env.DATABASE_URL;
-} else if (env === 'test') {
-	connectionString = process.env.DATABASE_URL_TEST;
-} else {
-	connectionString = process.env.DATABASE_URL_DEV;
-}
-console.log('>>>>>>>>', env);
-console.log('>>>>>>>', connectionString);
+// if (env === 'production') {
+// 	connectionString = process.env.DATABASE_URL;
+// } else if (env === 'test') {
+// 	connectionString = process.env.DATABASE_URL_TEST;
+// } else {
+// 	connectionString = process.env.DATABASE_URL_DEV;
+// }
+// console.log('>>>>>>>>', env);
+// console.log('>>>>>>>', connectionString);
 
 
 const pool = new Pool({
@@ -58,30 +58,32 @@ const notification = `
 DROP TABLE IF EXISTS notification cascade;
 CREATE TABLE notification(
 	id SERIAL PRIMARY KEY,
+	userId int unique,
 	name VARCHAR(40) not null,
-	email VARCHAR(40) not null unique
+	email VARCHAR(40) not null unique,
+	FOREIGN KEY (userId) REFERENCES userDetails(userId)
 )`;
 
-pool.query(userDetails).then((res) => {
-	if (res) {
+pool.query(userDetails).then((response) => {
+	if (response) {
 		console.log('User table created');
 	} else {
 		console.log('Error creating userDetails table');
 	}
-	pool.query(authentication).then((res) => {
-		if (res) {
+	pool.query(authentication).then((response) => {
+		if (response) {
 			console.log('Authentication table created');
 		} else {
 			console.log('Error creating Authentication Table');
 		}
-		pool.query(entries).then((res) => {
-			if (res) {
+		pool.query(entries).then((response) => {
+			if (response) {
 				console.log('Entries table created');
 			} else {
 				console.log('Error creating Entries Table');
 			}
-			pool.query(notification).then((res) => {
-				if (res) {
+			pool.query(notification).then((response) => {
+				if (response) {
 					console.log('Notification table created');
 				} else {
 					console.log('Error creating Notification Table');
@@ -91,4 +93,10 @@ pool.query(userDetails).then((res) => {
 		});
 	});
 });
+export const prod = 'SELECT * FROM userDetails';
+const queries = `${userDetails}${authentication}${entries}${notification}`;
+
+export default queries;
+
+
 
