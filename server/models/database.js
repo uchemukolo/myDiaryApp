@@ -1,7 +1,6 @@
 const { Pool } = require('pg');
 const dotenv = require('dotenv');
 
-
 dotenv.config();
 let connectionString;
 const env = process.env.NODE_ENV;
