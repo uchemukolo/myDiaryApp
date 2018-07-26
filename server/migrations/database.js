@@ -21,7 +21,6 @@ const pool = new Pool({
 });
 
 const userDetails = `
-DROP TABLE IF EXISTS userDetails cascade;
 CREATE TABLE IF NOT EXISTS userDetails(
 	id SERIAL PRIMARY KEY,
 	username VARCHAR(40) not null unique,
@@ -33,7 +32,6 @@ CREATE TABLE IF NOT EXISTS userDetails(
 	)`;
 
 const entries = `
-DROP TABLE IF EXISTS entries cascade;
 CREATE TABLE IF NOT EXISTS entries(
   id SERIAL PRIMARY KEY,
   userId int,
@@ -45,7 +43,6 @@ CREATE TABLE IF NOT EXISTS entries(
 )`;
 
 const notification = `
-DROP TABLE IF EXISTS notification cascade;
 CREATE TABLE IF NOT EXISTS notification(
 	id SERIAL PRIMARY KEY,
 	userId int unique,
