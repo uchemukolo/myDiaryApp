@@ -117,6 +117,29 @@ class Validate {
   }
 
   /**
+ *
+ * @param {request} request
+ *
+ * @param {response} response
+ *
+ * @param {function} next
+ *
+ * @returns {Object} - JSON object and status code
+ *
+ * @memberof Validate
+ */
+  static entryId(request, response, next) {
+    const { entryId } = request.params;
+
+    if (isNaN(entryId)) {
+      return response.status(400).json({
+        message: 'Parameter must be a number!'
+      });
+    }
+    return next();
+  }
+
+  /**
    *
    * @param {object} request
    *

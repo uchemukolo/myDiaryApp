@@ -1,4 +1,4 @@
-import data from '../models/data'
+import data from '../models/data';
 
 const entry = data;
 /**
@@ -27,6 +27,7 @@ class Entry {
       error: false
     });
   }
+
   /**
  *@description - Fetch one entry
  *@param {object} request - request object
@@ -52,6 +53,7 @@ class Entry {
       error: true
     });
   }
+
   /**
 *@description - Create an Enrty
  *
@@ -79,6 +81,7 @@ class Entry {
       error: false
     });
   }
+
   /**
    *@description - Modify details of an entry
    *
@@ -109,16 +112,17 @@ class Entry {
       error: true
     });
   }
+
   static deleteEntry(request, response) {
     const index = entry.findIndex(item => item.entryId === parseInt(request.params.entryId, 10)); {
-      entry.splice(index, 1)
+      entry.splice(index, 1);
       if (!index) {
-      return response.status(200).send({
-        message: 'Entry Deleted',
-        error: false
-      });
+        return response.status(200).send({
+          message: 'Entry Deleted',
+          error: false
+        });
+      }
     }
-  }
     return response.status(404).send({
       message: 'Entry not found',
       error: true

@@ -6,30 +6,30 @@ let connectionString;
 const env = process.env.NODE_ENV;
 
 if (env === 'production') {
-	connectionString = process.env.DATABASE_URL;
+  connectionString = process.env.DATABASE_URL;
 } else if (env === 'test') {
-	connectionString = process.env.DATABASE_URL_TEST;
+  connectionString = process.env.DATABASE_URL_TEST;
 } else {
-	connectionString = process.env.DATABASE_URL_DEV;
+  connectionString = process.env.DATABASE_URL_DEV;
 }
 console.log('>>>>>>>>', env);
 console.log('>>>>>>>', connectionString);
 
 
 const pool = new Pool({
-	connectionString,
+  connectionString,
 });
 
 const userDetails = `
 CREATE TABLE IF NOT EXISTS userDetails(
-	id SERIAL PRIMARY KEY,
-	username VARCHAR(40) not null unique,
-    firstName VARCHAR(40) not null,
-    lastName VARCHAR(40) not null,
-	email VARCHAR(40) not null unique,
-	password VARCHAR(255) not null,
-	created_at timestamp (0) without time zone default now()
-	)`;
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(40) not null unique,
+  firstName VARCHAR(40) not null,
+  lastName VARCHAR(40) not null,
+  email VARCHAR(40) not null unique,
+  password VARCHAR(255) not null,
+  created_at timestamp (0) without time zone default now()
+)`;
 
 const entries = `
 CREATE TABLE IF NOT EXISTS entries(
@@ -39,39 +39,37 @@ CREATE TABLE IF NOT EXISTS entries(
   mood VARCHAR(40) not null,
   entry TEXT not null,
   created_at timestamp (0) without time zone default now(),
-  FOREIGN KEY (userId) REFERENCES userDetails(userId)
+  FOREIGN KEY (userId) REFERENCES userDetails(id)
 )`;
 
 const notification = `
 CREATE TABLE IF NOT EXISTS notification(
-	id SERIAL PRIMARY KEY,
-	userId int unique,
-	name VARCHAR(40) not null,
-	email VARCHAR(40) not null unique,
-	FOREIGN KEY (userId) REFERENCES userDetails(userId)
+  id SERIAL PRIMARY KEY,
+  userId int unique,
+  name VARCHAR(40) not null,
+  email VARCHAR(40) not null unique,
+  FOREIGN KEY (userId) REFERENCES userDetails(id)
 )`;
 
 pool.query(userDetails).then((response) => {
-	if (response) {
-		console.log('User table created');
-	} else {
-		console.log('Error creating userDetails table');
-	}
-	pool.query(entries).then((response) => {
-		if (response) {
-			console.log('Entries table created');
-		} else {
-			console.log('Error creating Entries Table');
-		}
-		pool.query(notification).then((response) => {
-			if (response) {
-				console.log('Notification table created');
-			} else {
-				console.log('Error creating Notification Table');
-			}
-			pool.end();
-		});
-	});
+  if (response) {
+    console.log('User table created');
+  } else {
+    console.log('Error creating userDetails table');
+  }
+  pool.query(entries).then((response) => {
+    if (response) {
+      console.log('Entries table created');
+    } else {
+      console.log('Error creating Entries Table');
+    }
+    pool.query(notification).then((response) => {
+      if (response) {
+        console.log('Notification table created');
+      } else {
+        console.log('Error creating Notification Table');
+      }
+      pool.end();
+    });
+  });
 });
-
-
