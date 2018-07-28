@@ -1,13 +1,14 @@
 language: node_js
+
 node_js:
    - "10.4.0"
 
-before-script:
+services:
+  - postgresql
+
+before_script:
     - npm install
+    - psql -c 'create database travis_ci_test;' -U postgres
 
-script:
-    - npm run test
-
-
-after_success:
-    - npm run coverage
+script: npm run test
+after_success: npm run coverage
