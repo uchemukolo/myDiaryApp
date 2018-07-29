@@ -90,40 +90,35 @@ class Users {
     db.query(findOne(username, email))
       .then((result) => {
         if (!result.rows[0]) {
-          response.status(401).send({
+          return response.status(401).send({
             message: 'Invalid Username or Email, please provide valid credentials'
           });
         }
-
         bcrypt.compare(password, result.rows[0].password)
-          .then((response) => {
-            console.log('>>>>>>>..', password);
-            const token = auth.createToken(result.rows[0]);
-            if (!password) {
-              response.status(401).send({
-                message: 'Wrong Password'
+          .then((res) => {
+            if (res === true) {
+              const token = auth.createToken(result.rows[0]);
+              return response.status(200).send({
+                message: 'Login Successful!',
+                userDetails: {
+                  id: result.rows[0].id,
+                  username: result.rows[0].username,
+                  email: result.rows[0].email
+                },
+                token
               });
             }
-            return response.status(200).send({
-              message: 'Login Successful!',
-              userDetails: {
-                id: result.rows[0].id,
-                username: result.rows[0].username,
-                email: result.rows[0].email
-              },
-              token
-            });
+            return response.status(401).send({
+              message: 'Invalid Credentials, Please try again',
+            })
+              .catch((error) => {
+                response.status(500).send({
+                  message: 'Server Error',
+                  error: error.message,
+                  status: 'fail'
+                });
+              });
           });
-        return response.status(401).send({
-          message: 'Invalid Credentials, Please try again',
-        });
-      })
-      .catch((error) => {
-        response.status(500).send({
-          message: 'Server Error',
-          error: error.message,
-          status: 'fail'
-        });
       });
   }
 }
