@@ -95,8 +95,8 @@ class Users {
           });
         }
         bcrypt.compare(password, result.rows[0].password)
-          .then((res) => {
-            if (res === true) {
+          .then((results) => {
+            if (results === true) {
               const token = auth.createToken(result.rows[0]);
               return response.status(200).send({
                 message: 'Login Successful!',
