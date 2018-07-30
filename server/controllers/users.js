@@ -72,5 +72,54 @@ class Users {
         });
       });
   }
+
+  /**
+     *@description controls a user's signIn request
+     *
+     * @param {Object} request request object
+     * @param {Object} response response object
+     *
+     * @return {Object} response containing the logged-in user
+     *
+     * @memberof Users
+     */
+  static signIn(request, response) {
+    const {
+      username, email, password,
+    } = request.body;
+    db.query(findOne(username, email))
+      .then((result) => {
+        if (!result.rows[0]) {
+          return response.status(401).send({
+            message: 'Invalid Username or Email, please provide valid credentials'
+          });
+        }
+        bcrypt.compare(password, result.rows[0].password)
+          .then((results) => {
+            if (results === true) {
+              const token = auth.createToken(result.rows[0]);
+              return response.status(200).send({
+                message: 'Login Successful!',
+                userDetails: {
+                  id: result.rows[0].id,
+                  username: result.rows[0].username,
+                  email: result.rows[0].email
+                },
+                token
+              });
+            }
+            return response.status(401).send({
+              message: 'Invalid Credentials, Please try again',
+            })
+              .catch((error) => {
+                response.status(500).send({
+                  message: 'Server Error',
+                  error: error.message,
+                  status: 'fail'
+                });
+              });
+          });
+      });
+  }
 }
 export default Users;

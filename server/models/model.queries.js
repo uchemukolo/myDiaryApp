@@ -19,6 +19,6 @@ export const createUser = (username, firstName, lastName, email, hashedPassword)
  */
 
 export const findOne = (username, email) => ({
-  text: 'SELECT username, email FROM userDetails WHERE username = $1 OR email = $2',
+  text: 'SELECT username, email, password FROM userDetails WHERE username = $1 OR email = $2',
   values: [username, email]
 });
