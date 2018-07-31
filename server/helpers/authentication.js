@@ -17,7 +17,7 @@ const Authenticate = {
     return token;
   },
 
-  Verify: (request, response, next) => {
+  verify: (request, response, next) => {
     const token = request.body.token || request.query.token || request.headers.token;
     if (!token) {
       return response.status(401).json({
