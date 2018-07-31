@@ -34,3 +34,15 @@ export const addEntry = (title, mood, entry, userId) => ({
   text: 'INSERT INTO Entries(title, mood, entry, userId) VALUES ($1, $2, $3, $4) RETURNING *',
   values: [title, mood, entry, userId]
 });
+
+  /**
+ * @description fetch all items in a database by ID
+ * @name fetchAll
+ * @param userId
+ * @returns the object queried
+ */
+
+export const fetchAll = userId => ({
+  text: 'SELECT * FROM entries WHERE userId = $1',
+  values: [userId],
+});
