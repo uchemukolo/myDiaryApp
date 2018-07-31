@@ -132,7 +132,7 @@ class Validate {
     const { entryId } = request.params;
 
     if (isNaN(entryId)) {
-      return response.status(400).json({
+      return response.status(404).json({
         message: 'Parameter must be a number!'
       });
     }

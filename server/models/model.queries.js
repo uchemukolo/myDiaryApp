@@ -36,7 +36,7 @@ export const addEntry = (title, mood, entry, userId) => ({
 });
 
   /**
- * @description fetch all items in a database by ID
+ * @description fetch all entries in a database by ID
  * @name fetchAll
  * @param userId
  * @returns the object queried
@@ -45,4 +45,17 @@ export const addEntry = (title, mood, entry, userId) => ({
 export const fetchAll = userId => ({
   text: 'SELECT * FROM entries WHERE userId = $1',
   values: [userId],
+});
+
+  /**
+ * @description fetch one entry in a database by ID
+ * @name fetchOne
+ * @param entryId
+ * * @param userId
+ * @returns the object queried
+ */
+
+export const fetchOne = (id, userId) => ({
+  text: 'SELECT * FROM entries WHERE id = $1 AND userId = $2',
+  values: [id, userId],
 });
