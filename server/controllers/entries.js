@@ -65,16 +65,11 @@ class Entries {
    * */
   static getAll(request, response) {
     db.query(fetchAll(request.decoded.id))
-      .then((result) => {
-        if (result.rows.length > 0) {
-          return response.status(200).send({
-            message: 'Entries successfully retrieved from the database',
-            requests: result.rows,
-            status: 'Successful'
-          });
-        }
-        return response.status(200).send([]);
-      })
+      .then(result => response.status(200).send({
+        message: 'Entries successfully retrieved from the database',
+        requests: result.rows,
+        status: 'Successful'
+      }))
       .catch((error) => {
         response.status(500).send({
           message: 'Server error',

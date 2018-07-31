@@ -140,6 +140,7 @@ describe('Entry API Integration Tests', () => {
         .set('token', token)
         .end((error, response) => {
           expect(response.status).to.equal(200);
+          expect(response.body.message).to.equal('Entries successfully retrieved from the database');
           done();
         });
     });
