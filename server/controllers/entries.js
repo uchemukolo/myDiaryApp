@@ -1,8 +1,6 @@
-import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
-import auth from '../helpers/authentication';
 import db from '../models/index';
-import { addEntry } from '../models/model.queries';
+import { addEntry, fetchAll } from '../models/model.queries';
 
 dotenv.config();
 
@@ -31,7 +29,6 @@ class Entries {
     const {
       title, mood, entry
     } = request.body;
-    console.log(request.decoded);
     db.query(addEntry(title, mood, entry, request.decoded.id))
       .then((result) => {
         response.status(201).send({
@@ -55,32 +52,40 @@ class Entries {
         });
       });
   }
-// /**
-//  *
-//  *@description - Class Definition for the Entry class
-//  *
-//  * @export
-//  *
-//  * @class Entry
-//  */
-// class Entry {
-//   /**
-//    *@description - Fetch all entries
-//   *@param {object} request - request object
-//    *
-//    * @param {object} response - responce object
-//    *
-//    * @return {object} return object as response
-//    *
-//    * @memberof Entry
-//    * */
-//   static getAll(request, response) {
-//     return response.status(200).send({
-//       message: 'Successful',
-//       entry: data,
-//       error: false
-//     });
-//   }
+
+  /**
+   *@description - Fetch all entries
+  *@param {object} request - request object
+   *
+   * @param {object} response - responce object
+   *
+   * @return {object} return object as response
+   *
+   * @memberof Entry
+   * */
+  static getAll(request, response) {
+    db.query(fetchAll(request.decoded.id))
+      .then((result) => {
+        if (result.rows.length > 0) {
+          return response.status(200).send({
+            message: 'Entries successfully retrieved from the database',
+            requests: result.rows,
+            status: 'Successful'
+          });
+        }
+        return response.status(404).send({
+          message: 'No Entry for this user',
+          status: 'fail'
+        });
+      })
+      .catch((error) => {
+        response.status(500).send({
+          message: 'Some Error Occured',
+          error: error.message,
+          status: 'fail'
+        });
+      });
+  }
 
 //   /**
 //  *@description - Fetch one entry
