@@ -194,4 +194,46 @@ describe('Entry API Integration Tests', () => {
         });
     });
   });
+  describe('DELETE Entry', () => {
+    it('should not delete an entry is not found', (done) => {
+      chai.request(app)
+        .delete('/api/v1/entries/167388')
+        .send()
+        .set('token', token)
+        .end((error, response) => {
+          const message = 'Entry not found';
+          expect(response.status).to.equal(404);
+          expect(response.body).to.be.an('object');
+          expect(response.body.status).to.equal('fail');
+          expect(response.body).to.haveOwnProperty('message').to.equal(message);
+          done();
+        });
+    });
+    it('should return 400 if entry Id is invalid', (done) => {
+      chai.request(app)
+        .delete('/api/v1/entries/okkkkk')
+        .send()
+        .set('token', token)
+        .end((error, response) => {
+          const message = 'Parameter must be a number!';
+          expect(response.status).to.equal(400);
+          expect(response.body).to.have.property('message').to.equal(message);
+          done();
+        });
+    });
+    it('should delete a user entry', (done) => {
+      chai.request(app)
+        .delete('/api/v1/entries/1')
+        .send()
+        .set('token', token)
+        .end((error, response) => {
+          const message = 'Entry successfully deleted';
+          expect(response.status).to.equal(200);
+          expect(response.body).to.be.an('object');
+          expect(response.body.status).to.equal('Successful');
+          expect(response.body).to.have.property('message').to.equal(message);
+          done();
+        });
+    });
+  });
 });
