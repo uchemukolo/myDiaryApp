@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import db from '../models/index';
-import { addEntry, fetchAll, fetchOne } from '../models/model.queries';
+import { addEntry, fetchAll, fetchOne, removeEntry } from '../models/model.queries';
 
 dotenv.config();
 
@@ -104,6 +104,43 @@ class Entries {
         }
         return response.status(404).json({
           message: 'Entry not found!'
+        });
+      })
+      .catch((error) => {
+        response.status(500).send({
+          message: 'Some error occured!',
+          error: error.message,
+          status: 'fail'
+        });
+      });
+  }
+
+  /**
+  *@description - Delete an Entry
+   *
+  *@param {object} request - request object
+  *
+  * @param {object} response - response object
+  *
+  * @return {object} return object as response
+  *
+  * @memberof Entries
+  */
+  static deleteEntry(request, response) {
+    const { entryId } = request.params;
+
+    db.query(removeEntry(entryId, request.decoded.id))
+      .then((result) => {
+        if (result.rows[0]) {
+          return response.status(200).json({
+            data: result.rows[0],
+            message: 'Entry successfully deleted',
+            status: 'Successful'
+          });
+        }
+        return response.status(404).json({
+          message: 'Entry not found',
+          status: 'fail',
         });
       })
       .catch((error) => {

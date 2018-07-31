@@ -59,3 +59,16 @@ export const fetchOne = (id, userId) => ({
   text: 'SELECT * FROM entries WHERE id = $1 AND userId = $2',
   values: [id, userId],
 });
+
+/**
+ * @description delete one entry in the database by ID
+ * @name fetchOne
+ * @param userId
+ * @returns the object queried
+ */
+
+export const removeEntry = (id, userId) => ({
+  text: 'DELETE FROM entries WHERE id = $1 AND userId = $2 RETURNING *;',
+  values: [id, userId],
+});
+
