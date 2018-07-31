@@ -73,14 +73,11 @@ class Entries {
             status: 'Successful'
           });
         }
-        return response.status(404).send({
-          message: 'No Entry for this user',
-          status: 'fail'
-        });
+        return response.status(200).send([]);
       })
       .catch((error) => {
-        response.status(500).send({
-          message: 'Some Error Occured',
+        response.status(404).send({
+          message: 'No Entry for this user',
           error: error.message,
           status: 'fail'
         });
