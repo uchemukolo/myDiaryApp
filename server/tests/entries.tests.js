@@ -9,7 +9,7 @@ const { expect } = chai;
 let token;
 
 
-describe('API Integration Tests', () => {
+describe('Entry API Integration Tests', () => {
   it('should login the user first', (done) => {
     const user = {
       username: 'johndoe',
@@ -133,6 +133,16 @@ describe('API Integration Tests', () => {
       });
   });
   describe('Get All Entries', () => {
+    it('should return 200 for successfully getting all entries', (done) => {
+      chai.request(app)
+        .get('/api/v1/entries')
+        .send()
+        .set('token', token)
+        .end((error, response) => {
+          expect(response.status).to.equal(200);
+          done();
+        });
+    });
     it('should return 200 if no entry has been made', (done) => {
       chai.request(app)
         .get('/api/v1/entries')
