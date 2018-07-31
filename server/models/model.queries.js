@@ -22,3 +22,15 @@ export const findOne = (username, email) => ({
   text: 'SELECT username, email, password FROM userDetails WHERE username = $1 OR email = $2',
   values: [username, email]
 });
+
+/**
+ * @description script to add a new entry in a database
+ * @name addEntry
+ * @param title, mood, entry, userId
+ * @returns the object queried
+ */
+
+export const addEntry = (title, mood, entry, userId) => ({
+  text: 'INSERT INTO Entries(title, mood, entry, userId) VALUES ($1, $2, $3, $4) RETURNING *',
+  values: [title, mood, entry, userId]
+});

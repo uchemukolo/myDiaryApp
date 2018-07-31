@@ -128,7 +128,7 @@ describe('MyDiary App ::: User', () => {
         expect(response.body).to.haveOwnProperty('token');
         expect(response.body).to.haveOwnProperty('newUser');
         done();
-        console.log('<<<>>>>>>>>>>>', token);
+        console.log('<<<>>>>>>>>>>>', response.body.token);
       });
   });
   it('should not allow user signup with same email or username twice.', (done) => {
