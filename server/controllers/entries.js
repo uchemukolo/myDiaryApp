@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import db from '../models/index';
-import { addEntry, fetchAll } from '../models/model.queries';
+import { addEntry, fetchAll, fetchOne } from '../models/model.queries';
 
 dotenv.config();
 
@@ -33,7 +33,7 @@ class Entries {
       .then((result) => {
         response.status(201).send({
           message: 'Entry Created Successfully',
-          newRequest: {
+          newEntry: {
             id: result.rows[0].id,
             userId: request.decoded.id,
             title,
@@ -67,12 +67,48 @@ class Entries {
     db.query(fetchAll(request.decoded.id))
       .then(result => response.status(200).send({
         message: 'Entries successfully retrieved from the database',
-        requests: result.rows,
+        Entry: result.rows,
         status: 'Successful'
       }))
       .catch((error) => {
         response.status(500).send({
           message: 'Server error',
+          error: error.message,
+          status: 'fail'
+        });
+      });
+  }
+
+  /**
+   *@description - get one entries
+   *
+   *@param {object} request - request object
+   *
+   * @param {object} response - responce object
+   *
+   * @return {object} return object as response
+   *
+   * @memberof Entries
+  */
+  static getOne(request, response) {
+    const { entryId } = request.params;
+
+    db.query(fetchOne(entryId, request.decoded.id))
+      .then((result) => {
+        if (result.rows[0]) {
+          return response.status(200).send({
+            message: 'Entry successfully retrieved from the database',
+            entry: result.rows[0],
+            status: 'Successful',
+          });
+        }
+        return response.status(401).json({
+          message: 'You are not Authorised to view this request!'
+        });
+      })
+      .catch((error) => {
+        response.status(500).send({
+          message: 'Some error occured!',
           error: error.message,
           status: 'fail'
         });
