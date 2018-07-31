@@ -155,4 +155,41 @@ describe('Entry API Integration Tests', () => {
         });
     });
   });
+  describe('Gets a specific  Entry', () => {
+    it('should return 200 for successful', (done) => {
+      chai.request(app)
+        .get('/api/v1/entries/1')
+        .send()
+        .set('token', token)
+        .end((error, response) => {
+          const message = 'Entry successfully retrieved from the database';
+          expect(response.status).to.equal(200);
+          expect(response.body).to.haveOwnProperty('entry');
+          expect(response.body.message).to.equal(message);
+          done();
+        });
+    });
+    it('should return 401 if entry is created by user', (done) => {
+      chai.request(app)
+        .get('/api/v1/entries/6')
+        .send()
+        .set('token', token)
+        .end((error, response) => {
+          const message = 'You are not Authorised to view this request!';
+          expect(response.status).to.equal(401);
+          expect(response.body.message).to.equal(message);
+          done();
+        });
+    });
+    it('should return 404 error if entryId params is not valid', (done) => {
+      chai.request(app)
+        .put('/api/v1/entries/okkkk')
+        .send()
+        .set('token', token)
+        .end((err, response) => {
+          expect(response.status).to.equal(404);
+          done();
+        });
+    });
+  });
 });
