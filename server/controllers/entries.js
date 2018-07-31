@@ -102,8 +102,8 @@ class Entries {
             status: 'Successful',
           });
         }
-        return response.status(401).json({
-          message: 'You are not Authorised to view this request!'
+        return response.status(404).json({
+          message: 'Entry not found!'
         });
       })
       .catch((error) => {

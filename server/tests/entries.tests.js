@@ -169,25 +169,27 @@ describe('Entry API Integration Tests', () => {
           done();
         });
     });
-    it('should return 401 if entry is created by user', (done) => {
+    it('should return 404 if entry is not found', (done) => {
       chai.request(app)
         .get('/api/v1/entries/6')
         .send()
         .set('token', token)
         .end((error, response) => {
-          const message = 'You are not Authorised to view this request!';
-          expect(response.status).to.equal(401);
+          const message = 'Entry not found!';
+          expect(response.status).to.equal(404);
           expect(response.body.message).to.equal(message);
           done();
         });
     });
-    it('should return 404 error if entryId params is not valid', (done) => {
+    it('should return 400 error if entryId params is not valid', (done) => {
       chai.request(app)
-        .put('/api/v1/entries/okkkk')
+        .get('/api/v1/entries/okkkk')
         .send()
         .set('token', token)
-        .end((err, response) => {
-          expect(response.status).to.equal(404);
+        .end((error, response) => {
+          const message = 'Parameter must be a number!';
+          expect(response.status).to.equal(400);
+          expect(response.body).to.haveOwnProperty('message').to.eql(message);
           done();
         });
     });
