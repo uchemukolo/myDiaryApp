@@ -155,4 +155,43 @@ describe('Entry API Integration Tests', () => {
         });
     });
   });
+  describe('Gets a specific  Entry', () => {
+    it('should return 200 for successful', (done) => {
+      chai.request(app)
+        .get('/api/v1/entries/1')
+        .send()
+        .set('token', token)
+        .end((error, response) => {
+          const message = 'Entry successfully retrieved from the database';
+          expect(response.status).to.equal(200);
+          expect(response.body).to.haveOwnProperty('entry');
+          expect(response.body.message).to.equal(message);
+          done();
+        });
+    });
+    it('should return 404 if entry is not found', (done) => {
+      chai.request(app)
+        .get('/api/v1/entries/6')
+        .send()
+        .set('token', token)
+        .end((error, response) => {
+          const message = 'Entry not found!';
+          expect(response.status).to.equal(404);
+          expect(response.body.message).to.equal(message);
+          done();
+        });
+    });
+    it('should return 400 error if entryId params is not valid', (done) => {
+      chai.request(app)
+        .get('/api/v1/entries/okkkk')
+        .send()
+        .set('token', token)
+        .end((error, response) => {
+          const message = 'Parameter must be a number!';
+          expect(response.status).to.equal(400);
+          expect(response.body).to.haveOwnProperty('message').to.eql(message);
+          done();
+        });
+    });
+  });
 });

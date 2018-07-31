@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.post('/', auth.verify, validate.createEntry, entry.createEntry);
 router.get('/', auth.verify, entry.getAll);
+router.get('/:entryId', auth.verify, validate.entryId, entry.getOne);
 
 
 export default router;
