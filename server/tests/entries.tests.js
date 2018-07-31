@@ -21,7 +21,6 @@ describe('API Integration Tests', () => {
       .end((error, response) => {
         token = response.body.token;
         done();
-        console.log('>>>>>>>>>>>>>>>', response.body.token);
       });
   });
   describe('Autentication', () => {
@@ -134,15 +133,24 @@ describe('API Integration Tests', () => {
       });
   });
   // describe('Get All Entries', () => {
-  //   it('should return 200 for successful', (done) => {
+  //   it('should return 404 if no entry has been made', (done) => {
   //     chai.request(app)
   //       .get('/api/v1/entries')
   //       .send()
-  //       .end((err, response) => {
+  //       .set('token', token)
+  //       .end((error, response) => {
+  //         expect(response.status).to.equal(404);
+  //         expect(response.body.message).to.equal('No Entry for this user');
+  //         done();
+  //       });
+  //   });
+  //   it('should return 200 for successful', (done) => {
+  //     chai.request(app)
+  //       .get('/api/v1/entries')
+  //       .set('token', token)
+  //       .end((error, response) => {
   //         expect(response.status).to.equal(200);
-  //         expect(response.body.should.be.a('object'));
   //         expect(response.body.message).to.equal('Successful');
-  //         expect(response.body).to.haveOwnProperty('error').to.eql(false);
   //         done();
   //       });
   //   });
