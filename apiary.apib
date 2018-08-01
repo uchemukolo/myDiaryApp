@@ -29,7 +29,6 @@ Register a user
     + Body
     
             {
-    
             "message": "Signup Successful",
             "id": 1,
             "user": {
@@ -42,7 +41,6 @@ Register a user
             "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyOX0sImlhdCI6MTUxNTc1MzExNCwiZXhwIjoxNTE1NzU2NzE0fQ.sG-zNYLLSMTm6MtuhQ3XGZuTzsMqykeZSSzROkUvkNw",
             "status": "Successful",
             }
-
 
 ### User Login [POST]
 
@@ -71,10 +69,9 @@ Login a user
             "email": "muche@mail.com"
             },
             "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRpbnk4MyIsImVtYWlsIjoidWNoZWs3QGdtYWlsLmNvbSIsImlhdCI6MTUzMjk4MDgxNiwiZXhwIjoxNTMzMDY3MjE2fQ.3yyrpjNbyTtIKkWn_wl9pshODPpz10WN8j9j6IHTt1I"
-
             }
 
-## Entries [api/v1/entries]
+## Entries [/api/v1/entries]
 
 ### Create Entry [POST]
 
@@ -91,7 +88,7 @@ Add an entry
 + Response 201 (application/json)
 
     + Body
-
+        
             {
             "message": "Entry Created Successfully",
             "newEntry": {
@@ -190,7 +187,7 @@ Fetch the details of an entry for a user
         "status": "Successful"
         }
 
-### Delete Entry [GET]
+### Delete Entry [DELETE]
 
 Delete a Diary Entry
 
