@@ -1,80 +1,210 @@
 FORMAT: 1A
 HOST: http://polls.apiblueprint.org/
 
-# Signup
+# myDiary
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+## Users [/api/v1/auth]
 
-## Questions Collection [/questions]
+### User Signup  [POST]
 
-### List All Questions [GET]
-
-+ Response 200 (application/json)
-
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
-
-### Create a New Question [POST]
-
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
+Register a user
 
 + Request (application/json)
 
         {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
+                "username":"muche",
+                "firstName": "Uche" ,
+                "lastName": "Mukolo",
+                "emill": "muche@email.com",
+                "password": "password"
         }
+
 
 + Response 201 (application/json)
 
     + Headers
 
-            Location: /questions/2
+            Location: /signup
+
+    + Body
+    
+            {
+    
+            "message": "Signup Successful",
+            "id": 1,
+            "user": {
+      
+            "username": "muche",
+            "firstName": "Uche",
+            "lastName": "Mukolo",
+            "email": "muche@mail.com"
+            },
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyOX0sImlhdCI6MTUxNTc1MzExNCwiZXhwIjoxNTE1NzU2NzE0fQ.sG-zNYLLSMTm6MtuhQ3XGZuTzsMqykeZSSzROkUvkNw",
+            "status": "Successful",
+            }
+
+
+### User Login [POST]
+
+Login a user
+
++ Request (application/json)
+
+        {
+            "username":"muche",
+            "password": "password"
+
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /login
 
     + Body
 
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
+            "message": "Login Successful!",
+            "userDetails": {
+            "username": "muche",
+            "email": "muche@mail.com"
+            },
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRpbnk4MyIsImVtYWlsIjoidWNoZWs3QGdtYWlsLmNvbSIsImlhdCI6MTUzMjk4MDgxNiwiZXhwIjoxNTMzMDY3MjE2fQ.3yyrpjNbyTtIKkWn_wl9pshODPpz10WN8j9j6IHTt1I"
+
             }
+
+## Entries [api/v1/entries]
+
+### Create Entry [POST]
+
+Add an entry
+
++ Request (application/json)
+
+        {
+          "title": "My first Journal"
+          "mood": "Boring"  
+          "entry": "Some text in my first journal"
+        }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+            "message": "Entry Created Successfully",
+            "newEntry": {
+            "id": 7,
+            "userId": 1,
+            "title": "My first Journal",
+            "mood": "Boring",
+            "entry": "Some text in my first journal",
+            "status": "Successful"
+            }
+            } 
+            
+### Modify an Entry [PUT]
+
+Modify a diary entry
+
++ Request (application/json)
+        
+        {
+          "title": "My first Journal"
+          "mood": "Boring"  
+          "entry": "Some text in my first journal"
+        }
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+            "entry": {
+            "id": 2,
+            "userid": 1,
+            "title": "Last Summer Holiday",
+            "mood": "Boring",
+            "entry": "Some text in my first journal",
+            "createdat": "2018-08-01T08:34:49.000Z"
+            },
+            "message": "Entry updated sucessfully",
+            "status": "Successful"
+            }
+
+### Get Entries [GET]
+
+Fetch all the entries for a user
+
++ Response 200 (application/json)
+
+        [
+            {
+            "message": "Entries successfully retrieved from the database",
+            "Entry": [
+        {
+            "id": 2,
+            "userid": 1,
+            "title": "About last",
+            "mood": "party",
+            "entry": "gftyn kjjnhiug uygfyufty gffdtrdtrs",
+            "createdat": "2018-08-01T08:34:49.000Z"
+        },
+        {
+            "id": 6,
+            "userid": 1,
+            "title": "Something in my journal",
+            "mood": "Sleepy",
+            "entry": "yugfwfjh; ;jh;iifji;oe iojioEWRUWQ ;OIHIOWHRiw ijioehIR IJHIORI ioheIORH KJBIUEHRu jiuehru KJBE;; EHOE",
+            "createdat": "2018-07-01T10:35:41.000Z"
+        },
+        {
+            "id": 7,
+            "userid": 1,
+            "title": "About next WEEK",
+            "mood": "BORING",
+            "entry": "gftyn kjjnhiug uygfyufty gffdtrdtrs",
+            "createdat": "2018-08-01T14:00:35.000Z"
+        }
+        ],
+        "status": "Successful"
+        }
+        
+### Get One Entry [GET]
+
+Fetch the details of an entry for a user
+
++ Response 200 (application/json)
+
+        {
+        "message": "Entry successfully retrieved from the database",
+        "entry": {
+        "id": 6,
+        "userid": 1,
+        "title": "Something in my journal",
+        "mood": "Sleepy",
+        "entry": "yugfwfjh; ;jh;iifji;oe iojioEWRUWQ ;OIHIOWHRiw ijioehIR IJHIORI ioheIORH KJBIUEHRu jiuehru KJBE;; EHOE",
+        "createdat": "2018-07-01T10:35:41.000Z"
+        },
+        "status": "Successful"
+        }
+
+### Delete Entry [GET]
+
+Delete a Diary Entry
+
++ Response 200 (application/json)
+
+        {
+        "message": "Entry successfully retrieved from the database",
+        "entry": {
+        "id": 6,
+        "userid": 1,
+        "title": "Something in my journal",
+        "mood": "Sleepy",
+        "entry": "yugfwfjh; ;jh;iifji;oe iojioEWRUWQ ;OIHIOWHRiw ijioehIR IJHIORI ioheIORH KJBIUEHRu jiuehru KJBE;; EHOE",
+        "createdat": "2018-07-01T10:35:41.000Z"
+        },
+        "status": "Successful"
+        }
