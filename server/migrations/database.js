@@ -1,5 +1,5 @@
-const { Pool } = require('pg');
-const dotenv = require('dotenv');
+import { Pool } from 'pg';
+import dotenv from 'dotenv';
 
 dotenv.config();
 let connectionString;
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS userDetails(
   lastName VARCHAR(40) not null,
   email VARCHAR(40) not null unique,
   password VARCHAR(255) not null,
-  created_at timestamp (0) without time zone default now()
+  createdAt timestamp (0) without time zone default now()
 )`;
 
 const entries = `
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS entries(
   title VARCHAR(40) not null,
   mood VARCHAR(40) not null,
   entry TEXT not null,
-  created_at timestamp (0) without time zone default now(),
+  createdAt timestamp (0) without time zone default now(),
   FOREIGN KEY (userId) REFERENCES userDetails(id)
 )`;
 
@@ -48,6 +48,7 @@ CREATE TABLE IF NOT EXISTS notification(
   userId int unique,
   name VARCHAR(40) not null,
   email VARCHAR(40) not null unique,
+  createdAt timestamp (0) without time zone default now(),
   FOREIGN KEY (userId) REFERENCES userDetails(id)
 )`;
 
