@@ -1,6 +1,8 @@
 import dotenv from 'dotenv';
 import db from '../models/index';
-import { addEntry, fetchAll, fetchOne, removeEntry } from '../models/model.queries';
+import {
+  addEntry, fetchAll, fetchOne, fetch, update, removeEntry
+} from '../models/model.queries';
 
 dotenv.config();
 
@@ -47,6 +49,57 @@ class Entries {
       .catch((error) => {
         response.status(500).send({
           message: 'Create Entry Failed',
+          error: error.message,
+          status: 'fail'
+        });
+      });
+  }
+
+  /**
+   *@description - Modify details of an entry
+   *
+   *@param {object} request - HTTP request
+   *
+   * @param {object} response
+   *
+   * @return {object} return object as response
+   *
+   * @memberof Entries
+   */
+  static modifyEntry(request, response) {
+    const { entryId } = request.params;
+    const updateFields = request.body;
+    const {
+      title, mood, entry
+    } = request.body;
+    db.query(fetch(entryId, request.decoded.id))
+      .then((result) => {
+        if (result.rows.length === 0) {
+          return response.status(400).send({
+            message: 'You cannot Modify this Entry after 24 hours!'
+          });
+        }
+        db.query(update(title, mood, entry, entryId, request.decoded.id))
+          .then((updated) => {
+            if (title) {
+              updateFields.title = title;
+            }
+            if (mood) {
+              updateFields.mood = mood;
+            }
+            if (entry) {
+              updateFields.entry = entry;
+            }
+            return response.status(200).send({
+              entry: updated.rows[0],
+              message: 'Entry updated sucessfully',
+              status: 'Successful',
+            });
+          });
+      })
+      .catch((error) => {
+        response.status(500).send({
+          message: 'Entry update Not sucessful!',
           error: error.message,
           status: 'fail'
         });
