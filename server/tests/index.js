@@ -1,2 +1,2 @@
-require('./users.test');
-require('./entries.tests');
+import './users.test';
+import './entries.tests';
