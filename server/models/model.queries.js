@@ -72,3 +72,27 @@ export const removeEntry = (id, userId) => ({
   values: [id, userId],
 });
 
+  /**
+ * @description fetch one entry in a database by ID and validate the date
+ * @name fetchOne
+ * @param entryId
+ * * @param userId
+ * @returns the object queried
+ */
+
+export const fetch = (id, userId) => ({
+  text: 'SELECT * FROM entries WHERE id = $1 AND userId = $2 AND createdAt::date = CURRENT_DATE',
+  values: [id, userId],
+});
+
+/**
+ * @description update an entry in the database by ID
+ * @name update
+ * @param title, mood, entry, id, userId
+ * @returns the object queried
+ */
+
+export const update = (title, mood, entry, id, userId) => ({
+  text: 'UPDATE entries SET title = $1, mood = $2, entry = $3 WHERE id = $4 AND userId = $5 RETURNING *',
+  values: [title, mood, entry, id, userId]
+});
