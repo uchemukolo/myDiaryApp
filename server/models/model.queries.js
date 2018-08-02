@@ -68,7 +68,7 @@ export const fetchOne = (id, userId) => ({
  */
 
 export const removeEntry = (id, userId) => ({
-  text: 'DELETE FROM entries WHERE id = $1 AND userId = $2 RETURNING *;',
+  text: 'DELETE FROM entries WHERE id = $1 AND userId = $2 RETURNING*',
   values: [id, userId],
 });
 
@@ -81,7 +81,7 @@ export const removeEntry = (id, userId) => ({
  */
 
 export const fetch = (id, userId) => ({
-  text: 'SELECT * FROM entries WHERE id = $1 AND userId = $2 AND createdAt::date = CURRENT_DATE',
+  text: 'SELECT * FROM entries WHERE id = $1 AND userId = $2',
   values: [id, userId],
 });
 

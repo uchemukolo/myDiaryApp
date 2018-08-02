@@ -71,7 +71,7 @@ class Validate {
     if (validation.passes()) {
       next();
     } else {
-      const errors = validation.errors.all();
+      const errors = validation.errors.all();`1`
       return response.status(400)
         .send({ message: errors });
     }

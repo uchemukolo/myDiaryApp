@@ -68,28 +68,32 @@ class Entries {
    */
   static modifyEntry(request, response) {
     const { entryId } = request.params;
-    const updateFields = request.body;
     const {
       title, mood, entry
     } = request.body;
     db.query(fetch(entryId, request.decoded.id))
       .then((result) => {
         if (result.rows.length === 0) {
-          return response.status(400).send({
-            message: 'You cannot Modify this Entry after 24 hours!'
+          return response.status(404).send({
+            message: 'Entry does not Exist'
           });
         }
+        console.log('.>>>>>>>>>.', result.rows[0]);
+        const { createdat } = result.rows[0];
+        const currentDate = new Date();
+        const sameDay = currentDate.toDateString() === createdat.toDateString();
+        if (!sameDay) {
+          return response.status(400).json({
+            message: 'Entry cannot be updated after the day entry was created expires'
+          });
+        }
+        const queryResult = result.rows[0];
         db.query(update(title, mood, entry, entryId, request.decoded.id))
           .then((updated) => {
-            if (title) {
-              updateFields.title = title;
-            }
-            if (mood) {
-              updateFields.mood = mood;
-            }
-            if (entry) {
-              updateFields.entry = entry;
-            }
+            updated.rows[0].title = queryResult.title;
+            updated.rows[0].mood = queryResult.mood;
+            updated.rows[0].entry = queryResult.entry;
+
             return response.status(200).send({
               entry: updated.rows[0],
               message: 'Entry updated sucessfully',
@@ -97,7 +101,10 @@ class Entries {
             });
           });
       })
-      .catch((error) => {
+      .catch((
+
+        error
+) => {
         response.status(500).send({
           message: 'Entry update Not sucessful!',
           error: error.message,
