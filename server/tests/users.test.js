@@ -15,137 +15,117 @@ describe('MyDiary App ::: User', () => {
         .post('/api/v1/auth/signup')
         .send({
           username: 'johndoe',
-          firstName: 'John',
-          lastName: 'Doe',
+          firstName: 'Johnny',
+          lastName: 'Smithy',
           password: 'abcd1234'
         })
         .end((error, response) => {
-          const message = {
-            email: [
-              'The email field is required.'
-            ]
-          };
+          const message = 'Please Enter a valid Email';
           expect(response.status).to.equal(400);
           expect(response.body).to.haveOwnProperty('message').to.eql(message);
           done();
         });
     });
-  });
-  it('should not allow user signup with no username.', (done) => {
-    chai.request(app)
-      .post('/api/v1/auth/signup')
-      .send({
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'johndoe@email.com',
-        password: 'abcd1234'
-      })
-      .end((error, response) => {
-        const message = {
-          username: [
-            'The username field is required.'
-          ]
-        };
-        expect(response.status).to.equal(400);
-        expect(response.body).to.haveOwnProperty('message').to.eql(message);
-        done();
-      });
-  });
-  it('should not allow user signup with no firstName.', (done) => {
-    chai.request(app)
-      .post('/api/v1/auth/signup')
-      .send({
-        username: 'johndoe',
-        lastName: 'Doe',
-        email: 'johndoe@email.com',
-        password: 'abcd1234'
-      })
-      .end((error, response) => {
-        const message = {
-          firstName: [
-            'The firstName field is required.'
-          ]
-        };
-        expect(response.status).to.equal(400);
-        expect(response.body).to.haveOwnProperty('message').to.eql(message);
-        done();
-      });
-  });
-  it('should not allow user signup with no lastName.', (done) => {
-    chai.request(app)
-      .post('/api/v1/auth/signup')
-      .send({
-        username: 'johndoe',
-        firstName: 'John',
-        email: 'johndoe@email.com',
-        password: 'abcd1234'
-      })
-      .end((error, response) => {
-        const message = {
-          lastName: [
-            'The lastName field is required.'
-          ]
-        };
-        expect(response.status).to.equal(400);
-        expect(response.body).to.haveOwnProperty('message').to.eql(message);
-        done();
-      });
-  });
-  it('should not allow user signup with no password.', (done) => {
-    chai.request(app)
-      .post('/api/v1/auth/signup')
-      .send({
-        username: 'johndoe',
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'johndoe@email.com'
-      })
-      .end((error, response) => {
-        const message = {
-          password: [
-            'The password field is required.'
-          ]
-        };
-        expect(response.status).to.equal(400);
-        expect(response.body).to.haveOwnProperty('message').to.eql(message);
-        done();
-      });
-  });
-  it('should allow user signup with no errors.', (done) => {
-    chai.request(app)
-      .post('/api/v1/auth/signup')
-      .send({
-        username: 'johndoe',
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'johndoe@email.com',
-        password: 'abcd1234'
-      })
-      .end((error, response) => {
-        const message = 'Signup Successful';
-        expect(response.status).to.equal(201);
-        expect(response.body).to.haveOwnProperty('message').to.eql(message);
-        expect(response.body).to.haveOwnProperty('token');
-        expect(response.body).to.haveOwnProperty('newUser');
-        done();
-      });
-  });
-  it('should not allow user signup with same email or username twice.', (done) => {
-    chai.request(app)
-      .post('/api/v1/auth/signup')
-      .send({
-        username: 'johndoe',
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'johndoe@email.com',
-        password: 'abcd1234'
-      })
-      .end((error, response) => {
-        const message = 'User Already Exists, Please Login';
-        expect(response.status).to.equal(409);
-        expect(response.body).to.haveOwnProperty('message').to.eql(message);
-        done();
-      });
+    it('should not allow user signup with no username.', (done) => {
+      chai.request(app)
+        .post('/api/v1/auth/signup')
+        .send({
+          firstName: 'Johnny',
+          lastName: 'Smithy',
+          email: 'johndoe@email.com',
+          password: 'abcd1234'
+        })
+        .end((error, response) => {
+          const message = 'Please Enter Your Username';
+          expect(response.status).to.equal(400);
+          expect(response.body).to.haveOwnProperty('message').to.eql(message);
+          done();
+        });
+    });
+    it('should not allow user signup with no firstName.', (done) => {
+      chai.request(app)
+        .post('/api/v1/auth/signup')
+        .send({
+          username: 'johndoe',
+          lastName: 'Smithy',
+          email: 'johndoe@email.com',
+          password: 'abcd1234'
+        })
+        .end((error, response) => {
+          const message = 'Please Enter Your First Name';
+          expect(response.status).to.equal(400);
+          expect(response.body).to.haveOwnProperty('message').to.eql(message);
+          done();
+        });
+    });
+    it('should not allow user signup with no lastName.', (done) => {
+      chai.request(app)
+        .post('/api/v1/auth/signup')
+        .send({
+          username: 'johndoe',
+          firstName: 'Johnny',
+          email: 'johndoe@email.com',
+          password: 'abcd1234'
+        })
+        .end((error, response) => {
+          const message = 'Please Enter Your Last Name';
+          expect(response.status).to.equal(400);
+          expect(response.body).to.haveOwnProperty('message').to.eql(message);
+          done();
+        });
+    });
+    it('should not allow user signup with no password.', (done) => {
+      chai.request(app)
+        .post('/api/v1/auth/signup')
+        .send({
+          username: 'johndoe',
+          firstName: 'Johnny',
+          lastName: 'Smithy',
+          email: 'johndoe@email.com'
+        })
+        .end((error, response) => {
+          const message = 'Please Enter password';
+          expect(response.status).to.equal(400);
+          expect(response.body).to.haveOwnProperty('message').to.eql(message);
+          done();
+        });
+    });
+    it('should allow user signup with no errors.', (done) => {
+      chai.request(app)
+        .post('/api/v1/auth/signup')
+        .send({
+          username: 'johndoe',
+          firstName: 'Johnny',
+          lastName: 'Smithy',
+          email: 'johndoe@email.com',
+          password: 'abcd1234'
+        })
+        .end((error, response) => {
+          const message = 'Signup Successful';
+          expect(response.status).to.equal(201);
+          expect(response.body).to.haveOwnProperty('message').to.eql(message);
+          expect(response.body).to.haveOwnProperty('token');
+          expect(response.body).to.haveOwnProperty('newUser');
+          done();
+        });
+    });
+    it('should not allow user signup with same email or username twice.', (done) => {
+      chai.request(app)
+        .post('/api/v1/auth/signup')
+        .send({
+          username: 'johndoe',
+          firstName: 'Johnny',
+          lastName: 'Smithy',
+          email: 'johndoe@email.com',
+          password: 'abcd1234'
+        })
+        .end((error, response) => {
+          const message = 'User Already Exists, Please Login';
+          expect(response.status).to.equal(409);
+          expect(response.body).to.haveOwnProperty('message').to.eql(message);
+          done();
+        });
+    });
   });
 
   describe('Login', () => {
@@ -157,11 +137,7 @@ describe('MyDiary App ::: User', () => {
         .post('/api/v1/auth/login')
         .send(user)
         .end((error, response) => {
-          const message = {
-            password: [
-              'The password field is required.'
-            ]
-          };
+          const message = 'Please enter Your Password!';
           expect(response.status).to.equal(400);
           expect(response.body).to.haveOwnProperty('message').to.eql(message);
           done();
@@ -175,11 +151,7 @@ describe('MyDiary App ::: User', () => {
         .post('/api/v1/auth/login')
         .send(user)
         .end((error, response) => {
-          const message = {
-            username: [
-              'The username field is required.'
-            ]
-          };
+          const message = 'Please enter Your username or email!';
           expect(response.status).to.equal(400);
           expect(response.body).to.haveOwnProperty('message').to.eql(message);
           done();
