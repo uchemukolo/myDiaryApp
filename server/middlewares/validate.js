@@ -1,5 +1,3 @@
-import Validator from 'validatorjs';
-
 /**
  *
  *
@@ -43,38 +41,46 @@ class Validate {
  */
   static register(request, response, next) {
     const {
-      username,
-      firstName,
-      lastName,
-      email,
-      password
-
+      username, firstName, lastName, email, password
     } = request.body;
-
-    const userData = {
-      username,
-      firstName,
-      lastName,
-      email,
-      password
-    };
-
-    const userDataRules = {
-      username: 'required|string|min:5',
-      firstName: 'required|string|alpha|min:2',
-      lastName: 'required|string|alpha|min:2',
-      email: 'required|string|email',
-      password: 'required|min:6'
-    };
-
-    const validation = new Validator(userData, userDataRules);
-    if (validation.passes()) {
-      next();
-    } else {
-      const errors = validation.errors.all();
-      return response.status(400)
-        .send({ message: errors });
+    if (!username) {
+      return response.status(400).send({
+        message: 'Please Enter Your Username'
+      });
     }
+    if ((!/^[a-zA-Z]*$/g.test(username))) {
+      return response.status(400).send({
+        message: 'Username must have alphabet characters only'
+      });
+    } if (!firstName) {
+      return response.status(400).send({
+        message: 'Please Enter Your First Name'
+      });
+    } if ((!/^[a-z A-Z]*$/g.test(firstName))) {
+      return response.status(400).send({
+        message: 'First Name must have alphabet characters only'
+      });
+    } if (!lastName) {
+      return response.status(400).send({
+        message: 'Please Enter Your Last Name'
+      });
+    } if ((!/^[a-z A-Z]*$/g.test(lastName))) {
+      return response.status(400).send({
+        message: 'Last Name must have alphabet characters only'
+      });
+    } if ((!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g.test(email))) {
+      return response.status(400).send({
+        message: 'Please Enter a valid Email'
+      });
+    } if (!password) {
+      return response.status(400).send({
+        message: 'Please Enter password'
+      });
+    } if (password.length < 6) {
+      return response.status(400).send({
+        message: 'Password is too short!'
+      });
+    } next();
   }
 
   /**
@@ -90,30 +96,16 @@ class Validate {
     * @memberof Validate
    */
   static login(request, response, next) {
-    const {
-      username,
-      email,
-      password
-    } = request.body;
-
-    const userData = {
-      username: username || email,
-      password
-    };
-
-    const userDataRules = {
-      username: 'required|string',
-      password: 'required|min:6',
-    };
-
-    const validation = new Validator(userData, userDataRules);
-    if (validation.passes()) {
-      next();
-    } else {
-      const errors = validation.errors.all();
-      return response.status(400)
-        .send({ message: errors });
-    }
+    const { username, password } = request.body;
+    if (!username || typeof username !== 'string') {
+      response.status(400).send({
+        message: 'Please enter Your username or email!'
+      });
+    } else if (!password) {
+      response.status(400).send({
+        message: 'Please enter Your Password!'
+      });
+    } next();
   }
 
   /**
@@ -151,58 +143,40 @@ class Validate {
    *
    * @memberof Validate
   */
-  static createEntry(request, response, next) {
-    const { title, mood, entry } = request.body;
-
-    const entryData = { title, mood, entry };
-
-    const entryDataRules = {
-      title: 'required|string|min:6',
-      mood: 'required|string|alpha',
-      entry: 'required|string|min:6'
-    };
-
-    const validation = new Validator(entryData, entryDataRules);
-    if (validation.passes()) {
-      next();
-    } else {
-      const errors = validation.errors.all();
-      return response.status(400)
-        .json({ message: errors });
+  static entry(request, response, next) {
+    const {
+      title, mood, entry
+    } = request.body;
+    if (!title) {
+      response.status(400).send({
+        message: 'Title field cannot be empty'
+      });
     }
-  }
-
-  /**
- *
- * @param {object} request
- *
- * @param {object} response
- *
- * @param {unctionf} next
- *
- * @returns {object} - JSON object and status code
- *
- * @memberof Validate
-*/
-  static modifyEntry(request, response, next) {
-    const { title, mood, entry } = request.body;
-
-    const entryData = { title, mood, entry };
-
-    const entryDataRules = {
-      title: 'string|min:6',
-      mood: 'string|alpha',
-      entry: 'string|min:6'
-    };
-
-    const validation = new Validator(entryData, entryDataRules);
-    if (validation.passes()) {
-      next();
-    } else {
-      const errors = validation.errors.all();
-      return response.status(400)
-        .json({ message: errors });
-    }
+    if ((!/^[a-z A-Z]*$/g.test(title))) {
+      return response.status(400).send({
+        message: 'Title must have alphabet characters only'
+      });
+    } if (title.length < 5) {
+      response.status(400).send({
+        message: 'Title field must be 5 letters and above'
+      });
+    } else if (!mood) {
+      response.status(400).send({
+        message: 'Mood field cannot be empty'
+      });
+    } if ((!/^[a-z A-Z]*$/g.test(mood))) {
+      return response.status(400).send({
+        message: 'Mood field must have alphabet characters only'
+      });
+    } if (!entry) {
+      response.status(400).send({
+        message: 'Entry field cannot be empty'
+      });
+    } else if (entry.length < 20) {
+      response.status(400).send({
+        message: 'Entry field must be 20 letters and above'
+      });
+    }next();
   }
 }
 
