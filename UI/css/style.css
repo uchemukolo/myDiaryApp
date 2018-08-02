@@ -420,7 +420,13 @@ margin-top: 10PX;
   border: 2px solid #f1f1f1;
   border-radius: 10px;
   background-color: #ffffff;
-  width: 50%;
+  width: 40%;
+}
+.container-note {
+  padding: 20px;
+  background-color: #f1f1f1;
+  display: block;
+  text-align: center;
 }
 
 /* The Close Button */
