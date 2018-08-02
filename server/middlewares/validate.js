@@ -71,7 +71,7 @@ class Validate {
     if (validation.passes()) {
       next();
     } else {
-      const errors = validation.errors.all();`1`
+      const errors = validation.errors.all(); '1';
       return response.status(400)
         .send({ message: errors });
     }
@@ -186,6 +186,11 @@ class Validate {
 */
   static modifyEntry(request, response, next) {
     const { title, mood, entry } = request.body;
+    if (!title || !mood || !entry) {
+      return response.status(400).send({
+        message: 'Fields cannot be empty'
+      });
+    }
 
     const entryData = { title, mood, entry };
 
