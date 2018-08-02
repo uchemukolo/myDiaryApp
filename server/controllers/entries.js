@@ -87,13 +87,8 @@ class Entries {
             message: 'Entry cannot be updated after the day entry was created expires'
           });
         }
-        const queryResult = result.rows[0];
         db.query(update(title, mood, entry, entryId, request.decoded.id))
           .then((updated) => {
-            updated.rows[0].title = queryResult.title;
-            updated.rows[0].mood = queryResult.mood;
-            updated.rows[0].entry = queryResult.entry;
-
             return response.status(200).send({
               entry: updated.rows[0],
               message: 'Entry updated sucessfully',
@@ -101,10 +96,7 @@ class Entries {
             });
           });
       })
-      .catch((
-
-        error
-) => {
+      .catch((error) => {
         response.status(500).send({
           message: 'Entry update Not sucessful!',
           error: error.message,
