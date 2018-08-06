@@ -1,124 +1,169 @@
 <!DOCTYPE html>
 <html lang='en'>
-  <head>
-    <meta charset='UTF-8'/>
-    <title>My Diary</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="css/style.css">
-  </head>
-  <body class="background">
-    <div class="topnav" id="myTopnav">
-        <a href="#" class="active">MY DIARY</a>
-        <a href="../index.html">Home</a>
-        <a href="add-entry.html">+New Entry</a>
-        <a href="logout.html">Logout</a>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-          <i class="fa fa-bars">Menu</i>
-        </a>
-      </div>
-      <div class="container-entries">
-          <div class="entry-list">
-              <h2>Welcome!</h2>
-              <h4>3 total Entries</h4>
-               <!-- Trigger/Open The Modal -->
-        <button id="myBtn">Set Reminder</button>
-        <div id="myModal" class="modal">
-          <div class="modal-content">
-            <span class="close">&times;</span>
-<form id="form" action="#">
-  <div class="container-note">
-    <h2>Get Notified</h2>
-    <p>Do not forget to pen down your precious thoughts and feeling. Subscribe and get a notification daily.</p>
-  </div>
-  <div class="container-note">
-    <input type="text" placeholder="Name" name="name" required>
-    <input type="text" placeholder="Email address" name="mail" required>
-    <label>
-      <input type="checkbox" checked="checked" name="subscribe"> Daily Reminder
-    </label>
-  </div>
-  <div class="container-note">
-    <input type="submit" value="Subscribe">
-  </div>
-</form>
-          </div>
 
-        </div>
-      </div>
+<head>
+  <meta charset='UTF-8' />
+  <title>My Diary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-      <table>
-        <tr>
-          <th>ID</th>
-          <th>Entry</th>
-          <th>Date Created</th>
-          <th>Delete</th>
-        </tr>
-        <tr>
-          <td>
-            1
-          </td>
-          <td>
-            <a href="entry-detail.html">Latest Entry</a>
-            <p> This is the begining if todays diary entry. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-              imperdiet, nulla et dictum interdum, nisi lorem egestas vitae scel....
-            </p>
-          </td>
-          <td>
-            7/10/2018
-          </td>
-          <td>
-              <button id="myBtn">Delete</button>
-            </td>
-        </tr>
-        <tr>
-          <td>
-            2
-          </td>
-          <td>
-            <a href="entry-detail.html">My Day at the beach</a>
-            <p> This is the begining if todays diary entry. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-              imperdiet, nulla et dictum interdum, nisi lorem egestas vitae scel...
+</head>
 
-            </p>
-          </td>
-          <td>
-            7/10/2018
-          </td>
-          <td>
-              <button id="myBtn">Delete</button>
-            </td>
-        </tr>
-        <tr>
-          <td>
-            3
-          </td>
-          <td>
-            <a href="entry-detail.html">About Christmas</a>
-            <p> This is the begining if todays diary entry. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-              imperdiet, nulla et dictum interdum, nisi lorem egestas vitae scel...
-            </p>
-          </td>
-          <td>
-            7/10/2018
-          </td>
-          <td>
-              <button id="myBtn">Delete</button>
-            </td>
-        </tr>
-      </table>
-      <div class="pagination">
-          <a href="#">&laquo;</a>
-          <a href="#">1</a>
-          <a href="#" class="active">2</a>
-          <a href="#">3</a>
-          <a href="#">&raquo;</a>
+<body class="background">
+  <div class="topnav" id="myTopnav">
+    <a href="#" class="active" id="logo">MY DIARY</a>
+    <a href="../index.html">Home</a>
+    <a href="add-entry.html">Add New Entry</a>
+    <a href="logout.html">Logout</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+  <div class="container-entries">
+    <div class="entry-list">
+      <h3>Welcome Uche Mukolo!</h3>
+      <span id="total-entries">
+      <strong>6 total Entries</strong>
+      </span>
+    </br>
+      <!-- Trigger/Open The Modal -->
+      <button id="myBtn">Set Reminder</button>
     </div>
-  </div>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <form id="form" action="#">
+          <div class="container-note">
+            <h2>Get Notified</h2>
+            <p>Do not forget to pen down your precious thoughts and feeling. Subscribe and get a notification daily.</p>
+          </div>
+          <div class="container-note">
+            <input type="text" placeholder="Name" name="name" required>
+            <input type="text" placeholder="Email address" name="mail" required>
+            <label>
+              <input type="checkbox" checked="checked" name="subscribe"> Daily Reminder
+            </label>
+          </div>
+          <div class="container-note">
+            <input type="submit" value="Subscribe">
+          </div>
+        </form>
+      </div>
+    </div>
+    <table>
+      <tr>
+        <th></th>
+        <th>Entry</th>
+        <th>Date Created</th>
+        <th></th>
+      </tr>
+      <tr>
+        <td>
+        </td>
+        <td>
+          <a href="entry-detail.html">Latest Entry</a>
+          <p class="ellipsis">This is the begining if todays diary entry. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+            imperdiet, nulla et dictum interdum, nisi lorem egestas vitae scel....
+          </p>
+        </td>
+        <td>
+          7/10/2018
+        </td>
+        <td>
+          <button id="myDelBtn">Delete</button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        </td>
+        <td>
+          <a href="entry-detail.html">My Day at the beach</a>
+          <p class="ellipsis">This is the begining if todays diary entry. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+            imperdiet, nulla et dictum interdum, nisi lorem egestas vitae scel...
 
+          </p>
+        </td>
+        <td>
+          7/10/2018
+        </td>
+        <td>
+          <button id="myDelBtn">Delete</button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        </td>
+        <td>
+          <a href="entry-detail.html">About Christmas</a>
+          <p class="ellipsis">This is the begining if todays diary entry. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+            imperdiet, nulla et dictum interdum, nisi lorem egestas vitae scel...
+          </p>
+        </td>
+        <td>
+          7/10/2018
+        </td>
+        <td>
+          <button id="myDelBtn">Delete</button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        </td>
+        <td>
+          <a href="entry-detail.html">Latest Entry</a>
+          <p class="ellipsis">This is the begining if todays diary entry. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+            imperdiet, nulla et dictum interdum, nisi lorem egestas vitae scel....
+          </p>
+        </td>
+        <td>
+          7/10/2018
+        </td>
+        <td>
+          <button id="myDelBtn">Delete</button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        </td>
+        <td>
+          <a href="entry-detail.html">My Day at the beach</a>
+          <p class="ellipsis">This is the begining if todays diary entry. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+            imperdiet, nulla et dictum interdum, nisi lorem egestas vitae scel...
+
+          </p>
+        </td>
+        <td>
+          7/10/2018
+        </td>
+        <td>
+          <button id="myDelBtn">Delete</button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        </td>
+        <td>
+          <a href="entry-detail.html">About Christmas</a>
+          <p class="ellipsis">This is the begining if todays diary entry. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+            imperdiet, nulla et dictum interdum, nisi lorem egestas vitae scel...
+          </p>
+        </td>
+        <td>
+          7/10/2018
+        </td>
+        <td>
+          <button id="myDelBtn">Delete</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  </div>
   </div>
   <div class="footer">
-      <h6>© Copyright 2018 Template By Muche - All Rights Reserved. For Questions/feedback/problems? Contact me on support@mydiary.com</h6>
+    <h6>© Copyright 2018 Template By Muche - All Rights Reserved. For Questions/feedback/problems? Contact me on support@mydiary.com</h6>
   </div>
   <script src="JS/main.js"></script>
 </body>
+
 </html>
