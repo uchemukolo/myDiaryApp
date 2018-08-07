@@ -7,7 +7,7 @@
     "start": "nodemon ./server/build/app.js",
     "start:dev": "nodemon --watch server --exec babel-node server/app.js",
     "build": "babel ./server -d ./server/build",
-    "test": "cross-env NODE_ENV=test && npm run migrate-test && set NODE_ENV=test&& nyc --reporter=html --reporter=text mocha --compilers js:babel-core/register server/tests/index.js --timeout 15000 --exit",
+    "test": "export NODE_ENV=test&& npm run migrate-test && set NODE_ENV=test&& nyc --reporter=html --reporter=text mocha --compilers js:babel-core/register server/tests/index.js --timeout 15000 --exit",
     "coverage": "npm test && nyc report --reporter=text-lcov | coveralls",
     "postinstall": "npm run build",
     "migrate": "babel-node server/migrations/database.js",

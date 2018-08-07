@@ -132,6 +132,62 @@ describe('Entry API Integration Tests', () => {
         done();
       });
   });
+  describe('Modify an Entry', () => {
+    it('should return 400 error if entryId params is not valid', (done) => {
+      chai.request(app)
+        .put('/api/v1/entries/okkkk')
+        .send()
+        .set('token', token)
+        .end((error, response) => {
+          const message = 'Parameter must be a number!';
+          expect(response.status).to.equal(400);
+          expect(response.body).to.haveOwnProperty('message').to.eql(message);
+          done();
+        });
+    });
+    it('should return 400 if title field is not a string', (done) => {
+      chai.request(app)
+        .put('/api/v1/entries/2')
+        .send({
+          title: 45676,
+          mood: 'Happy',
+          entry: 'Set in the former city archive of Cologne, this design hotel is the perfect place to immerse yourself in the history of the city while enjoying a luxurious experience. The suites are to-die-for, and its location in a quiet but central neighborhood puts you right in the middle of the action in minutes.',
+        })
+        .set('token', token)
+        .end((err, response) => {
+          expect(response.status).to.equal(400);
+          done();
+        });
+    });
+    it('should return 400 if mood field is not a string', (done) => {
+      chai.request(app)
+        .put('/api/v1/entries/2')
+        .send({
+          title: 'My first entry',
+          mood: 6538,
+          entry: 'Set in the former city archive of Cologne, this design hotel is the perfect place to immerse yourself in the history of the city while enjoying a luxurious experience. The suites are to-die-for, and its location in a quiet but central neighborhood puts you right in the middle of the action in minutes.',
+        })
+        .set('token', token)
+        .end((error, response) => {
+          expect(response.status).to.equal(400);
+          done();
+        });
+    });
+    it('should return 400 if entry field is not a string', (done) => {
+      chai.request(app)
+        .put('/api/v1/entries/2')
+        .send({
+          title: 'My first entry',
+          mood: 'Happy',
+          entry: 456987,
+        })
+        .set('token', token)
+        .end((error, response) => {
+          expect(response.status).to.equal(400);
+          done();
+        });
+    });
+  });
   describe('Get All Entries', () => {
     it('should return 200 for successfully getting all entries', (done) => {
       chai.request(app)
@@ -204,7 +260,6 @@ describe('Entry API Integration Tests', () => {
           const message = 'Entry not found';
           expect(response.status).to.equal(404);
           expect(response.body).to.be.an('object');
-          expect(response.body.status).to.equal('fail');
           expect(response.body).to.haveOwnProperty('message').to.equal(message);
           done();
         });
@@ -230,7 +285,6 @@ describe('Entry API Integration Tests', () => {
           const message = 'Entry successfully deleted';
           expect(response.status).to.equal(200);
           expect(response.body).to.be.an('object');
-          expect(response.body.status).to.equal('Successful');
           expect(response.body).to.have.property('message').to.equal(message);
           done();
         });
