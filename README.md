@@ -18,7 +18,7 @@ myDiary has the following features:
 - Users have to supply their token after login to access all route
 
 # Users
-- It allows users to register by supplying details like: username, password, email, firstname and lastname
+- It allows users to register by supplying details like: username, password, and email
 - Upon registration, a new user account will be created
 - Registered users can access all the routes
 
@@ -46,7 +46,7 @@ The API contains different endpoints with their respective payload in the table 
 
 |Endpoints|Functions|Payloads|Requets Method|
 |---------|---------|--------|--------------|
-|/api/v1/auth/signup| Create a new user|username, password, firstname, lastname, email| POST|
+|/api/v1/auth/signup| Create a new user|username, password, email| POST|
 |/api/v1/auth/login| Login a user|username, password| POST|
 |/api/v1/entries| Get all entries for a user|No payload|GET|
 |/api/v1/entries| Post a new user entry|title, mood, entry| POST|
@@ -67,6 +67,7 @@ The API contains different endpoints with their respective payload in the table 
 - [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS3) for styling frontend
 - [FETCH API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) for making Ajax call from the client to the API
 
+The full API documentation can be Viewed [Here](https://mydiarychallenge.docs.apiary.io/)
 
 # Coding style
 - Airbnb is used for style guide

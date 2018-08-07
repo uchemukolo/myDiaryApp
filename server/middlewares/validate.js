@@ -7,29 +7,6 @@ import Validator from 'validatorjs';
  */
 class Validate {
   /**
- *
- * @param {request} request
- *
- * @param {response} response
- *
- * @param {function} next
- *
- * @returns {Object} - JSON object and status code
- *
- * @memberof Validate
- */
-  static userId(request, response, next) {
-    const { userId } = request.params;
-
-    if (isNaN(userId)) {
-      return response.status(400).json({
-        message: 'Parameter must be a number!'
-      });
-    }
-    return next();
-  }
-
-  /**
   *
   * @param {object} request
   *
@@ -44,8 +21,6 @@ class Validate {
   static register(request, response, next) {
     const {
       username,
-      firstName,
-      lastName,
       email,
       password
 
@@ -53,16 +28,12 @@ class Validate {
 
     const userData = {
       username,
-      firstName,
-      lastName,
       email,
       password
     };
 
     const userDataRules = {
       username: 'required|string|min:5',
-      firstName: 'required|string|alpha|min:2',
-      lastName: 'required|string|alpha|min:2',
       email: 'required|string|email',
       password: 'required|min:6'
     };
@@ -71,7 +42,7 @@ class Validate {
     if (validation.passes()) {
       next();
     } else {
-      const errors = validation.errors.all(); '1';
+      const errors = validation.errors.all();
       return response.status(400)
         .send({ message: errors });
     }

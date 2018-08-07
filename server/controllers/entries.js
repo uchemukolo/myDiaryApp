@@ -41,7 +41,6 @@ class Entries {
             title,
             mood,
             entry,
-            status: 'Successful'
           }
 
         });
@@ -50,7 +49,6 @@ class Entries {
         response.status(500).send({
           message: 'Create Entry Failed',
           error: error.message,
-          status: 'fail'
         });
       });
   }
@@ -78,7 +76,6 @@ class Entries {
             message: 'Entry does not Exist'
           });
         }
-        console.log('.>>>>>>>>>.', result.rows[0]);
         const { createdat } = result.rows[0];
         const currentDate = new Date();
         const sameDay = currentDate.toDateString() === createdat.toDateString();
@@ -88,19 +85,15 @@ class Entries {
           });
         }
         db.query(update(title, mood, entry, entryId, request.decoded.id))
-          .then((updated) => {
-            return response.status(200).send({
-              entry: updated.rows[0],
-              message: 'Entry updated sucessfully',
-              status: 'Successful',
-            });
-          });
+          .then(updated => response.status(200).send({
+            entry: updated.rows[0],
+            message: 'Entry updated sucessfully',
+          }));
       })
       .catch((error) => {
         response.status(500).send({
           message: 'Entry update Not sucessful!',
           error: error.message,
-          status: 'fail'
         });
       });
   }
@@ -120,13 +113,11 @@ class Entries {
       .then(result => response.status(200).send({
         message: 'Entries successfully retrieved from the database',
         Entry: result.rows,
-        status: 'Successful'
       }))
       .catch((error) => {
         response.status(500).send({
           message: 'Server error',
           error: error.message,
-          status: 'fail'
         });
       });
   }
@@ -151,7 +142,6 @@ class Entries {
           return response.status(200).send({
             message: 'Entry successfully retrieved from the database',
             entry: result.rows[0],
-            status: 'Successful',
           });
         }
         return response.status(404).json({
@@ -162,7 +152,6 @@ class Entries {
         response.status(500).send({
           message: 'Some error occured!',
           error: error.message,
-          status: 'fail'
         });
       });
   }
@@ -187,19 +176,16 @@ class Entries {
           return response.status(200).json({
             data: result.rows[0],
             message: 'Entry successfully deleted',
-            status: 'Successful'
           });
         }
         return response.status(404).json({
           message: 'Entry not found',
-          status: 'fail',
         });
       })
       .catch((error) => {
         response.status(500).send({
           message: 'Some error occured!',
           error: error.message,
-          status: 'fail'
         });
       });
   }

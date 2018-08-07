@@ -20,46 +20,33 @@ class Users {
    */
   static signUp(request, response) {
     const {
-      firstName, lastName, email, username, password
+      email, username, password
     } = request.body;
-
-    const errors = {};
 
     db.query(findOne(username, email))
       .then((results) => {
         if (results.rows[0]) {
           if (results.email === email) {
-            errors.email = 'Email is already in use';
+            return 'Email is already in use';
           }
           if (results.username === username.trim()) {
-            errors.username = 'Username already taken';
+            return 'Username already taken';
           }
           return response.status(409).send({
             message: 'User Already Exists, Please Login'
           });
         }
         bcrypt.hash(password, 10).then((hashedPassword) => {
-          db.query(createUser(username, firstName, lastName, email, hashedPassword))
+          db.query(createUser(username, email, hashedPassword))
             .then((result) => {
-              const newUser = {
-                username,
-                email,
-                id: result.rows[0].id,
-                firstName: result.rows[0].firstName,
-                lastName: result.rows[0].lastName
-              };
-
               const token = auth.createToken({
                 id: result.rows[0].id,
                 username,
                 email: result.rows[0].email
               });
-
-              response.status(201).send({
+              return response.status(201).send({
                 message: 'Signup Successful',
-                newUser,
                 token,
-                status: 'Successful',
               });
             });
         });
@@ -67,8 +54,7 @@ class Users {
       .catch((error) => {
         response.status(500).send({
           message: 'Signup Failed',
-          error: error.message,
-          status: 'fail'
+          error: error.message
         });
       });
   }
@@ -115,7 +101,6 @@ class Users {
                 response.status(500).send({
                   message: 'Server Error',
                   error: error.message,
-                  status: 'fail'
                 });
               });
           });

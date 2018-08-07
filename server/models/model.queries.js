@@ -1,14 +1,14 @@
 /**
  * @name createUser
  * @description script to create a new user
- * @param username, firstName, lastName, email, hashedPassword
+ * @param username, email, hashedPassword
  * @returns the object queried
  */
 
-export const createUser = (username, firstName, lastName, email, hashedPassword) => ({
-  text: `INSERT INTO userDetails(username, firstName, lastName, email, password)
-    VALUES($1, $2, $3, $4, $5) RETURNING *`,
-  values: [username, firstName, lastName, email, hashedPassword]
+export const createUser = (username, email, hashedPassword) => ({
+  text: `INSERT INTO userDetails(username, email, password)
+    VALUES($1, $2, $3) RETURNING *`,
+  values: [username, email, hashedPassword]
 });
 
 /**
@@ -62,7 +62,7 @@ export const fetchOne = (id, userId) => ({
 
 /**
  * @description delete one entry in the database by ID
- * @name fetchOne
+ * @name removeEntry
  * @param userId
  * @returns the object queried
  */
@@ -74,7 +74,7 @@ export const removeEntry = (id, userId) => ({
 
   /**
  * @description fetch one entry in a database by ID and validate the date
- * @name fetchOne
+ * @name fetch
  * @param entryId
  * * @param userId
  * @returns the object queried

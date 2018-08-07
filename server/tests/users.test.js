@@ -6,6 +6,8 @@ chai.use(chaiHttp);
 
 const { expect } = chai;
 
+const errors = {};
+
 export let token;
 
 describe('MyDiary App ::: User', () => {
@@ -15,8 +17,6 @@ describe('MyDiary App ::: User', () => {
         .post('/api/v1/auth/signup')
         .send({
           username: 'johndoe',
-          firstName: 'John',
-          lastName: 'Doe',
           password: 'abcd1234'
         })
         .end((error, response) => {
@@ -35,8 +35,6 @@ describe('MyDiary App ::: User', () => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .send({
-        firstName: 'John',
-        lastName: 'Doe',
         email: 'johndoe@email.com',
         password: 'abcd1234'
       })
@@ -51,53 +49,11 @@ describe('MyDiary App ::: User', () => {
         done();
       });
   });
-  it('should not allow user signup with no firstName.', (done) => {
-    chai.request(app)
-      .post('/api/v1/auth/signup')
-      .send({
-        username: 'johndoe',
-        lastName: 'Doe',
-        email: 'johndoe@email.com',
-        password: 'abcd1234'
-      })
-      .end((error, response) => {
-        const message = {
-          firstName: [
-            'The firstName field is required.'
-          ]
-        };
-        expect(response.status).to.equal(400);
-        expect(response.body).to.haveOwnProperty('message').to.eql(message);
-        done();
-      });
-  });
-  it('should not allow user signup with no lastName.', (done) => {
-    chai.request(app)
-      .post('/api/v1/auth/signup')
-      .send({
-        username: 'johndoe',
-        firstName: 'John',
-        email: 'johndoe@email.com',
-        password: 'abcd1234'
-      })
-      .end((error, response) => {
-        const message = {
-          lastName: [
-            'The lastName field is required.'
-          ]
-        };
-        expect(response.status).to.equal(400);
-        expect(response.body).to.haveOwnProperty('message').to.eql(message);
-        done();
-      });
-  });
   it('should not allow user signup with no password.', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .send({
         username: 'johndoe',
-        firstName: 'John',
-        lastName: 'Doe',
         email: 'johndoe@email.com'
       })
       .end((error, response) => {
@@ -116,8 +72,6 @@ describe('MyDiary App ::: User', () => {
       .post('/api/v1/auth/signup')
       .send({
         username: 'johndoe',
-        firstName: 'John',
-        lastName: 'Doe',
         email: 'johndoe@email.com',
         password: 'abcd1234'
       })
@@ -126,7 +80,6 @@ describe('MyDiary App ::: User', () => {
         expect(response.status).to.equal(201);
         expect(response.body).to.haveOwnProperty('message').to.eql(message);
         expect(response.body).to.haveOwnProperty('token');
-        expect(response.body).to.haveOwnProperty('newUser');
         done();
       });
   });
@@ -135,8 +88,6 @@ describe('MyDiary App ::: User', () => {
       .post('/api/v1/auth/signup')
       .send({
         username: 'johndoe',
-        firstName: 'John',
-        lastName: 'Doe',
         email: 'johndoe@email.com',
         password: 'abcd1234'
       })
@@ -147,7 +98,6 @@ describe('MyDiary App ::: User', () => {
         done();
       });
   });
-
   describe('Login', () => {
     it('should not let user login with no password', (done) => {
       const user = {
