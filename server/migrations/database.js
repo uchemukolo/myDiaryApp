@@ -21,18 +21,18 @@ const pool = new Pool({
 });
 
 const userDetails = `
-CREATE TABLE IF NOT EXISTS userDetails(
+DROP TABLE IF EXISTS userDetails cascade;
+CREATE TABLE userDetails(
   id SERIAL PRIMARY KEY,
   username VARCHAR(40) not null unique,
-  firstName VARCHAR(40) not null,
-  lastName VARCHAR(40) not null,
   email VARCHAR(40) not null unique,
   password VARCHAR(255) not null,
   createdAt timestamp (0) without time zone default now()
 )`;
 
 const entries = `
-CREATE TABLE IF NOT EXISTS entries(
+DROP TABLE IF EXISTS entries cascade;
+CREATE TABLE entries(
   id SERIAL PRIMARY KEY,
   userId int,
   title VARCHAR(40) not null,
@@ -43,7 +43,8 @@ CREATE TABLE IF NOT EXISTS entries(
 )`;
 
 const notification = `
-CREATE TABLE IF NOT EXISTS notification(
+DROP TABLE IF EXISTS notification cascade;
+CREATE TABLE notification(
   id SERIAL PRIMARY KEY,
   userId int unique,
   name VARCHAR(40) not null,
