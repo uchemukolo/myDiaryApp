@@ -2,6 +2,7 @@ body {
   margin: 0;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   background-color: #ffffff;
+
 }
 
 /* Naigation*/
@@ -145,7 +146,7 @@ border: 2px solid #f1f1f1;
   border-radius: 10px;
   border: 2px solid #f1f1f1;
   background-color: #fafafa;
-  margin: 75px auto;
+  margin: 70px auto;
   text-align: center;
   width: 42vw;
 }
@@ -170,7 +171,7 @@ border: 2px solid #f1f1f1;
 
 }
 .container-entries {
-  display: flex;
+  display: block;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -184,7 +185,14 @@ border: 2px solid #f1f1f1;
   margin: 40px auto;
   margin-bottom: 100px;
   padding: 20px auto;
-  width: 100%;
+  width: 100vw;
+}
+
+.container-note {
+  padding: 20px;
+  background-color: #f1f1f1;
+  display: block;
+  text-align: center;
 }
 .col-25 {
   float: left;
@@ -225,11 +233,16 @@ border: 2px solid #f1f1f1;
   background-color: #f1f1f1;
   display: block;
   align-items: center;
-  height: 40vh;
-  margin-top: 20px;
+  height: auto;
   margin-left: 10px;
+  margin-top: 20px;
   text-align:center;
   width: 30%;
+}
+.profile {
+  display: block;
+  margin-top: 50px auto;
+  width: 100%;
 }
 
 .firstimg {
@@ -341,6 +354,7 @@ display: inline-block;
 .main {
   background-size: cover;
   background-repeat: no-repeat;
+
   background-image: url("../images/pexels-photo-845434.jpeg");
   color: #000000;
   height: 50vh;
@@ -416,13 +430,7 @@ margin-top: 10PX;
   border: 2px solid #f1f1f1;
   border-radius: 10px;
   background-color: #ffffff;
-  width: 40%;
-}
-.container-note {
-  padding: 20px;
-  background-color: #f1f1f1;
-  display: block;
-  text-align: center;
+  width: 50%;
 }
 
 /* The Close Button */
@@ -452,7 +460,7 @@ margin-top: 10PX;
   background-color: #38a7b6;
   border: none;
   border-radius: 5px;
-  margin: 5px 0px 5px 0px;
+  margin: 5px 0px 20px 0px;
   color: #ffffff;
   font-size: 15px;
   padding: 20px auto;
@@ -500,6 +508,27 @@ margin-top: 10PX;
   width: 75%;
 }
 
+.pagination {
+  display: inline-block;
+  margin: 0px auto;
+
+
+}
+
+.pagination a {
+  border: 1px solid #cecaca;
+  color: 000;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+.pagination a.active {
+  background-color: #38a7b6;
+  border: 1px solid #cecaca;
+  color: #fff;
+}
 @media only screen and (max-width:700px) {
   /* For mobile phones: */
   .container-entries, .main-reminder {
@@ -544,20 +573,21 @@ table {
   padding:0px auto;
   text-align:left;
   text-decoration: none;
-  width: 66.7VW;
+  width: 67VW;
 }
 td, th {
-  border-bottom: 2px solid #ccc;
+  border-bottom: 2px solid #cdd2d4;
   text-align: left;
   text-decoration: none;
   padding: 8px;
 }
 .ellipsis {
   white-space: nowrap;
-    width: 600px;
+    width: 450px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .welcome {
   text-align: center;
 }
