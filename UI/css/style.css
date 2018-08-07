@@ -171,7 +171,7 @@ border: 2px solid #f1f1f1;
 
 }
 .container-entries {
-  display: flex;
+  display: block;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -185,7 +185,7 @@ border: 2px solid #f1f1f1;
   margin: 40px auto;
   margin-bottom: 100px;
   padding: 20px auto;
-  width: 100%;
+  width: 100vw;
 }
 
 .container-note {
@@ -233,6 +233,8 @@ border: 2px solid #f1f1f1;
   background-color: #f1f1f1;
   display: block;
   align-items: center;
+  height: auto;
+  margin-left: 10px;
   margin-top: 20px;
   text-align:center;
   width: 30%;
@@ -581,7 +583,7 @@ td, th {
 }
 .ellipsis {
   white-space: nowrap;
-    width: 600px;
+    width: 450px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
