@@ -26,6 +26,8 @@ CREATE TABLE userDetails(
   id SERIAL PRIMARY KEY,
   username VARCHAR(40) not null unique,
   email VARCHAR(40) not null unique,
+  firstName VARCHAR(40) DEFAULT null,
+  lastName VARCHAR(40) DEFAULT null,
   password VARCHAR(255) not null,
   createdAt timestamp (0) without time zone default now()
 )`;
