@@ -17,7 +17,8 @@ describe('MyDiary App ::: User', () => {
         .post('/api/v1/auth/signup')
         .send({
           username: 'johndoe',
-          password: 'abcd1234'
+          password: 'abcd1234',
+          confirmPassword: 'abcd1234'
         })
         .end((error, response) => {
           const message = {
@@ -36,7 +37,8 @@ describe('MyDiary App ::: User', () => {
       .post('/api/v1/auth/signup')
       .send({
         email: 'johndoe@email.com',
-        password: 'abcd1234'
+        password: 'abcd1234',
+        confirmPassword: 'abcd1234'
       })
       .end((error, response) => {
         const message = {
@@ -73,7 +75,9 @@ describe('MyDiary App ::: User', () => {
       .send({
         username: 'johndoe',
         email: 'johndoe@email.com',
-        password: 'abcd1234'
+        password: 'abcd1234',
+        confirmPassword: 'abcd1234',
+
       })
       .end((error, response) => {
         const message = 'Signup Successful';
@@ -89,7 +93,8 @@ describe('MyDiary App ::: User', () => {
       .send({
         username: 'johndoe',
         email: 'johndoe@email.com',
-        password: 'abcd1234'
+        password: 'abcd1234',
+        confirmPassword: 'abcd1234',
       })
       .end((error, response) => {
         const message = 'User Already Exists, Please Login';
