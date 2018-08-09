@@ -22,9 +22,15 @@ class Validate {
     const {
       username,
       email,
-      password
-
+      password,
+      confirmPassword
     } = request.body;
+
+    if (password !== confirmPassword) {
+      return response.status(400).send({
+        password: 'password does not match'
+      });
+    }
 
     const userData = {
       username,

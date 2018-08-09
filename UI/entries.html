@@ -14,58 +14,20 @@
     <a href="#" class="active" id="logo">MY DIARY</a>
     <a href="../index.html">Home</a>
     <a href="add-entry.html">Add New Entry</a>
+    <a href="profile.html">My Profile</a>
     <a href="logout.html">Logout</a>
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
       <i class="fa fa-bars"></i>
     </a>
   </div>
   <div class="container-entries">
-    <div class="entry-list">
-
-        <h3>Welcome Uche Mukolo!</h3>
-        <span id="total-entries">
-          <em>3 Total Entries</em>
-        </span>
-        </br>
-        <!-- Trigger/Open The Modal -->
-        <button id="myBtn">Set Reminder</button>
-
-    </div>
-    <div id="myModal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <form id="form" action="#">
-          <div class="container-note">
-            <h2>Get Notified</h2>
-            <p>Do not forget to pen down your precious thoughts and feeling. Subscribe and get a notification daily.</p>
-          </div>
-          <div class="container-note">
-            <input type="text" placeholder="Name" name="name" required>
-            <input type="text" placeholder="Email address" name="mail" required>
-            <label>
-              <input type="checkbox" checked="checked" name="subscribe"> Daily Reminder
-            </label>
-          </div>
-          <div class="container-note">
-            <input type="submit" value="Subscribe">
-          </div>
-        </form>
-      </div>
-
-    </div>
-
-
     <table>
       <tr>
-        <th></th>
         <th>Entry</th>
         <th>Date Created</th>
         <th></th>
       </tr>
       <tr>
-        <td>
-
-        </td>
         <td>
           <a href="entry-detail.html">Latest Entry</a>
           <p class="ellipsis">This is the begining if todays diary entry. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
@@ -80,9 +42,6 @@
         </td>
       </tr>
       <tr>
-        <td>
-
-        </td>
         <td>
           <a href="entry-detail.html">My Day at the beach</a>
           <p class="ellipsis">This is the begining if todays diary entry. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
@@ -99,9 +58,6 @@
       </tr>
       <tr>
         <td>
-
-        </td>
-        <td>
           <a href="entry-detail.html">About Christmas</a>
           <p class="ellipsis">This is the begining if todays diary entry. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
             imperdiet, nulla et dictum interdum, nisi lorem egestas vitae scel...
@@ -115,7 +71,13 @@
         </td>
       </tr>
     </table>
-
+    <div class="pagination">
+      <a href="#">&laquo;</a>
+      <a href="#">1</a>
+      <a href="#" class="active">2</a>
+      <a href="#">3</a>
+      <a href="#">&raquo;</a>
+</div>
   </div>
   </div>
   </div>

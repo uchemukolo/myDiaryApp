@@ -150,8 +150,22 @@ border: 2px solid #f1f1f1;
   text-align: center;
   width: 42vw;
 }
+.container-profile {
+  display: block;
+  justify-content: center;
+  border-radius: 10px;
+  border: 2px solid #f1f1f1;
+  background-color: #fafafa;
+  margin: 100px auto;
+  text-align: center;
+  width:60vw;
+}
 #heading {
   width: 42vw;
+}
+#profile-heading {
+  width: 42vw;
+  text-align: center;
 }
 .container_signin {
     display: flex;
@@ -185,7 +199,7 @@ border: 2px solid #f1f1f1;
   margin: 40px auto;
   margin-bottom: 100px;
   padding: 20px auto;
-  width: 100vw;
+  width: 70vw;
 }
 
 .container-note {
@@ -264,6 +278,10 @@ border: 2px solid #f1f1f1;
   border: 3px solid #f1f1f1;
 
 }
+#formm {
+  border: 3px solid #f1f1f1;
+
+}
 
 .header {
   overflow: hidden;
@@ -278,18 +296,18 @@ border: 2px solid #f1f1f1;
 
 h1 {
   --max-size: 50;
-  --min-size: 25;
+  --min-size: 30;
   font-size: var(--responsive);
 }
 
 h2 {
   --max-size: 40;
-  --min-size: 20;
+  --min-size: 25;
   font-size: var(--responsive);
 }
 h3 {
   --max-size: 30;
-  --min-size: 15;
+  --min-size: 20;
   font-size: var(--responsive);
 }
 h4 {
@@ -300,6 +318,10 @@ h4 {
 
 p {
  font-size:14px;
+}
+a:hover {
+  color:#38a7b6;
+  cursor: pointer;
 }
 
 input[name=name], input[name=mail] {
@@ -409,6 +431,29 @@ margin-top: 10PX;
   color: white;
 }
 /* The Modal (background) */
+.modal1 {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: #000000;
+  background-color: #00000066;
+}
+
+/* Modal Content */
+.modal-profile-content {
+  margin: auto;
+  padding: 10px;
+  border: 2px solid #f1f1f1;
+  border-radius: 10px;
+  background-color: #ffffff;
+  width: 50%;
+}
 .modal {
   display: none;
   position: fixed;
@@ -434,6 +479,19 @@ margin-top: 10PX;
 }
 
 /* The Close Button */
+.closee {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.closee:hover,
+.closee:focus {
+  color: #000000;
+  text-decoration: none;
+  cursor: pointer;
+}
 .close {
   color: #aaaaaa;
   float: right;
@@ -466,6 +524,16 @@ margin-top: 10PX;
   padding: 20px auto;
 
 }
+#myProfileBtn {
+  background-color: #000000;
+  border: none;
+  border-radius: 5px;
+  margin: 5px 0px 20px 0px;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 20px auto;
+
+}
 #myDelBtn {
   background-color: #ff0000;
   border: none;
@@ -484,6 +552,11 @@ margin-top: 10PX;
 #myDelBtn:hover {
   background-color: #ffffff;
   color:#000000;
+  cursor: pointer;
+}
+#myProfileBtn:hover {
+  background-color: #38a7b6;
+  color:#ffffff;
   cursor: pointer;
 }
 
@@ -509,10 +582,10 @@ margin-top: 10PX;
 }
 
 .pagination {
-  display: inline-block;
+  display: block;
   margin: 0px auto;
-
-
+  width: 100vw;
+  padding: 150px auto;
 }
 
 .pagination a {
@@ -563,23 +636,25 @@ margin-top: 10PX;
   width: 50%;
 }
 table {
+  display: block;
   border-collapse: collapse;
   border: 2px solid #f1f1f1;
   background-color: #f1f1f1;
   margin-top:20px;
   margin-bottom: 20px;
   margin-left: 10px;
-  margin-right: 0px;
-  padding:0px auto;
+  margin-right: 10px;
+  padding:40px auto;
   text-align:left;
   text-decoration: none;
-  width: 67VW;
+  width: 100%;
 }
 td, th {
   border-bottom: 2px solid #cdd2d4;
   text-align: left;
   text-decoration: none;
   padding: 8px;
+  width: 100%;
 }
 .ellipsis {
   white-space: nowrap;
@@ -602,9 +677,11 @@ td, th {
 
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
-  .col-25, .col-75, input[type=submit] {
-      width: 100%;
-      margin-top: 0;
+  .col-25, .col-75, input[type=submit],
+  .container-profile, .container-signup,
+  .container_signin, .modal, .modal-content, .modal1, .modal-profile-content {
+      width: 90%;
+      margin: 20px auto;
   }
 }
 @media only screen and (max-width: 320px) {
