@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8'/>
+    <title>My Diary</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body class="background">
+    <div class="topnav" id="myTopnav">
+        <a href="#" class="active">MY DIARY</a>
+        <a href="profile.html">Home</a>
+        <a href="entries.html">My Entries</a>
+        <a href="logout.html">Logout</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+
+    <div class="container-entry">
+            <div class="new_entry">
+                    <h2>Modify Entry</h2>
+                    </div>
+        <form action="entry-detail.html">
+            <div class="row">
+                <div class="col-25">
+                    <label for="title"><strong>Title</strong></label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="title" name="title" placeholder="Enter title here..">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="mood"><strong>Mood</strong></label>
+                </div>
+                <div class="col-75">
+                        <input type="text" id="mood" name="mood" placeholder="Enter your mood here e.g happy, sad, tired...">
+                    </div>
+                </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="subject"><strong>Entry</strong></label>
+                </div>
+                <div class="col-75">
+                    <textarea id="entry" name="entry" placeholder="Write something.." style="height:200px"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <input type="submit" value="Save">
+            </div>
+        </form>
+    </div>
+    <div class="footer">
+            <h6>© Copyright 2018 Template By Muche - All Rights Reserved. For Questions/feedback/problems? Contact me on support@mydiary.com</h6>
+        </div>
+        <script src="JS/main.js"></script>
+</body>
+</html>

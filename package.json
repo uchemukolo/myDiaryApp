@@ -14,7 +14,6 @@
     "migrate-prod": "cross-env NODE_ENV=production npm run migrate",
     "migrate-dev": "cross-env NODE_ENV=development npm run migrate",
     "migrate-test": "cross-env NODE_ENV=test npm run migrate"
-
   },
   "repository": {
     "type": "git",
@@ -36,6 +35,7 @@
     "body-parser": "^1.18.3",
     "chai": "^4.1.2",
     "chai-http": "^4.0.0",
+    "cors": "^2.8.4",
     "coveralls": "^3.0.1",
     "cross-env": "^5.2.0",
     "dotenv": "^6.0.0",

@@ -570,6 +570,7 @@ margin-top: 10PX;
   text-align: center;
   text-decoration: none;
 }
+
 #pwords {
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -579,6 +580,7 @@ margin-top: 10PX;
   resize: vertical;
   width: 75%;
 }
+
 #pword {
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -626,7 +628,9 @@ margin-top: 10PX;
   display: flex;
   flex-wrap: wrap;
 }
-
+.red-text {
+  color: #ff0000;
+}
 /* Clear floats after the columns */
 .row:after {
   content: "";
