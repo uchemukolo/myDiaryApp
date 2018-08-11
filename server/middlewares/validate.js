@@ -60,7 +60,7 @@ class Validate {
     *
     * @param {object} response
     *
-    * @param {unctionf} next
+    * @param {unction} next
     *
     * @returns {object} - JSON object and status code
     *
