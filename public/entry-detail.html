@@ -13,13 +13,13 @@
         <a href="profile.html">Home</a>
         <a href="add-entry.html">Add New Entry</a>
         <a href="entries.html">My Entries</a>
-        <a href="logout.html">Logout</a>
+        <a onclick="logout();" href="logout.html">Logout</a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
           <i class="fa fa-bars"></i>
         </a>
       </div>
+      <div id="entry-error"></div>
     <div class="container-entry-detail">
-      <form action="modify-entry.html">
       <div class="row">
         <div class="col-25">
           <label for="date">
@@ -27,7 +27,7 @@
           </label>
         </div>
         <div class="col-75">
-          <p>23rd May, 2018</p>
+          <p id="date-detail"></p>
         </div>
       </div>
       <div class="row">
@@ -37,7 +37,7 @@
           </label>
         </div>
         <div class="col-75">
-          <p>Latest Entry</p>
+          <p id="title-detail" contenteditable="false"></p>
         </div>
       </div>
       <div class="row">
@@ -47,7 +47,7 @@
           </label>
         </div>
         <div class="col-75">
-          <p>Happy</p>
+          <p id="mood-detail" contenteditable="false"></p>
         </div>
       </div>
       <div class="row">
@@ -57,23 +57,20 @@
           </label>
         </div>
         <div class="col-75">
-          <p>This is the begining if todays diary entry. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-            imperdiet, nulla et dictum interdum, nisi lorem egestas vitae scelThis is.</p>
-
-            <p>the begining if todays diary entry.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi
-            lorem egestas vitae scelThis is the begining if todays diary entry. Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas</p>
-        </div>
+          <p id="entry-detail" contenteditable="false"></p>
+           </div>
       </div>
       <div class="row">
-        <input type="submit" value="Modify">
+        <button class="myBtn" id="edit" onclick="editEntry();">Edit</button>
+        <span class="or"><button class="myBtn" id="modify" onclick="modifyEntry();">Modify</button></span>
       </div>
-      </form>
     </div>
     <div class="footer">
       <h6>© Copyright 2018 Template By Muche - All Rights Reserved. For Questions/feedback/problems? Contact me on support@mydiary.com</h6>
     </div>
     <script src="JS/main.js"></script>
+    <script src="JS/fetchOne.js"></script>
+    <script src="JS/login.js"></script>
+
 </body>
 </html>
