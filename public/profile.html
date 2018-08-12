@@ -14,13 +14,13 @@
     <a href="#" class="active" id="logo">MY DIARY</a>
     <a href="entries.html">My Entries</a>
     <a href="add-entry.html">Add New Entry</a>
-    <a href="logout.html">Logout</a>
+    <a onclick="logout();" href="logout.html">Logout</a>
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
       <i class="fa fa-bars"></i>
     </a>
   </div>
   <div class="container-profile">
-        <h3>Welcome!</h3>
+        <h3 style="display: inline;">Welcome <span id=username></span>!</h3>
         <p><button id="myProfileBtn">Edit Profile</button></p>
         <div id="total-entries">
           <a href="entries.html">3 Total Entries</a>
@@ -85,6 +85,8 @@
     <h6>© Copyright 2018 Template By Muche - All Rights Reserved. For Questions/feedback/problems? Contact me on support@mydiary.com</h6>
   </div>
   <script src="JS/main.js"></script>
+  <script src="JS/profile.js"></script>
+  <script src="JS/login.js"></script>
 </body>
 
 </html>
