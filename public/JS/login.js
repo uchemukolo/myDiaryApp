@@ -43,5 +43,5 @@ signinForm.onsubmit = (e) => {
 };
 const logout = () => {
   localStorage.clear();
-  window.location.href = './index.html';
+  window.location.href = './logout.html';
 };
