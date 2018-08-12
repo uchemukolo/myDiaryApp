@@ -39,3 +39,36 @@ const editEntry = () => {
   mood.contentEditable = true;
   entry.contentEditable = true;
 };
+
+const modifyEntry = () => {
+  title.contentEditable = false;
+  mood.contentEditable = false;
+  entry.contentEditable = false;
+  const editBtn = document.getElementsByClassName('myEditBtn');
+  const modifyBtn = document.getElementsByClassName('myModifyBtn');
+  const modifyUser = {
+    title: title.textContent,
+    mood: mood.textContent,
+    entry: entry.textContent
+  };
+  fetch(`${entryUrl}/entries/${entryId}`, {
+    method: 'PUT',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+      token: `${token}`,
+    },
+    body: JSON.stringify(modifyUser),
+  })
+    .then(response => response.json())
+    .then((data) => {
+      console.log(data);
+      if (data.message === 'Entry updated sucessfully') {
+        editBtn.classList.remove('hide');
+        modifyBtn.classList.add('hide');
+        window.location.reload(true);
+      } else {
+        return entryError.innerHTML = data.message;
+      }
+    });
+};
