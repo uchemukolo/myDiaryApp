@@ -517,7 +517,7 @@ margin-top: 10PX;
   resize: vertical;
   width: 50%;
 }
-.myBtn {
+.myModifyBtn {
   background-color: #38a7b6;
   border: none;
   border-radius: 5px;
@@ -525,7 +525,11 @@ margin-top: 10PX;
   color: #ffffff;
   font-size: 18px;
   padding: 20px auto;
-
+}
+.myModifyBtn:hover {
+  background-color: #ffffff;
+  color:#000000;
+  cursor: pointer;
 }
 #myBtn {
   background-color: #38a7b6;
