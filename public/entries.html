@@ -21,72 +21,35 @@
     </a>
   </div>
   <div class="container-entries">
-    <table>
-      <tr>
-        <th>Entry</th>
-        <th>Date Created</th>
-        <th></th>
-      </tr>
-      <tr>
-        <td>
-          <a href="entry-detail.html">Latest Entry</a>
-          <p class="ellipsis">This is the begining if todays diary entry. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-            imperdiet, nulla et dictum interdum, nisi lorem egestas vitae scel....
-          </p>
-        </td>
-        <td>
-          7/10/2018
-        </td>
-        <td>
-          <button id="myDelBtn">Delete</button>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="entry-detail.html">My Day at the beach</a>
-          <p class="ellipsis">This is the begining if todays diary entry. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-            imperdiet, nulla et dictum interdum, nisi lorem egestas vitae scel...
+      <div class="red-text" id="entry-error" style="text-align: center"></div>
+      <div id="output" class="card-header">
 
-          </p>
-        </td>
-        <td>
-          7/10/2018
-        </td>
-        <td>
-          <button id="myDelBtn">Delete</button>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a href="entry-detail.html">About Christmas</a>
-          <p class="ellipsis">This is the begining if todays diary entry. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-            imperdiet, nulla et dictum interdum, nisi lorem egestas vitae scel...
-          </p>
-        </td>
-        <td>
-          7/10/2018
-        </td>
-        <td>
-          <button id="myDelBtn">Delete</button>
-        </td>
-      </tr>
-    </table>
-    <div class="pagination">
-      <a href="#">&laquo;</a>
-      <a href="#">1</a>
-      <a href="#" class="active">2</a>
-      <a href="#">3</a>
-      <a href="#">&raquo;</a>
-</div>
+      </div>
+
+      <div class="pagination">
+          <a href="#">&laquo;</a>
+          <a href="#">1</a>
+          <a href="#" class="active">2</a>
+          <a href="#">3</a>
+          <a href="#">&raquo;</a>
+    </div>
+
+    <div id="myModal2" class="modal">
+        <div class="modal-profile-content">
+          <div class="close">&times;</div>
+          <button id="myDelBtn">Confirm Delete</button>
+          <button id="myBtn">Cancel</button>
+        </div>
+
+        </div>
   </div>
-  </div>
-  </div>
-  </div>
+      </div>
   <div class="footer">
     <h6>© Copyright 2018 Template By Muche - All Rights Reserved. For Questions/feedback/problems? Contact me on support@mydiary.com</h6>
   </div>
   <script src="JS/main.js"></script>
   <script src="JS/login.js"></script>
+  <script src="JS/fetchAll.js"></script>
 </body>
 
 </html>

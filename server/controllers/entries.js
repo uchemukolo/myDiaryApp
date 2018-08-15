@@ -112,7 +112,7 @@ class Entries {
     db.query(fetchAll(request.decoded.id))
       .then(result => response.status(200).send({
         message: 'Entries successfully retrieved from the database',
-        Entry: result.rows,
+        entry: result.rows,
       }))
       .catch((error) => {
         response.status(500).send({
@@ -174,7 +174,7 @@ class Entries {
       .then((result) => {
         if (result.rows[0]) {
           return response.status(200).json({
-            data: result.rows[0],
+            entry: result.rows[0],
             message: 'Entry successfully deleted',
           });
         }

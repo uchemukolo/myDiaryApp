@@ -1,6 +1,7 @@
 const modal = document.getElementById('myModal');
 const btn = document.getElementById('myBtn');
 const divClose = document.getElementsByClassName('closee')[0];
+
 const modal1 = document.getElementById('myModal1');
 const profileBtn = document.getElementById('myProfileBtn');
 const span = document.getElementsByClassName('close')[0];
@@ -14,7 +15,7 @@ divClose.onclick = () => {
 };
 
 window.onclick = (event) => {
-  if (event.target == modal) {
+  if (event.target === modal) {
     modal.style.display = 'none';
   }
 };
@@ -28,7 +29,7 @@ span.onclick = () => {
 };
 
 window.onclick = (event) => {
-  if (event.target == modal1) {
+  if (event.target === modal1) {
     modal1.style.display = 'none';
   }
 };
