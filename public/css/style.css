@@ -7,15 +7,15 @@ html{overflow-x:hidden}
 
 .card-header {
   display: block;
-  color: #ffffff;
-  background-color: #59aeb9;
+  color: #000000;
+  border: 2px solid #ccc;
+  background-color: #fafafa;
   border-radius: 5px;
-  border-top-style: solid;
-  border-bottom-style: solid;
   margin: 10px auto;
-  padding-left: 10px auto;
+  padding-left: 15px;
+  padding-right: 15px;
   text-decoration: none;
-  width: 98%;
+  width: 30%;
 }
 .card-header a:hover {
   background-color: #ddd;
@@ -199,7 +199,6 @@ border: 2px solid #f1f1f1;
     margin: 110px auto;
     text-align: center;
     width: 42vw;
-
 }
 .container-entries {
   display: flex;
@@ -208,17 +207,29 @@ border: 2px solid #f1f1f1;
   display: -ms-flexbox;
   display: -webkit-flex;
   -webkit-flex-flow: row wrap;
-  border: 2px solid #f1f1f1;
   border-radius: 10px;
-  background-color: #fafafa;
   color: black;
   height: 100%;
   margin: 40px auto;
   margin-bottom: 100px;
   padding: 20px auto;
+  width: 100vw;
+}
+.container_delete {
+  display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  -webkit-flex-flow: row wrap;
+  flex-wrap: wrap;
+  height: 21.5vh;
+  justify-content: center;
+
+  margin: 13% auto;
+  text-align: center;
   width: 70vw;
 }
-
 .container-note {
   padding: 20px;
   background-color: #f1f1f1;
@@ -590,21 +601,50 @@ margin-top: 10PX;
   color: #ffffff;
   font-size: 15px;
   padding: 20px auto;
-
+}
+#myCancelBtn {
+  background-color: #38a7b6;
+  border: none;
+  border-radius: 5px;
+  margin: 5px 0px 20px 0px;
+  color: #ffffff;
+  font-size: 15px;
+  height: 20vh;
+  padding: 20px auto;
+}
+#confirmDelBtn {
+  background-color: #ff0000;
+  border: none;
+  border-radius: 5px;
+  margin: 5px 0px 20px 0px;
+  color: #ffffff;
+  font-size: 15px;
+  height: 20vh;
+  padding: 20px auto;
 }
 #myBtn:hover {
-  background-color: #ffffff;
+  background-color: #fdfafa;
   color:#38a7b6;
   cursor: pointer;
 }
 #myDelBtn:hover {
-  background-color: #ffffff;
+  background-color: #fdfafa;
+  color:#000000;
+  cursor: pointer;
+}
+#myCancelBtn:hover {
+  background-color: #fdfafa;
+  color:#000000;
+  cursor: pointer;
+}
+#confirmDelBtn:hover {
+  background-color: #fdfafa;
   color:#000000;
   cursor: pointer;
 }
 #myProfileBtn:hover {
   background-color: #38a7b6;
-  color:#ffffff;
+  color:#fdfafa;
   cursor: pointer;
 }
 
@@ -642,8 +682,7 @@ margin-top: 10PX;
 .pagination {
   display: block;
   margin: 0px auto;
-  width: 100vw;
-  padding: 150px auto;
+  width: 25vw;
 }
 
 .pagination a {
@@ -679,6 +718,9 @@ margin-top: 10PX;
 }
 .red-text {
   color: #ff0000;
+}
+.green-text {
+  color: #38a7b6;
 }
 /* Clear floats after the columns */
 .row:after {
@@ -719,9 +761,9 @@ td, th {
 }
 .ellipsis {
   white-space: nowrap;
-    width: 450px;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: center;
 }
 
 .welcome {
@@ -740,7 +782,7 @@ td, th {
 @media screen and (max-width: 600px) {
   .col-25, .col-75, input[type=submit],
   .container-profile, .container-signup,
-  .container_signin, .modal, .modal-content, .modal1, .modal-profile-content {
+  .container_signin, .modal, .modal-content, .modal1, .modal-profile-content, .card-header{
       width: 90%;
       margin: 20px auto;
   }

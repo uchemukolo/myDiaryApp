@@ -13,6 +13,7 @@ entryForm.onsubmit = (e) => {
   const mood = document.getElementById('mood').value;
   const entry = document.getElementById('entry').value;
   const entryError = document.getElementById('entry-error');
+
   const newEntry = {
     title,
     mood,
@@ -36,5 +37,8 @@ entryForm.onsubmit = (e) => {
       } else {
         entryError.innerHTML = Object.values(data.message);
       }
+    })
+    .catch((error) => {
+      console.log(error);
     });
 };

@@ -10,6 +10,8 @@ const title = document.getElementById('title-detail');
 const mood = document.getElementById('mood-detail');
 const entry = document.getElementById('entry-detail');
 const entryError = document.getElementById('entry-error');
+const entryMsg = document.getElementById('success-msg');
+
 
 window.addEventListener('load', () => {
   fetch(`${entryUrl}/entries/${entryId}`, {
@@ -24,13 +26,23 @@ window.addEventListener('load', () => {
     .then((data) => {
       console.log(data);
       if (data.message === 'Entry successfully retrieved from the database') {
-        title.innerHTML = data.entry.title;
-        mood.innerHTML = data.entry.mood;
-        date.innerHTML = data.entry.createdat;
-        entry.innerHTML = data.entry.entry;
+        setTimeout(() => {
+          title.innerHTML = data.entry.title;
+          mood.innerHTML = data.entry.mood;
+          date.innerHTML = data.entry.createdat;
+          entry.innerHTML = data.entry.entry;
+          entryMsg.innerHTML = data.message;
+          entryMsg.innerHTML = '';
+        }, 2000);
       } else {
         entryError.innerHTML = data.message;
+        setTimeout(() => {
+          entryError.innerHTML = '';
+        }, 2000);
       }
+    })
+    .catch((error) => {
+      console.log(error);
     });
 });
 
@@ -44,8 +56,6 @@ const modifyEntry = () => {
   title.contentEditable = false;
   mood.contentEditable = false;
   entry.contentEditable = false;
-  const editBtn = document.getElementsByClassName('myEditBtn');
-  const modifyBtn = document.getElementsByClassName('myModifyBtn');
   const modifyUser = {
     title: title.textContent,
     mood: mood.textContent,
@@ -64,11 +74,18 @@ const modifyEntry = () => {
     .then((data) => {
       console.log(data);
       if (data.message === 'Entry updated sucessfully') {
-        editBtn.classList.remove('hide');
-        modifyBtn.classList.add('hide');
-        window.location.reload(true);
+        entryMsg.innerHTML = data.message;
+        setTimeout(() => {
+          window.location.reload(true);
+          entryMsg.innerHTML = '';
+        }, 2000);
       } else {
-        return entryError.innerHTML = data.message;
+        entryError.innerHTML = data.message;
+        setTimeout(() => {
+          entryError.innerHTML = '';
+        }, 2000);
       }
+    }).catch((error) => {
+      console.log(error);
     });
 };

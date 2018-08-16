@@ -4,10 +4,6 @@
 const url = 'http://localhost:9001/api/v1';
 
 const signupForm = document.getElementById('register-form');
-document.getElementById('email').value = '';
-document.getElementById('username').value = '';
-document.getElementById('pword').value = '';
-document.getElementById('pwords').value = '';
 
 signupForm.onsubmit = (e) => {
   e.preventDefault();
@@ -16,7 +12,7 @@ signupForm.onsubmit = (e) => {
   const username = document.getElementById('username').value;
   const password = document.getElementById('pword').value;
   const confirmPassword = document.getElementById('pwords').value;
-  const result = document.getElementById('signup-error');
+  const userError = document.getElementById('user-error');
   const newUser = {
     username,
     email,
@@ -43,9 +39,7 @@ signupForm.onsubmit = (e) => {
         localStorage.setItem('token', token);
         window.location.href = './profile.html';
       } else {
-        console.log(data);
-
-        result.innerHTML = Object.values(data.message);
+        userError.innerHTML = Object.values(data.message);
       }
     })
     .catch((error) => {
