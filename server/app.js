@@ -2,6 +2,7 @@ import bodyParser from 'body-parser';
 import express from 'express';
 import logger from 'morgan';
 import cors from 'cors';
+import path from 'path';
 import entry from './routes/entryRoute';
 import user from './routes/userRoute';
 
@@ -9,6 +10,8 @@ import user from './routes/userRoute';
 const app = express();
 
 const port = parseInt(process.env.PORT, 10) || 9001;
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(logger('dev'));
 

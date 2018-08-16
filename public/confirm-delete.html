@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8' />
+  <title>My Diary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body class="background">
+  <div class="topnav" id="myTopnav">
+    <a href="#" class="active">MY DIARY</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+  <div class="green-text" id="success-msg" style="text-align: center"></div>
+  <div class="red-text" id="delete-error" style="text-align: center"></div>
+  <div class="container_delete">
+    <div><button class="delete" id="confirmDelBtn" onclick="deleteEntry();">Confirm Delete</button></div>
+    <div><button class="cancel" id="myCancelBtn" onclick="cancelDelete();">Cancel Delete</button></div>
+  </div>
+
+  <div class="footer">
+    <h6>© Copyright 2018 Template By Muche - All Rights Reserved. For Questions/feedback/problems? Contact me on support@mydiary.com</h6>
+  </div>
+  <script src="JS/fetchAll.js"></script>
+</body>
+</html>

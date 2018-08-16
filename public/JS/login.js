@@ -9,7 +9,7 @@ signinForm.onsubmit = (e) => {
   e.preventDefault();
   const username = document.getElementById('username').value;
   const password = document.getElementById('pword').value;
-  const result = document.getElementById('signin-error');
+  const userError = document.getElementById('user-error');
   const login = {
     username,
     password
@@ -34,7 +34,7 @@ signinForm.onsubmit = (e) => {
         localStorage.setItem('username', username);
         window.location.href = './profile.html';
       } else {
-        return result.innerHTML = Object.values(data.message);
+        userError.innerHTML = Object.values(data.message);
       }
     })
     .catch((error) => {
