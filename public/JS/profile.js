@@ -7,6 +7,7 @@ username.innerHTML = localStorage.getItem('username');
 const profileUrl = 'http://localhost:9001/api/v1';
 const token = localStorage.getItem('token');
 console.log(token);
+const entryError = document.getElementById('entry-error');
 
 window.addEventListener('load', () => {
   fetch(`${profileUrl}/entries`, {
@@ -22,6 +23,11 @@ window.addEventListener('load', () => {
       console.log(data);
       if (data.message === 'Entries successfully retrieved from the database') {
         document.getElementById('total-entries').innerHTML = data.entry.length;
+      } else {
+        entryError.innerHTML = data.message;
+        setTimeout(() => {
+          entryError.innerHTML = '';
+        }, 2000);
       }
     })
     .catch((error) => {
