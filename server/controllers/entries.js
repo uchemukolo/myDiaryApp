@@ -110,10 +110,16 @@ class Entries {
    * */
   static getAll(request, response) {
     db.query(fetchAll(request.decoded.id))
-      .then(result => response.status(200).send({
-        message: 'Entries successfully retrieved from the database',
-        entry: result.rows,
-      }))
+      .then((result) => {
+        if (result.rows[0]) {
+          return response.status(200).send({
+            message: 'Entries successfully retrieved from the database',
+            entry: result.rows,
+          });
+        } return response.status(404).send({
+          message: 'No Entries yet, Add an Entry'
+        });
+      })
       .catch((error) => {
         response.status(500).send({
           message: 'Server error',
@@ -144,7 +150,7 @@ class Entries {
             entry: result.rows[0],
           });
         }
-        return response.status(404).json({
+        return response.status(404).send({
           message: 'Entry not found!'
         });
       })
@@ -173,7 +179,7 @@ class Entries {
     db.query(removeEntry(entryId, request.decoded.id))
       .then((result) => {
         if (result.rows[0]) {
-          return response.status(200).json({
+          return response.status(200).send({
             entry: result.rows[0],
             message: 'Entry successfully deleted',
           });
