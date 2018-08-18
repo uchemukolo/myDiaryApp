@@ -29,7 +29,7 @@ CREATE TABLE userDetails(
   firstName VARCHAR(40) DEFAULT null,
   lastName VARCHAR(40) DEFAULT null,
   password VARCHAR(255) not null,
-  createdAt timestamp (0) without time zone default now()
+  createdAt timestamp (0) with time zone default now()
 )`;
 
 const entries = `
@@ -40,7 +40,7 @@ CREATE TABLE entries(
   title VARCHAR(40) not null,
   mood VARCHAR(40) not null,
   entry TEXT not null,
-  createdAt timestamp (0) without time zone default now(),
+  createdAt timestamp (0) with time zone default now(),
   FOREIGN KEY (userId) REFERENCES userDetails(id)
 )`;
 
@@ -51,7 +51,7 @@ CREATE TABLE notification(
   userId int unique,
   name VARCHAR(40) not null,
   email VARCHAR(40) not null unique,
-  createdAt timestamp (0) without time zone default now(),
+  createdAt timestamp (0) with time zone default now(),
   FOREIGN KEY (userId) REFERENCES userDetails(id)
 )`;
 
