@@ -1,7 +1,7 @@
 /*  global document:true, fetch:true, window:true */
 /*  eslint no-undef: "error"  */
 
-const url = 'http://localhost:9001/api/v1';
+const loginUrl = 'https://mydiary-challenge.herokuapp.com';
 
 const signinForm = document.getElementById('signin-form');
 
@@ -15,7 +15,7 @@ signinForm.onsubmit = (e) => {
     password
   };
   console.log(login);
-  fetch(`${url}/auth/login`, {
+  fetch(`${loginUrl}/auth/login`, {
     method: 'POST',
     mode: 'cors',
     headers: {

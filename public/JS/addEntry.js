@@ -1,7 +1,7 @@
 /*  global document:true, fetch:true, window:true, localStorage:true */
 /*  eslint no-undef: "error"  */
 
-const url = 'http://localhost:9001/api/v1';
+const url = 'https://mydiary-challenge.herokuapp.com';
 const token = localStorage.getItem('token');
 console.log(token);
 const entryForm = document.getElementById('entry-form');

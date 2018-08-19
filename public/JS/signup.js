@@ -1,7 +1,7 @@
 /*  global document:true, fetch:true, window:true */
 /*  eslint no-undef: "error"  */
 
-const url = 'http://localhost:9001/api/v1';
+const url = 'https://mydiary-challenge.herokuapp.com';
 
 const signupForm = document.getElementById('register-form');
 

@@ -4,7 +4,7 @@
 const username = document.getElementById('username');
 username.innerHTML = localStorage.getItem('username');
 
-const profileUrl = 'http://localhost:9001/api/v1';
+const profileUrl = 'https://mydiary-challenge.herokuapp.com';
 const token = localStorage.getItem('token');
 console.log(token);
 const userName = document.getElementById('profile-username');

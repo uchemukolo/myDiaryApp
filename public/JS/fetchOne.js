@@ -1,7 +1,7 @@
 /*  global document:true, fetch:true, window:true, localStorage:true */
 /*  eslint no-undef: "error"  */
 const entryId = window.location.search.split('?')[1];
-const entryUrl = 'http://localhost:9001/api/v1';
+const entryUrl = 'https://mydiary-challenge.herokuapp.com';
 const token = localStorage.getItem('token');
 console.log(token);
 
