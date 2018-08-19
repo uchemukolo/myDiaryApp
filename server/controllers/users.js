@@ -2,7 +2,9 @@ import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 import auth from '../helpers/authentication';
 import db from '../models/index';
-import { findOne, createUser } from '../models/model.queries';
+import {
+  findOne, createUser, userProfile, updateProfile
+} from '../models/model.queries';
 
 
 dotenv.config();
@@ -104,6 +106,69 @@ class Users {
                 });
               });
           });
+      });
+  }
+
+  /**
+     *@description Method for retrieving users profile
+     *
+     * @param {Object} request request object
+     * @param {Object} response response object
+     *
+     * @return {Object} response containing the logged-in user
+     *
+     * @memberof Users
+     */
+  static userProfile(request, response) {
+
+    db.query(userProfile(request.decoded.id))
+      .then((result) => {
+        console.log(result.rows[0]);
+
+        return response.status(200).send({
+          profile: {
+            username: result.rows[0].username,
+            firstName: result.rows[0].firstname,
+            lastName: result.rows[0].lastname,
+            email: result.rows[0].email,
+            joinedSince: result.rows[0].createdat
+          },
+          message: 'Profile successfully retrieved',
+        });
+      })
+      .catch((error) => {
+        response.status(500).send({
+          message: 'Some error occured',
+          error: error.message,
+        });
+      });
+  }
+
+  /**
+   *@description - Method for updating users profile
+   *
+   *@param {object} request - HTTP request
+   *
+   * @param {object} response
+   *
+   * @return {object} return object as response
+   *
+   * @memberof Users
+   */
+  static updateProfile(request, response) {
+    const {
+      firstName, lastName
+    } = request.body;
+    db.query(updateProfile(firstName, lastName, request.decoded.id))
+      .then(updated => response.status(200).send({
+        entry: updated.rows[0],
+        message: 'Profile updated sucessfully',
+      }))
+      .catch((error) => {
+        response.status(500).send({
+          message: 'Profile update Not sucessful!',
+          error: error.message,
+        });
       });
   }
 }
