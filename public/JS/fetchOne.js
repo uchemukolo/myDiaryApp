@@ -56,7 +56,7 @@ const modifyEntry = () => {
   title.contentEditable = false;
   mood.contentEditable = false;
   entry.contentEditable = false;
-  const modifyUser = {
+  const modify = {
     title: title.textContent,
     mood: mood.textContent,
     entry: entry.textContent
@@ -68,7 +68,7 @@ const modifyEntry = () => {
       'Content-Type': 'application/json',
       token: `${token}`,
     },
-    body: JSON.stringify(modifyUser),
+    body: JSON.stringify(modify),
   })
     .then(response => response.json())
     .then((data) => {

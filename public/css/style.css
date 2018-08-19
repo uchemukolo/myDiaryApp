@@ -167,11 +167,26 @@ border: 2px solid #f1f1f1;
   text-align: center;
   width: 42vw;
 }
+.container-wrapper {
+  display: flex;
+  width:100vw;
+}
+.profile-heading {
+  text-align: center;
+}
 .container-profile {
   display: block;
   justify-content: center;
   border-radius: 10px;
-  border: 2px solid #f1f1f1;
+  background-color: #fafafa;
+  margin: 100px auto;
+  text-align: center;
+  width:30vw;
+}
+.container-profilee {
+  display: block;
+  justify-content: center;
+  border-radius: 10px;
   background-color: #fafafa;
   margin: 100px auto;
   text-align: center;
@@ -600,7 +615,7 @@ margin-top: 10PX;
 
 }
 #myProfileBtn {
-  background-color: #000000;
+  background-color: #38a7b6;
   border: none;
   border-radius: 5px;
   height: 50px;
@@ -672,7 +687,7 @@ margin-top: 10PX;
   cursor: pointer;
 }
 #myProfileBtn:hover {
-  background-color: #38a7b6;
+  background-color: #000000;
   color:#fdfafa;
   cursor: pointer;
 }
@@ -815,7 +830,9 @@ td, th {
 @media screen and (max-width: 600px) {
   .col-25, .col-75, input[type=submit],
   .container-profile, .container-signup,
-  .container_signin, .modal, .modal-content, .modal1, .modal-profile-content, .card-header{
+  .container_signin, .modal, .modal-content, .modal1,
+  .modal-profile-content, .card-header, .container-profile,
+  .container-profilee{
       width: 90%;
       margin: 20px auto;
   }

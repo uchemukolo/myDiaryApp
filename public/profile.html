@@ -21,52 +21,77 @@
   </div>
   <div class="green-text" id="success-msg" style="text-align: center"></div>
   <div class="red-text" id="entry-error" style="text-align: center"></div>
-  <div class="container-profile">
-    <h3 style="display: inline;">Welcome
-      <span id=username></span>!</h3>
-    <p>
-    Write down your thoughts and feelings PRIVATELY
-    </p>
-    <div class="total-entries">
-        <strong><a href="entries.html"id="total-entries"></a></strong><span> Total Entries</span>
+  <div class="green-text" id="user-error" style="text-align: center"></div>
+
+  <div class="container-wrapper">
+      <div class="container-profilee">
+          <h3 class="profile-heading" style="display: inline;">Welcome
+            <span id=username></span>!</h3>
+          <p>
+            Write down your thoughts and feelings PRIVATELY
+          </p>
+          <div class="total-entries">
+            <strong>
+              <a href="entries.html" id="total-entries"></a>
+            </strong>
+            <span> Total Entries</span>
+          </div>
+          <div class="profile-div">
+            <!-- Trigger/Open Reminder Modal -->
+            <div>
+              <button id="myReminderBtn">Set Reminder</button>
+            </div>
+          </div>
+        </div>
+
+    <div class="container-profile">
+
+      <h3 class="profile-heading" style="display: inline;">My Profile</h3>
+      <div class="row">
+        <div class="input_field">
+          <p style="display: inline;">
+            <strong>Username: </strong>
+            <span id="profile-username"></span>
+          </p>
+        </div>
       </div>
-      <div class="profile-div">
-    <!-- Trigger/Open update Profile Modal -->
-    <div>
-      <button id="myProfileBtn">Edit Profile</button>
-    </div>
-    <!-- Trigger/Open Reminder Modal -->
-    <div>
-      <button id="myReminderBtn">Set Reminder</button>
-    </div>
-  </div>
-</div>
-  <div id="myModal1" class="modal1">
-    <div class="modal-profile-content">
-      <span class="close">&times;</span>
-      <form id="formm" action="">
-        <span id="profile-heading">
-          <h3>Update Profile</h3>
-        </span>
-        <div class="row">
+      <div class="row">
+        <div class="input_field">
+          <p style="display: inline;">
+            <strong>First Name: </strong>
+            <span id="first-name" contenteditable="false"></span>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input_field">
+          <p style="display: inline;">
+            <strong>Last Name: </strong>
+            <span id="last-name" contenteditable="false"></span>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input_field">
+          <p style="display: inline;">
+            <strong>Email: </strong>
+            <span id="user-email"></span>
+          </p>
+        </div>
+      </div>
+      <div class="row">
           <div class="input_field">
-            <input type="text" id="fname" name="firstname" placeholder="First Name">
-          </div>
-        </div>
-        <div class="row">
-          <div class="input_field">
-            <input type="text" id="lname" name="lastname" placeholder="last Name">
-          </div>
-        </div>
-        <div class="row">
-          <input type="submit" value="Update">
-        </div>
-        <div class="row">
-          <input type="submit" value="Reset Password">
-        </div>
-      </form>
+              <p style="display: inline;">
+                <strong>Joined Since: </strong>
+                <span id="joined"></span>
+              </p>
+              </div>
+      </div>
+      <div class="row">
+        <button id="myProfileBtn" onclick="updateProfile();">Update Profile</button>
+        <button class="myProfileBtn" id="myProfileBtn" onclick="modifyProfile();">Save Profile</button>
+      </div>
     </div>
-  </div>
   </div>
 
   <div id="myModal" class="modal">
@@ -85,7 +110,7 @@
           </label>
         </div>
         <div class="container-note">
-          <input type="submit" value="Subscribe">
+          <button id="myReminderBtn">Subscribe</button>
         </div>
       </form>
     </div>
