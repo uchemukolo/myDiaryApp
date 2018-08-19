@@ -1,7 +1,7 @@
 /*  global document:true, fetch:true, window:true, localStorage:true */
 /*  eslint no-undef: "error"  */
 const entryId = window.location.search.split('?')[1];
-const entryUrl = 'http://localhost:9001/api/v1';
+const entryUrl = 'https://mydiary-challenge.herokuapp.com';
 const token = localStorage.getItem('token');
 console.log(token);
 
@@ -56,7 +56,7 @@ const modifyEntry = () => {
   title.contentEditable = false;
   mood.contentEditable = false;
   entry.contentEditable = false;
-  const modifyUser = {
+  const modify = {
     title: title.textContent,
     mood: mood.textContent,
     entry: entry.textContent
@@ -68,7 +68,7 @@ const modifyEntry = () => {
       'Content-Type': 'application/json',
       token: `${token}`,
     },
-    body: JSON.stringify(modifyUser),
+    body: JSON.stringify(modify),
   })
     .then(response => response.json())
     .then((data) => {

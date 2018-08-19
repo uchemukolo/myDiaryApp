@@ -96,3 +96,27 @@ export const update = (title, mood, entry, id, userId) => ({
   text: 'UPDATE entries SET title = $1, mood = $2, entry = $3 WHERE id = $4 AND userId = $5 RETURNING *',
   values: [title, mood, entry, id, userId]
 });
+
+/**
+ * @description fetch User Profile in the database by ID
+ * @name userProfile
+ * @param id
+ * @returns the object queried
+ */
+
+export const userProfile = id => ({
+  text: 'SELECT * FROM userDetails WHERE id = $1',
+  values: [id],
+});
+
+/**
+ * @description update User Profile in the database by ID
+ * @name updateProfile
+ * @param firstName, lastName
+ * @returns the object queried
+ */
+
+export const updateProfile = (firstName, lastName, id) => ({
+  text: 'UPDATE userDetails SET firstname = $1, lastname = $2 WHERE id = $3 RETURNING *',
+  values: [firstName, lastName, id]
+});
