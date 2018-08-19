@@ -18,21 +18,22 @@
       </div>
 
         <div class="container_signin">
-          <form action="entries.html">
+          <form id="signin-form" action="">
               <span id="heading"><h3>Log In</h3></span>
 
             <div class="row">
               <div class="input_field">
-                <input type="text" id="username" name="username" placeholder="Username or Email">
+                <input type="text" id="username" name="username" placeholder="Username or Email" required>
               </div>
             </div>
             <div class="row">
               <div class="input_field">
-                <input type="password" id="pword" name="password" placeholder="Password">
+                <input type="password" id="pword" name="password" placeholder="Password" required>
               </div>
             </div>
+            <p id="signin-error" class="red-text"></p>
             <div class="row">
-              <input type="submit" value="Signin">
+              <input type="submit" id="signinBtn" value="Signin">
             </div>
           </form>
         </div>
@@ -41,6 +42,7 @@
       <h6>© Copyright 2018 Template By Muche - All Rights Reserved. For Questions/feedback/problems? Contact me on support@mydiary.com</h6>
     </div>
     <script src="JS/main.js"></script>
+    <script src="JS/login.js"></script>
 </body>
 
 </html>

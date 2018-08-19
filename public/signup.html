@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8' />
+    <title>My Diary</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body class="background">
+    <div class="topnav" id="myTopnav">
+        <a href="#" class="active">MY DIARY</a>
+        <a href="../index.html">Home</a>
+        <a href="signin.html">Login</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+    <div class="container-signup">
+
+        <form id="register-form" action="">
+            <span id="heading">
+                <h3>Register Now</h3>
+            </span>
+            <div class="row">
+                <div class="input_field">
+                    <input type="text" id="username" name="username" placeholder="Username" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input_field">
+                    <input type="email" id="email" name="email" placeholder="Email Address" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input_field">
+                    <input type="password" id="pword" name="password" placeholder="Password" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input_field">
+                    <input type="password" id="pwords" name="confirm-password" placeholder="Confirm password" required>
+                </div>
+            </div>
+            <p id="signup-error" class="red-text"></p>
+            <div class="row">
+                <input type="submit" id="signupBtn" value="Sign Up">
+            </div>
+        </form>
+    </div>
+    <div class="footer">
+        <h6>© Copyright 2018 Template By Muche - All Rights Reserved. For Questions/feedback/problems? Contact me on support@mydiary.com</h6>
+    </div>
+    <script src="JS/main.js"></script>
+    <script src="JS/signup.js"></script>
+</body>
+
+</html>

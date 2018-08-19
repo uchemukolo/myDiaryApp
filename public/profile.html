@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8' />
+  <title>My Diary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body class="background">
+  <div class="topnav" id="myTopnav">
+    <a href="#" class="active" id="logo">MY DIARY</a>
+    <a href="entries.html">My Entries</a>
+    <a href="add-entry.html">Add New Entry</a>
+    <a onclick="logout();" href="logout.html">Logout</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+  <div class="green-text" id="success-msg" style="text-align: center"></div>
+  <div class="red-text" id="entry-error" style="text-align: center"></div>
+  <div class="green-text" id="user-error" style="text-align: center"></div>
+
+  <div class="container-wrapper">
+      <div class="container-profilee">
+          <h3 class="profile-heading" style="display: inline;">Welcome
+            <span id=username></span>!</h3>
+          <p>
+            Write down your thoughts and feelings PRIVATELY
+          </p>
+          <div class="total-entries">
+            <strong>
+              <a href="entries.html" id="total-entries"></a>
+            </strong>
+            <span> Total Entries</span>
+          </div>
+          <div class="profile-div">
+            <!-- Trigger/Open Reminder Modal -->
+            <div>
+              <button id="myReminderBtn">Set Reminder</button>
+            </div>
+          </div>
+        </div>
+
+    <div class="container-profile">
+
+      <h3 class="profile-heading" style="display: inline;">My Profile</h3>
+      <div class="row">
+        <div class="input_field">
+          <p style="display: inline;">
+            <strong>Username: </strong>
+            <span id="profile-username"></span>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input_field">
+          <p style="display: inline;">
+            <strong>First Name: </strong>
+            <span id="first-name" contenteditable="false"></span>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input_field">
+          <p style="display: inline;">
+            <strong>Last Name: </strong>
+            <span id="last-name" contenteditable="false"></span>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input_field">
+          <p style="display: inline;">
+            <strong>Email: </strong>
+            <span id="user-email"></span>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+          <div class="input_field">
+              <p style="display: inline;">
+                <strong>Joined Since: </strong>
+                <span id="joined"></span>
+              </p>
+              </div>
+      </div>
+      <div class="row">
+        <button id="myProfileBtn" onclick="updateProfile();">Update Profile</button>
+        <button class="myProfileBtn" id="myProfileBtn" onclick="modifyProfile();">Save Profile</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <div class="closee">&times;</div>
+      <form id="form" action="#">
+        <div class="container-note">
+          <h2>Get Notified</h2>
+          <p>Do not forget to pen down your precious thoughts and feeling. Subscribe and get a notification daily.</p>
+        </div>
+        <div class="container-note">
+          <input type="text" placeholder="Name" name="name" required>
+          <input type="text" placeholder="Email address" name="mail" required>
+          <label>
+            <input type="checkbox" checked="checked" name="subscribe"> Daily Reminder
+          </label>
+        </div>
+        <div class="container-note">
+          <button id="myReminderBtn">Subscribe</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  </div>
+  </div>
+
+  <div class="footer">
+    <h6>© Copyright 2018 Template By Muche - All Rights Reserved. For Questions/feedback/problems? Contact me on support@mydiary.com</h6>
+  </div>
+  <script src="JS/main.js"></script>
+  <script src="JS/profile.js"></script>
+  <script src="JS/login.js"></script>
+  <script src="JS/signup.js"></script>
+
+</body>
+
+</html>
