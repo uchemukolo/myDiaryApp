@@ -21,7 +21,7 @@ signupForm.onsubmit = (e) => {
   };
   console.log(newUser);
 
-  fetch(`${url}api/v1/auth/signup`, {
+  fetch(`${url}/api/v1/auth/signup`, {
     method: 'POST',
     mode: 'cors',
     cache: 'no-cache',

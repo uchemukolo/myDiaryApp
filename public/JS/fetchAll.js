@@ -11,7 +11,7 @@ const deleteError = document.getElementById('delete-error');
 const entryError = document.getElementById('entry-error');
 
 window.addEventListener('load', () => {
-  fetch(`${entryUrl}api/v1/entries`, {
+  fetch(`${entryUrl}/api/v1/entries`, {
     method: 'GET',
     mode: 'cors',
     headers: {

@@ -17,7 +17,7 @@ const userMsg = document.getElementById('user-error');
 
 
 window.addEventListener('load', () => {
-  fetch(`${profileUrl}api/v1/entries`, {
+  fetch(`${profileUrl}/api/v1/entries`, {
     method: 'GET',
     mode: 'cors',
     headers: {
