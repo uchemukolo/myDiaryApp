@@ -20,7 +20,7 @@ entryForm.onsubmit = (e) => {
     entry
   };
   console.log(newEntry);
-  fetch(`${url}/entries`, {
+  fetch(`${url}api/v1/entries`, {
     method: 'POST',
     mode: 'cors',
     headers: {

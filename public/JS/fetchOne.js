@@ -14,7 +14,7 @@ const entryMsg = document.getElementById('success-msg');
 
 
 window.addEventListener('load', () => {
-  fetch(`${entryUrl}/entries/${entryId}`, {
+  fetch(`${entryUrl}api/v1/entries/${entryId}`, {
     method: 'GET',
     mode: 'cors',
     headers: {
