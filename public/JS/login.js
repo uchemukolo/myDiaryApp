@@ -15,6 +15,7 @@ signinForm.onsubmit = (e) => {
     password
   };
   console.log(login);
+  
   fetch(`${loginUrl}api/v1/auth/login`, {
     method: 'POST',
     mode: 'cors',

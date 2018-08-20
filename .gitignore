@@ -1,6 +1,14 @@
+<<<<<<< HEAD
 README.md
 .env
 /server
 /node_modules
 /coverage
 /.nyc_output
+=======
+node_modules
+server/build/
+.nyc_output
+coverage
+.env
+>>>>>>> 32f664b6e8cbe505668bf0c0964ca2c4670cfea4
