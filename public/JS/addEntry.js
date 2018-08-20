@@ -1,7 +1,7 @@
 /*  global document:true, fetch:true, window:true, localStorage:true */
 /*  eslint no-undef: "error"  */
 
-const url = 'https://mydiary-challenge.herokuapp.com';
+const url = 'https://mydiary-challenge.herokuapp.com/';
 const token = localStorage.getItem('token');
 console.log(token);
 const entryForm = document.getElementById('entry-form');
@@ -21,7 +21,7 @@ entryForm.onsubmit = (e) => {
   };
   console.log(newEntry);
 
-  fetch(`${url}/api/v1/entries`, {
+  fetch(`${url}api/v1/entries`, {
     method: 'POST',
     mode: 'cors',
     headers: {

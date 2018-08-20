@@ -1,7 +1,7 @@
 /*  global document:true, fetch:true, window:true, localStorage:true */
 /*  eslint no-undef: "error"  */
 const entryId = window.location.search.split('?')[1];
-const entryUrl = 'https://mydiary-challenge.herokuapp.com';
+const entryUrl = 'https://mydiary-challenge.herokuapp.com/';
 const token = localStorage.getItem('token');
 console.log(token);
 
@@ -15,7 +15,7 @@ const entryMsg = document.getElementById('success-msg');
 
 window.addEventListener('load', () => {
 
-  fetch(`${entryUrl}/api/v1/entries/${entryId}`, {
+  fetch(`${entryUrl}api/v1/entries/${entryId}`, {
     method: 'GET',
     mode: 'cors',
     headers: {

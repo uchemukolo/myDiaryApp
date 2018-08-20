@@ -4,7 +4,7 @@
 const username = document.getElementById('username');
 username.innerHTML = localStorage.getItem('username');
 
-const profileUrl = 'https://mydiary-challenge.herokuapp.com';
+const profileUrl = 'https://mydiary-challenge.herokuapp.com/';
 const token = localStorage.getItem('token');
 console.log(token);
 const userName = document.getElementById('profile-username');
@@ -17,7 +17,7 @@ const userMsg = document.getElementById('user-error');
 
 
 window.addEventListener('load', () => {
-  fetch(`${profileUrl}/api/v1/entries`, {
+  fetch(`${profileUrl}api/v1/entries`, {
     method: 'GET',
     mode: 'cors',
     headers: {
