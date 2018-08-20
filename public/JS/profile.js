@@ -42,7 +42,7 @@ window.addEventListener('load', () => {
 });
 
 window.addEventListener('load', () => {
-  fetch(`${profileUrl}/auth/profile`, {
+  fetch(`${profileUrl}api/v1/auth/profile`, {
     method: 'GET',
     mode: 'cors',
     headers: {
@@ -87,7 +87,7 @@ const modifyProfile = () => {
     firstName: firstName.textContent,
     lastName: lastName.textContent
   };
-  fetch(`${profileUrl}/auth/profile/update`, {
+  fetch(`${profileUrl}api/v1/auth/profile/update`, {
     method: 'PUT',
     mode: 'cors',
     headers: {

@@ -53,7 +53,7 @@ window.addEventListener('load', () => {
 });
 
 const deleteEntry = () => {
-  fetch(`${entryUrl}/entries/${entryId}`, {
+  fetch(`${entryUrl}api/v1/entries/${entryId}`, {
     method: 'DELETE',
     mode: 'cors',
     headers: {

@@ -62,7 +62,7 @@ const modifyEntry = () => {
     mood: mood.textContent,
     entry: entry.textContent
   };
-  fetch(`${entryUrl}/entries/${entryId}`, {
+  fetch(`${entryUrl}api/v1/entries/${entryId}`, {
     method: 'PUT',
     mode: 'cors',
     headers: {
