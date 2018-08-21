@@ -1,7 +1,7 @@
 /*  global document:true, fetch:true, window:true */
 /*  eslint no-undef: "error"  */
 
-const url = 'https://mydiary-challenge.herokuapp.com';
+const url = 'https://mydiary-challenge.herokuapp.com/';
 
 const signupForm = document.getElementById('register-form');
 
@@ -21,7 +21,7 @@ signupForm.onsubmit = (e) => {
   };
   console.log(newUser);
 
-  fetch(`${url}/auth/signup`, {
+  fetch(`${url}api/v1/auth/signup`, {
     method: 'POST',
     mode: 'cors',
     cache: 'no-cache',

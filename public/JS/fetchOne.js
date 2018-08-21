@@ -1,11 +1,13 @@
 /*  global document:true, fetch:true, window:true, localStorage:true */
 /*  eslint no-undef: "error"  */
 const entryId = window.location.search.split('?')[1];
-const entryUrl = 'https://mydiary-challenge.herokuapp.com';
+const entryUrl = 'https://mydiary-challenge.herokuapp.com/';
 const token = localStorage.getItem('token');
 console.log(token);
 
-const date = document.getElementById('date-detail');
+const date = new Date();
+document.getElementById('date-detail').innerHTML = date.toDateString();
+// const date = document.getElementById('date-detail');
 const title = document.getElementById('title-detail');
 const mood = document.getElementById('mood-detail');
 const entry = document.getElementById('entry-detail');
@@ -14,7 +16,7 @@ const entryMsg = document.getElementById('success-msg');
 
 
 window.addEventListener('load', () => {
-  fetch(`${entryUrl}/entries/${entryId}`, {
+  fetch(`${entryUrl}api/v1/entries/${entryId}`, {
     method: 'GET',
     mode: 'cors',
     headers: {
@@ -61,7 +63,7 @@ const modifyEntry = () => {
     mood: mood.textContent,
     entry: entry.textContent
   };
-  fetch(`${entryUrl}/entries/${entryId}`, {
+  fetch(`${entryUrl}api/v1/entries/${entryId}`, {
     method: 'PUT',
     mode: 'cors',
     headers: {
