@@ -5,7 +5,9 @@ const entryUrl = 'https://mydiary-challenge.herokuapp.com/';
 const token = localStorage.getItem('token');
 console.log(token);
 
-const date = document.getElementById('date-detail');
+const date = new Date();
+document.getElementById('date-detail').innerHTML = date.toDateString();
+// const date = document.getElementById('date-detail');
 const title = document.getElementById('title-detail');
 const mood = document.getElementById('mood-detail');
 const entry = document.getElementById('entry-detail');

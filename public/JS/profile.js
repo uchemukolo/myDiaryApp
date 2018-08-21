@@ -7,11 +7,14 @@ username.innerHTML = localStorage.getItem('username');
 const profileUrl = 'https://mydiary-challenge.herokuapp.com/';
 const token = localStorage.getItem('token');
 console.log(token);
+
+const joined = new Date();
+document.getElementById('joined').innerHTML = joined.toDateString();
 const userName = document.getElementById('profile-username');
 const firstName = document.getElementById('first-name');
 const lastName = document.getElementById('last-name');
 const email = document.getElementById('user-email');
-const joined = document.getElementById('joined');
+// const joined = document.getElementById('joined');
 const entryMsg = document.getElementById('entry-error');
 const userMsg = document.getElementById('user-error');
 
