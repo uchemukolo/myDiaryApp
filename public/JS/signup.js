@@ -23,7 +23,7 @@ signupForm.onsubmit = (e) => {
 
   fetch(`${url}api/v1/auth/signup`, {
     method: 'POST',
-    mode: 'no-cors',
+    mode: 'cors',
     cache: 'no-cache',
     credentials: 'same-origin',
     headers: {
