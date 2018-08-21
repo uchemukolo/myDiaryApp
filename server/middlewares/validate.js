@@ -186,6 +186,38 @@ class Validate {
         .json({ message: errors });
     }
   }
+
+  /**
+   *
+   * @param {object} request
+   *
+   * @param {object} response
+   *
+   * @param {function} next
+   *
+   * @returns {object} - JSON object and status code
+   *
+   * @memberof Validate
+  */
+  static addReminder(request, response, next) {
+    const { name, email } = request.body;
+
+    const entryData = { name, email };
+
+    const entryDataRules = {
+      name: 'required|string',
+      email: 'required|string|email',
+    };
+
+    const validation = new Validator(entryData, entryDataRules);
+    if (validation.passes()) {
+      next();
+    } else {
+      const errors = validation.errors.all();
+      return response.status(400)
+        .json({ message: errors });
+    }
+  }
 }
 
 export default Validate;
