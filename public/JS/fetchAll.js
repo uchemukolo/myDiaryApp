@@ -13,7 +13,7 @@ const entryError = document.getElementById('entry-error');
 window.addEventListener('load', () => {
   fetch(`${entryUrl}api/v1/entries`, {
     method: 'GET',
-    mode: 'cors',
+    mode: 'no-cors',
     headers: {
       'Content-Type': 'application/json',
       token: `${token}`,
@@ -55,7 +55,7 @@ window.addEventListener('load', () => {
 const deleteEntry = () => {
   fetch(`${entryUrl}api/v1/entries/${entryId}`, {
     method: 'DELETE',
-    mode: 'cors',
+    mode: 'no-cors',
     headers: {
       'Content-Type': 'application/json',
       token: `${token}`,

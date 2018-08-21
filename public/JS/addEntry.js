@@ -23,7 +23,7 @@ entryForm.onsubmit = (e) => {
 
   fetch(`${url}api/v1/entries`, {
     method: 'POST',
-    mode: 'cors',
+    mode: 'no-cors',
     headers: {
       'Content-Type': 'application/json',
       token: `${token}`,

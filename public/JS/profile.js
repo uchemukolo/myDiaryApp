@@ -22,7 +22,7 @@ const userMsg = document.getElementById('user-error');
 window.addEventListener('load', () => {
   fetch(`${profileUrl}api/v1/entries`, {
     method: 'GET',
-    mode: 'cors',
+    mode: 'no-cors',
     headers: {
       'Content-Type': 'application/json',
       token: `${token}`,
@@ -47,7 +47,7 @@ window.addEventListener('load', () => {
 window.addEventListener('load', () => {
   fetch(`${profileUrl}api/v1/auth/profile`, {
     method: 'GET',
-    mode: 'cors',
+    mode: 'no-cors',
     headers: {
       'Content-Type': 'application/json',
       token: `${token}`,
@@ -92,7 +92,7 @@ const modifyProfile = () => {
   };
   fetch(`${profileUrl}api/v1/auth/profile/update`, {
     method: 'PUT',
-    mode: 'cors',
+    mode: 'no-cors',
     headers: {
       'Content-Type': 'application/json',
       token: `${token}`,

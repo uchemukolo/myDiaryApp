@@ -18,7 +18,7 @@ signinForm.onsubmit = (e) => {
 
   fetch(`${loginUrl}api/v1/auth/login`, {
     method: 'POST',
-    mode: 'cors',
+    mode: 'no-cors',
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
     },

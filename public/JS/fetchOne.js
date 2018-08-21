@@ -19,7 +19,7 @@ window.addEventListener('load', () => {
 
   fetch(`${entryUrl}api/v1/entries/${entryId}`, {
     method: 'GET',
-    mode: 'cors',
+    mode: 'no-cors',
     headers: {
       'Content-Type': 'application/json',
       token: `${token}`,
@@ -66,7 +66,7 @@ const modifyEntry = () => {
   };
   fetch(`${entryUrl}api/v1/entries/${entryId}`, {
     method: 'PUT',
-    mode: 'cors',
+    mode: 'no-cors',
     headers: {
       'Content-Type': 'application/json',
       token: `${token}`,
