@@ -2,7 +2,7 @@
 /*  eslint no-undef: "error"  */
 
 const entryId = window.location.search.split('?')[1];
-const entryUrl = 'https://mydiary-challenge.herokuapp.com';
+const entryUrl = 'https://mydiary-challenge.herokuapp.com/';
 const token = localStorage.getItem('token');
 console.log(token);
 
@@ -11,7 +11,7 @@ const deleteError = document.getElementById('delete-error');
 const entryError = document.getElementById('entry-error');
 
 window.addEventListener('load', () => {
-  fetch(`${entryUrl}/entries`, {
+  fetch(`${entryUrl}api/v1/entries`, {
     method: 'GET',
     mode: 'cors',
     headers: {
@@ -53,7 +53,7 @@ window.addEventListener('load', () => {
 });
 
 const deleteEntry = () => {
-  fetch(`${entryUrl}/entries/${entryId}`, {
+  fetch(`${entryUrl}api/v1/entries/${entryId}`, {
     method: 'DELETE',
     mode: 'cors',
     headers: {

@@ -4,20 +4,23 @@
 const username = document.getElementById('username');
 username.innerHTML = localStorage.getItem('username');
 
-const profileUrl = 'https://mydiary-challenge.herokuapp.com';
+const profileUrl = 'https://mydiary-challenge.herokuapp.com/';
 const token = localStorage.getItem('token');
 console.log(token);
+
+const joined = new Date();
+document.getElementById('joined').innerHTML = joined.toDateString();
 const userName = document.getElementById('profile-username');
 const firstName = document.getElementById('first-name');
 const lastName = document.getElementById('last-name');
 const email = document.getElementById('user-email');
-const joined = document.getElementById('joined');
+// const joined = document.getElementById('joined');
 const entryMsg = document.getElementById('entry-error');
 const userMsg = document.getElementById('user-error');
 
 
 window.addEventListener('load', () => {
-  fetch(`${profileUrl}/entries`, {
+  fetch(`${profileUrl}api/v1/entries`, {
     method: 'GET',
     mode: 'cors',
     headers: {
@@ -42,7 +45,7 @@ window.addEventListener('load', () => {
 });
 
 window.addEventListener('load', () => {
-  fetch(`${profileUrl}/auth/profile`, {
+  fetch(`${profileUrl}api/v1/auth/profile`, {
     method: 'GET',
     mode: 'cors',
     headers: {
@@ -87,7 +90,7 @@ const modifyProfile = () => {
     firstName: firstName.textContent,
     lastName: lastName.textContent
   };
-  fetch(`${profileUrl}/auth/profile/update`, {
+  fetch(`${profileUrl}api/v1/auth/profile/update`, {
     method: 'PUT',
     mode: 'cors',
     headers: {

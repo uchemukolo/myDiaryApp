@@ -120,3 +120,16 @@ export const updateProfile = (firstName, lastName, id) => ({
   text: 'UPDATE userDetails SET firstname = $1, lastname = $2 WHERE id = $3 RETURNING *',
   values: [firstName, lastName, id]
 });
+
+/**
+ * @description for sending reminder email
+ * @name postReminder
+ * @param username or email
+ * @returns the object queried
+ */
+
+export const postReminder = (userId, name, email) => ({
+  text: `INSERT INTO notification(userId, name, email)
+    VALUES($1, $2, $3) RETURNING *`,
+  values: [userId, name, email]
+});

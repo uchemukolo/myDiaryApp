@@ -190,4 +190,77 @@ describe('MyDiary App ::: User', () => {
         });
     });
   });
+  describe('Gets a user profile', () => {
+    it('should return 200 for successful', (done) => {
+      chai.request(app)
+        .get('/api/v1/auth/profile')
+        .send()
+        .set('token', token)
+        .end((error, response) => {
+          const message = 'Profile successfully retrieved';
+          expect(response.status).to.equal(200);
+          expect(response.body).to.haveOwnProperty('profile');
+          expect(response.body.message).to.equal(message);
+          done();
+        });
+    });
+  });
+  describe('Reminder', () => {
+    it('should not let user subscribe with no name', (done) => {
+      const userReminder = {
+        email: 'email@gmail.com'
+      };
+      chai.request(app)
+        .post('/api/v1/auth/reminder')
+        .send(userReminder)
+        .set('token', token)
+        .end((error, response) => {
+          const message = {
+            name: [
+              'The name field is required.'
+            ]
+          };
+          expect(response.status).to.equal(400);
+          expect(response.body).to.haveOwnProperty('message').to.eql(message);
+          done();
+        });
+    });
+    describe('Reminder', () => {
+      it('should not let user subscribe with no email', (done) => {
+        const userReminder = {
+          name: 'Jane Doe'
+        };
+        chai.request(app)
+          .post('/api/v1/auth/reminder')
+          .send(userReminder)
+          .set('token', token)
+          .end((error, response) => {
+            const message = {
+              email: [
+                'The email field is required.'
+              ]
+            };
+            expect(response.status).to.equal(400);
+            expect(response.body).to.haveOwnProperty('message').to.eql(message);
+            done();
+          });
+      });
+      it('should allow user subscribe to get daily reminder', (done) => {
+        const userReminder = {
+          name: 'Jane Doe',
+          email: 'email@gmail.com'
+        };
+        chai.request(app)
+          .post('/api/v1/auth/reminder')
+          .send(userReminder)
+          .set('token', token)
+          .end((error, response) => {
+            const message = 'Request for Daily Reminder Successful';
+            expect(response.status).to.equal(201);
+            expect(response.body).to.haveOwnProperty('message').to.eql(message);
+            done();
+          });
+      });
+    });
+  });
 });

@@ -2,8 +2,9 @@ import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 import auth from '../helpers/authentication';
 import db from '../models/index';
+import Mailer from '../helpers/mailer';
 import {
-  findOne, createUser, userProfile, updateProfile
+  findOne, createUser, userProfile, updateProfile, postReminder
 } from '../models/model.queries';
 
 
@@ -120,7 +121,6 @@ class Users {
      * @memberof Users
      */
   static userProfile(request, response) {
-
     db.query(userProfile(request.decoded.id))
       .then((result) => {
         console.log(result.rows[0]);
@@ -167,6 +167,38 @@ class Users {
       .catch((error) => {
         response.status(500).send({
           message: 'Profile update Not sucessful!',
+          error: error.message,
+        });
+      });
+  }
+
+  /**
+   *@description - Method for getting user details to send daily reminder
+   *
+   *@param {object} request - HTTP request
+   *
+   * @param {object} response
+   *
+   * @return {object} return object as response
+   *
+   * @memberof Users
+   */
+  static addReminder(request, response) {
+    const {
+      email, name
+    } = request.body;
+
+    db.query(postReminder(request.decoded.id, name, email))
+      .then((results) => {
+        Mailer.reminderMail(name, email);
+        return response.status(201).send({
+          reminder: results.rows[0],
+          message: 'Request for Daily Reminder Successful'
+        });
+      })
+      .catch((error) => {
+        response.status(500).send({
+          message: 'Some Error Occured',
           error: error.message,
         });
       });
