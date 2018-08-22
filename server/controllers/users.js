@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 import auth from '../helpers/authentication';
 import db from '../models/index';
-import Mailer from '../helpers/mailer';
+// import Mailer from '../helpers/mailer';
 import {
   findOne, createUser, userProfile, updateProfile, postReminder
 } from '../models/model.queries';
@@ -190,7 +190,7 @@ class Users {
 
     db.query(postReminder(request.decoded.id, name, email))
       .then((results) => {
-        Mailer.reminderMail(name, email);
+        // Mailer.reminderMail(name, email);
         return response.status(201).send({
           reminder: results.rows[0],
           message: 'Request for Daily Reminder Successful'
