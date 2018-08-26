@@ -1,10 +1,12 @@
 import bcrypt from 'bcrypt';
+import cron from 'node-cron';
 import dotenv from 'dotenv';
+import nodemailer from 'nodemailer';
 import auth from '../helpers/authentication';
 import db from '../models/index';
 // import Mailer from '../helpers/mailer';
 import {
-  findOne, createUser, userProfile, updateProfile, postReminder
+  findOne, createUser, userProfile, updateProfile, find, postReminder, fetchReminderData
 } from '../models/model.queries';
 
 
@@ -187,14 +189,18 @@ class Users {
     const {
       email, name
     } = request.body;
-
-    db.query(postReminder(request.decoded.id, name, email))
-      .then((results) => {
-        // Mailer.reminderMail(name, email);
-        return response.status(201).send({
-          reminder: results.rows[0],
-          message: 'Request for Daily Reminder Successful'
-        });
+    db.query(find(request.decoded.id))
+      .then((result) => {
+        if (result.rows[0]) {
+          return response.status(400).send({
+            message: 'You have Already Subscribed for Daily Email Reminder'
+          });
+        }
+        db.query(postReminder(request.decoded.id, name, email))
+          .then(results => response.status(201).send({
+            reminder: results.rows[0],
+            message: 'Request for Daily Reminder Successful'
+          }));
       })
       .catch((error) => {
         response.status(500).send({

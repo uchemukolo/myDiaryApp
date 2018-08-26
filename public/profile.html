@@ -97,20 +97,20 @@
   <div id="myModal" class="modal">
     <div class="modal-content">
       <div class="closee">&times;</div>
-      <form id="form" action="#">
+      <form id="reminderForm">
         <div class="container-note">
           <h2>Get Notified</h2>
           <p>Do not forget to pen down your precious thoughts and feeling. Subscribe and get a notification daily.</p>
         </div>
         <div class="container-note">
-          <input type="text" placeholder="Name" name="name" required>
-          <input type="text" placeholder="Email address" name="mail" required>
+          <input type="text" id="name" placeholder="Name" name="name" required>
+          <input type="text" id="notify-email" placeholder="Email address" name="mail" required>
           <label>
             <input type="checkbox" checked="checked" name="subscribe"> Daily Reminder
           </label>
         </div>
         <div class="container-note">
-          <button id="myReminderBtn">Subscribe</button>
+          <button id="myReminderBtn" type="submit">Subscribe</button>
         </div>
       </form>
     </div>
@@ -125,7 +125,6 @@
   <script src="JS/profile.js"></script>
   <script src="JS/login.js"></script>
   <script src="JS/signup.js"></script>
-
 </body>
 
 </html>
