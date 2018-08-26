@@ -133,3 +133,29 @@ export const postReminder = (userId, name, email) => ({
     VALUES($1, $2, $3) RETURNING *`,
   values: [userId, name, email]
 });
+
+  /**
+ * @description fetch all remainder data in a database
+ * @name fetchReminderData
+ * @param name
+ * @param email
+ * @param userId
+ * @returns the object queried
+ */
+
+export const fetchReminderData = () => ({
+  text: 'SELECT * FROM notification'
+});
+
+/**
+ * @description for finding one or more items in a database
+ * @name find
+ * @param userId
+ * @returns the object queried
+ */
+
+export const find = userId => ({
+  text: 'SELECT userid FROM notification WHERE userid = $1',
+  values: [userId]
+});
+
