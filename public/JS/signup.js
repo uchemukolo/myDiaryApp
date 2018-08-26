@@ -35,8 +35,10 @@ signupForm.onsubmit = (e) => {
     .then((data) => {
       if (data.message === 'Signup Successful') {
         const token = data.token;
+        const username = data.username;
         console.log(token);
         localStorage.setItem('token', token);
+        localStorage.setItem('username', username);
         window.location.href = './profile.html';
       } else {
         userError.innerHTML = Object.values(data.message);
