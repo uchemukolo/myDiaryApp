@@ -5,9 +5,7 @@ const entryUrl = 'https://mydiary-challenge.herokuapp.com/';
 const token = localStorage.getItem('token');
 console.log(token);
 
-const date = new Date();
-document.getElementById('date-detail').innerHTML = date.toDateString();
-// const date = document.getElementById('date-detail');
+const date = document.getElementById('date-detail');
 const title = document.getElementById('title-detail');
 const mood = document.getElementById('mood-detail');
 const entry = document.getElementById('entry-detail');
@@ -29,9 +27,11 @@ window.addEventListener('load', () => {
       console.log(data);
       if (data.message === 'Entry successfully retrieved from the database') {
         setTimeout(() => {
+          const createdMonth = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+          const [yearCreated, monthCreated, dayCreated] = data.entry.createdat.split('-');
           title.innerHTML = data.entry.title;
           mood.innerHTML = data.entry.mood;
-          date.innerHTML = data.entry.createdat;
+          date.innerHTML = `${dayCreated.slice(0, 2)} - ${createdMonth[monthCreated - 1]} - ${yearCreated.slice(0, 4)}`;
           entry.innerHTML = data.entry.entry;
           entryMsg.innerHTML = data.message;
           entryMsg.innerHTML = '';
@@ -40,7 +40,7 @@ window.addEventListener('load', () => {
         entryError.innerHTML = data.message;
         setTimeout(() => {
           entryError.innerHTML = '';
-        }, 2000);
+        }, 5000);
       }
     })
     .catch((error) => {
@@ -80,12 +80,12 @@ const modifyEntry = () => {
         setTimeout(() => {
           window.location.reload(true);
           entryMsg.innerHTML = '';
-        }, 2000);
+        }, 5000);
       } else {
         entryError.innerHTML = data.message;
         setTimeout(() => {
           entryError.innerHTML = '';
-        }, 2000);
+        }, 5000);
       }
     }).catch((error) => {
       console.log(error);
