@@ -16,10 +16,9 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-cron.schedule('* * 23 * * *', () => {
+cron.schedule('0 0 11 * * *', () => {
   db.query(fetchReminderData()).then((result) => {
     const userData = result.rows;
-
     userData.map((element) => {
       const usermail = element.email;
       const userName = element.name;
@@ -33,10 +32,12 @@ cron.schedule('* * 23 * * *', () => {
       };
       return transporter.sendMail(emailOptions, (error) => {
         if (error) {
-          return 'No One Subscribed yet';
+          return false;
         }
-        return 'Reminder Email sent Successfully';
+        return true;
       });
     });
   });
 });
+
+export default transporter;

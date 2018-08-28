@@ -161,5 +161,22 @@ const subscribe = (e) => {
     });
 };
 
-document.getElementById('reminderForm').addEventListener('submit', subscribe);
+const modal = document.getElementById('myModal');
+const btn = document.getElementById('myReminderBtn');
+const divClose = document.getElementsByClassName('closee')[0];
 
+btn.onclick = () => {
+  modal.style.display = 'block';
+};
+
+divClose.onclick = () => {
+  modal.style.display = 'none';
+};
+
+window.onclick = (event) => {
+  if (event.target === modal) {
+    modal.style.display = 'none';
+  }
+};
+
+document.getElementById('reminderForm').addEventListener('submit', subscribe);

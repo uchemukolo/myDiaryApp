@@ -35,7 +35,7 @@ window.addEventListener('load', () => {
           entry.innerHTML = data.entry.entry;
           entryMsg.innerHTML = data.message;
           entryMsg.innerHTML = '';
-        }, 2000);
+        }, 5000);
       } else {
         entryError.innerHTML = data.message;
         setTimeout(() => {
