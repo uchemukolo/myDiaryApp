@@ -22,15 +22,17 @@ cron.schedule('0 0 11 * * *', () => {
     userData.map((element) => {
       const usermail = element.email;
       const userName = element.name;
-      const body = `<p><h3>Dear <strong>${userName}</strong></h3></p> <p>This is a quick email to remind you to write in your Diary!</p><p> <a href="https://uchemukolo.github.io/myDiaryApp">CLICK TO START WRITING</p><p><strong>My Diary Team</strong></p>`;
+      const body = `<p><h3>Dear ${userName}</h3></p> <p>This is a quick email to remind you to write in your Diary!</p>
+      <p><a href="https://uchemukolo.github.io/myDiaryApp">START WRITING</p><p><strong>My Diary Team</strong></p>`;
       const subject = 'Start your day by writing!';
       const emailOptions = {
         from: 'My Diary Team',
         to: usermail,
         subject,
-        html: `<div style="padding: .5em;"><h3>${body}</h3></div>`,
+        html: `<div>${body}</div>`,
       };
       return transporter.sendMail(emailOptions, (error) => {
+        console.log('>>>>>>>>>', emailOptions);
         if (error) {
           return false;
         }
