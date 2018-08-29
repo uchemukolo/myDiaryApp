@@ -1,12 +1,9 @@
 import bcrypt from 'bcrypt';
-import cron from 'node-cron';
 import dotenv from 'dotenv';
-import nodemailer from 'nodemailer';
 import auth from '../helpers/authentication';
 import db from '../models/index';
-// import Mailer from '../helpers/mailer';
 import {
-  findOne, createUser, userProfile, updateProfile, find, postReminder, fetchReminderData
+  findOne, createUser, fetchUser, updateProfile, find, postReminder
 } from '../models/model.queries';
 
 
@@ -38,7 +35,9 @@ class Users {
             return 'Username already taken';
           }
           return response.status(409).send({
-            message: 'User Already Exists, Please Login'
+            message: {
+              error: ['User Already Exists, Please Login']
+            }
           });
         }
         bcrypt.hash(password, 10).then((hashedPassword) => {
@@ -50,7 +49,9 @@ class Users {
                 email: result.rows[0].email
               });
               return response.status(201).send({
-                message: 'Signup Successful',
+                message: {
+                  msgs: ['Signup Successful']
+                },
                 token,
               });
             });
@@ -82,7 +83,9 @@ class Users {
       .then((result) => {
         if (!result.rows[0]) {
           return response.status(401).send({
-            message: 'Invalid Username or Email, please provide valid credentials'
+            message: {
+              error: ['Invalid Username or Email, please provide valid credentials']
+            }
           });
         }
         bcrypt.compare(password, result.rows[0].password)
@@ -90,7 +93,9 @@ class Users {
             if (results === true) {
               const token = auth.createToken(result.rows[0]);
               return response.status(200).send({
-                message: 'Login Successful!',
+                message: {
+                  msgs: ['Login Successful!']
+                },
                 userDetails: {
                   id: result.rows[0].id,
                   username: result.rows[0].username,
@@ -100,7 +105,9 @@ class Users {
               });
             }
             return response.status(401).send({
-              message: 'Invalid Credentials, Please try again',
+              message: {
+                error: ['Invalid Credentials, Please try again']
+              }
             })
               .catch((error) => {
                 response.status(500).send({
@@ -123,7 +130,7 @@ class Users {
      * @memberof Users
      */
   static userProfile(request, response) {
-    db.query(userProfile(request.decoded.id))
+    db.query(fetchUser(request.decoded.id))
       .then((result) => {
         console.log(result.rows[0]);
 

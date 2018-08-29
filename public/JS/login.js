@@ -9,7 +9,7 @@ signinForm.onsubmit = (e) => {
   e.preventDefault();
   const username = document.getElementById('username').value;
   const password = document.getElementById('pword').value;
-  const userError = document.getElementById('user-error');
+  const userError = document.getElementById('signin-error');
   const login = {
     username,
     password
@@ -25,14 +25,16 @@ signinForm.onsubmit = (e) => {
   })
     .then(response => response.json())
     .then((data) => {
-      console.log(data);
-      if (data.message === 'Login Successful!') {
-        const token = data.token;
-        const username = data.userDetails.username;
-        console.log(token);
-        localStorage.setItem('token', token);
-        localStorage.setItem('username', username);
-        window.location.href = './profile.html';
+      console.log(data.message);
+      if (data.message.msgs) {
+        if (data.message.msgs[0] === 'Login Successful!') {
+          const token = data.token;
+          const username = data.userDetails.username;
+          console.log(token);
+          localStorage.setItem('token', token);
+          localStorage.setItem('username', username);
+          window.location.href = './profile.html';
+        }
       } else {
         userError.innerHTML = Object.values(data.message);
       }
@@ -42,6 +44,7 @@ signinForm.onsubmit = (e) => {
     });
 };
 const logout = () => {
-  localStorage.clear();
+  localStorage.removeItem('token');
+  localStorage.removeItem('username');
   window.location.href = './logout.html';
 };

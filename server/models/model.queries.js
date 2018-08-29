@@ -99,12 +99,12 @@ export const update = (title, mood, entry, id, userId) => ({
 
 /**
  * @description fetch User Profile in the database by ID
- * @name userProfile
+ * @name fetchUser
  * @param id
  * @returns the object queried
  */
 
-export const userProfile = id => ({
+export const fetchUser = id => ({
   text: 'SELECT * FROM userDetails WHERE id = $1',
   values: [id],
 });
@@ -158,4 +158,3 @@ export const find = userId => ({
   text: 'SELECT userid FROM notification WHERE userid = $1',
   values: [userId]
 });
-

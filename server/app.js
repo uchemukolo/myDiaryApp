@@ -5,6 +5,7 @@ import cors from 'cors';
 import path from 'path';
 import entry from './routes/entryRoute';
 import user from './routes/userRoute';
+import './helpers/mailer';
 
 
 const app = express();
@@ -30,6 +31,5 @@ app.get('*', (request, response) => response.status(200).send({
 
 
 app.listen(port, () => console.log(`server is up and running on localhost: ${port}`));
-
 
 export default app;
