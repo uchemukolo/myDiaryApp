@@ -43,8 +43,3 @@ signinForm.onsubmit = (e) => {
       console.log(error);
     });
 };
-const logout = () => {
-  localStorage.removeItem('token');
-  localStorage.removeItem('username');
-  window.location.href = './logout.html';
-};
