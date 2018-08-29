@@ -32,7 +32,6 @@ cron.schedule('0 0 11 * * *', () => {
         html: `<div>${body}</div>`,
       };
       return transporter.sendMail(emailOptions, (error) => {
-        console.log('>>>>>>>>>', emailOptions);
         if (error) {
           return false;
         }
