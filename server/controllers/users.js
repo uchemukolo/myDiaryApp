@@ -2,8 +2,9 @@ import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 import auth from '../helpers/authentication';
 import db from '../models/index';
+import Passwordmailer from '../helpers/resetPasswordMailer';
 import {
-  findOne, createUser, fetchUser, updateProfile, find, postReminder
+  findOne, createUser, fetchUser, updateProfile, find, postReminder, updatePassword
 } from '../models/model.queries';
 
 
@@ -208,6 +209,98 @@ class Users {
             reminder: results.rows[0],
             message: 'Request for Daily Reminder Successful'
           }));
+      })
+      .catch((error) => {
+        response.status(500).send({
+          message: 'Some Error Occured',
+          error: error.message,
+        });
+      });
+  }
+
+  /**
+   *@description - Method for resetting user password
+   *
+   *@param {object} request - HTTP request
+   *
+   * @param {object} response
+   *
+   * @return {object} return object as response
+   *
+   * @memberof Users
+   */
+  static forgotPassword(request, response) {
+    const {
+      username, email
+    } = request.body;
+    db.query(findOne(username, email))
+      .then((found) => {
+        if (found.rows[0]) {
+          const data = {
+            id: found.rows[0].id,
+            email: found.rows[0].email,
+            username: found.rows[0].username
+          };
+          const token = auth.createToken(found.rows[0]);
+          Passwordmailer.passwordResetEmail(data.username, data.id, token, data.email);
+          return response.status(200).send({
+            message: 'Password reset link has been sent to your email',
+            data: token
+          });
+        } return response.status(404).send({
+          message: 'Your Details were not found in the Database'
+        });
+      })
+      .catch((error) => {
+        response.status(500).send({
+          message: 'Some Error Occured',
+          error: error.message,
+        });
+      });
+  }
+
+  /**
+   *@description - Method for changing user password
+   *
+   *@param {object} request - HTTP request
+   *
+   * @param {object} response
+   *
+   * @return {object} return object as response
+   *
+   * @memberof Users
+   */
+  static createNewPassword(request, response) {
+    const { id, token, password } = request.body;
+    db.query(fetchUser(request.decoded.id))
+      .then((foundUser) => {
+        if (token === null || undefined) {
+          console.log(foundUser.rows[0].token);
+          return response.status(400).json({
+            message: 'Invalid token, please use a valid token'
+          });
+        }
+        const hashedPassword = bcrypt.hashSync(password, 10);
+        db.query(updatePassword(hashedPassword, request.decoded.id))
+          .then((result) => {
+            if (result.rows[0]) {
+              const date = new Date();
+              const { username, email } = result.rows[0];
+              Passwordmailer.passwordChangeEmail(username, email);
+              return response.status(200).send({
+                message: 'Password successfully changed, please login with your new password',
+                userDetails: {
+                  id,
+                  email: result.rows[0].email,
+                  username: result.rows[0].username,
+                  date
+                }
+              });
+            }
+            response.status(404).json({
+              message: 'User not found in the database'
+            });
+          });
       })
       .catch((error) => {
         response.status(500).send({

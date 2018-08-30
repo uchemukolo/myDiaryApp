@@ -158,3 +158,15 @@ export const find = userId => ({
   text: 'SELECT userid FROM notification WHERE userid = $1',
   values: [userId]
 });
+
+/**
+ * @description update User Profile in the database by ID
+ * @name updatePassword
+ * @param firstName, lastName
+ * @returns the object queried
+ */
+
+export const updatePassword = (hashedPassword, id) => ({
+  text: 'UPDATE userDetails SET password = $1 WHERE id = $2 RETURNING *',
+  values: [hashedPassword, id]
+});
