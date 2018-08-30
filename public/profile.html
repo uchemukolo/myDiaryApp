@@ -27,9 +27,11 @@
       <div class="container-profilee">
           <h3 class="profile-heading" style="display: inline;">Welcome
             <span id=username></span>!</h3>
+          </br>
           <p>
             Write down your thoughts and feelings PRIVATELY
           </p>
+        </br>
           <div class="total-entries">
             <strong>
               <a href="entries.html" id="total-entries"></a>
@@ -45,72 +47,53 @@
         </div>
 
     <div class="container-profile">
-
       <h3 class="profile-heading" style="display: inline;">My Profile</h3>
-      <div class="row">
-        <div class="input_field">
-          <p style="display: inline;">
-            <strong>Username: </strong>
-            <span id="profile-username"></span>
-          </p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input_field">
-          <p style="display: inline;">
-            <strong>First Name: </strong>
-            <span id="first-name" contenteditable="false"></span>
-          </p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input_field">
-          <p style="display: inline;">
-            <strong>Last Name: </strong>
-            <span id="last-name" contenteditable="false"></span>
-          </p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input_field">
-          <p style="display: inline;">
-            <strong>Email: </strong>
-            <span id="user-email"></span>
-          </p>
-        </div>
-      </div>
-      <div class="row">
-          <div class="input_field">
-              <p style="display: inline;">
-                <strong>Joined Since: </strong>
-                <span id="joined"></span>
-              </p>
-              </div>
-      </div>
-      <div class="row">
-        <button id="myProfileBtn" onclick="updateProfile();">Update Profile</button>
-        <button class="myProfileBtn" id="myProfileBtn" onclick="modifyProfile();">Save Profile</button>
-      </div>
-    </div>
+
+    <table>
+<tr>
+  <td>Username:</td>
+  <td id="profile-username"></td>
+</tr>
+<tr>
+  <td>First Name:</td>
+  <td id="first-name"contenteditable="false"></td>
+</tr>
+<tr>
+  <td>Last Name:</td>
+  <td id="last-name" contenteditable="false"></td>
+</tr>
+<tr>
+  <td>Email:</td>
+  <td id="user-email"></td>
+</tr>
+<tr>
+  <td>Joined Since:</td>
+  <td id="joined"></td>
+</tr>
+</table>
+<div class="row">
+  <button  id="myProfileBtn" onclick="edit();">Edit</button>
+  <button class="updateProfileBtn" id="myProfileBtn2" style="display:none;" onclick="updateProfile();">Update Profile</button>
+</div>
   </div>
 
   <div id="myModal" class="modal">
     <div class="modal-content">
       <div class="closee">&times;</div>
-      <form id="form" action="#">
+      <form id="reminderForm">
         <div class="container-note">
           <h2>Get Notified</h2>
           <p>Do not forget to pen down your precious thoughts and feeling. Subscribe and get a notification daily.</p>
         </div>
         <div class="container-note">
-          <input type="text" placeholder="Name" name="name" required>
-          <input type="text" placeholder="Email address" name="mail" required>
+          <input type="text" id="name" placeholder="Name" name="name" required>
+          <input type="text" id="notify-email" placeholder="Email address" name="mail" required>
           <label>
             <input type="checkbox" checked="checked" name="subscribe"> Daily Reminder
           </label>
         </div>
         <div class="container-note">
-          <button id="myReminderBtn">Subscribe</button>
+          <button id="myReminderBtn" type="submit">Subscribe</button>
         </div>
       </form>
     </div>
@@ -119,13 +102,11 @@
   </div>
 
   <div class="footer">
-    <h6>© Copyright 2018 Template By Muche - All Rights Reserved. For Questions/feedback/problems? Contact me on support@mydiary.com</h6>
+    <h6>© Copyright 2018 Template By Muche - All Rights Reserved.</h6>
   </div>
   <script src="JS/main.js"></script>
   <script src="JS/profile.js"></script>
-  <script src="JS/login.js"></script>
-  <script src="JS/signup.js"></script>
-
+  <script src="JS/logout.js"></script>
 </body>
 
 </html>

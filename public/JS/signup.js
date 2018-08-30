@@ -12,7 +12,7 @@ signupForm.onsubmit = (e) => {
   const username = document.getElementById('username').value;
   const password = document.getElementById('pword').value;
   const confirmPassword = document.getElementById('pwords').value;
-  const userError = document.getElementById('user-error');
+  const userError = document.getElementById('signup-error');
   const newUser = {
     username,
     email,
@@ -33,10 +33,13 @@ signupForm.onsubmit = (e) => {
   })
     .then(response => response.json())
     .then((data) => {
-      if (data.message === 'Signup Successful') {
+      console.log('From backend', data.message.msgs === ['Signup Successful']);
+      if (data.message.msgs[0] === 'Signup Successful') {
         const token = data.token;
+        const username = data.username;
         console.log(token);
         localStorage.setItem('token', token);
+        localStorage.setItem('username', username);
         window.location.href = './profile.html';
       } else {
         userError.innerHTML = Object.values(data.message);

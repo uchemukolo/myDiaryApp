@@ -44,7 +44,7 @@ window.addEventListener('load', () => {
         entryError.innerHTML = 'No Entries Yet, click on Add New Entry to add your First Entry';
         setTimeout(() => {
           entryError.innerHTML = '';
-        }, 2000);
+        }, 5000);
       }
     })
     .catch((error) => {
@@ -69,12 +69,12 @@ const deleteEntry = () => {
         setTimeout(() => {
           window.location.href = './entries.html';
           entryMsg.innerHTML = '';
-        }, 2000);
+        }, 5000);
       } else {
         deleteError.innerHTML = data.message;
         setTimeout(() => {
           deleteError.innerHTML = '';
-        }, 2000);
+        }, 5000);
       }
     })
     .catch((error) => {

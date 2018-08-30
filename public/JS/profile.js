@@ -8,13 +8,12 @@ const profileUrl = 'https://mydiary-challenge.herokuapp.com/';
 const token = localStorage.getItem('token');
 console.log(token);
 
-const joined = new Date();
-document.getElementById('joined').innerHTML = joined.toDateString();
+
 const userName = document.getElementById('profile-username');
 const firstName = document.getElementById('first-name');
 const lastName = document.getElementById('last-name');
-const email = document.getElementById('user-email');
-// const joined = document.getElementById('joined');
+const userEmail = document.getElementById('user-email');
+const joined = document.getElementById('joined');
 const entryMsg = document.getElementById('entry-error');
 const userMsg = document.getElementById('user-error');
 
@@ -30,10 +29,13 @@ window.addEventListener('load', () => {
   })
     .then(response => response.json())
     .then((data) => {
+      console.log(data);
       if (data.message === 'Entries successfully retrieved from the database') {
         document.getElementById('total-entries').innerHTML = data.entry.length;
       } else {
         entryMsg.innerHTML = data.message;
+        document.getElementById('total-entries').innerHTML = 0;
+
         setTimeout(() => {
           entryMsg.innerHTML = '';
         }, 2000);
@@ -58,11 +60,14 @@ window.addEventListener('load', () => {
       console.log(data);
       if (data.message === 'Profile successfully retrieved') {
         setTimeout(() => {
+          const createdMonth = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+          const [yearCreated, monthCreated, dayCreated] = data.profile.joinedSince.split('-');
+
           userName.innerHTML = data.profile.username;
           firstName.innerHTML = data.profile.firstName;
           lastName.innerHTML = data.profile.lastName;
-          email.innerHTML = data.profile.email;
-          joined.innerHTML = data.profile.joinedSince;
+          userEmail.innerHTML = data.profile.email;
+          joined.innerHTML = `${dayCreated.slice(0, 2)} - ${createdMonth[monthCreated - 1]} - ${yearCreated.slice(0, 4)}`;
           userMsg.innerHTML = data.message;
           userMsg.innerHTML = '';
         }, 2000);
@@ -78,12 +83,19 @@ window.addEventListener('load', () => {
     });
 });
 
-const updateProfile = () => {
+
+const edit = () => {
   firstName.contentEditable = true;
   lastName.contentEditable = true;
+  const updateBtn = document.getElementById('myProfileBtn2');
+  if (updateBtn.style.display === 'none') {
+    updateBtn.style.display = 'block';
+  } else {
+    updateBtn.style.display === 'none';
+  }
 };
 
-const modifyProfile = () => {
+const updateProfile = () => {
   firstName.contentEditable = false;
   lastName.contentEditable = false;
   const modify = {
@@ -118,3 +130,60 @@ const modifyProfile = () => {
       console.log(error);
     });
 };
+
+const subscribe = (e) => {
+  e.preventDefault();
+  const email = document.getElementById('notify-email').value;
+  const name = document.getElementById('name').value;
+  const reminderMsg = document.getElementById('success-msg');
+  const reminderData = {
+    name,
+    email,
+  };
+  console.log(reminderData);
+
+  fetch(`${profileUrl}api/v1/auth/reminder`, {
+    method: 'POST',
+    mode: 'cors',
+    cache: 'no-cache',
+    credentials: 'same-origin',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+      token: `${token}`,
+    },
+    body: JSON.stringify(reminderData),
+  })
+    .then(response => response.json())
+    .then((remindData) => {
+      console.log('>>>>>>>>>>>>', remindData);
+      if (remindData.message === 'Request for Daily Reminder Successful') {
+        reminderMsg.innerHTML = remindData.message;
+        setTimeout(() => {
+          reminderMsg.innerHTML = '';
+        }, 5000);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+const modal = document.getElementById('myModal');
+const btn = document.getElementById('myReminderBtn');
+const divClose = document.getElementsByClassName('closee')[0];
+
+btn.onclick = () => {
+  modal.style.display = 'block';
+};
+
+divClose.onclick = () => {
+  modal.style.display = 'none';
+};
+
+window.onclick = (event) => {
+  if (event.target === modal) {
+    modal.style.display = 'none';
+  }
+};
+
+document.getElementById('reminderForm').addEventListener('submit', subscribe);
