@@ -52,6 +52,12 @@ const editEntry = () => {
   title.contentEditable = true;
   mood.contentEditable = true;
   entry.contentEditable = true;
+  const modifyBtn = document.getElementById('modify');
+  if (modifyBtn.style.display === 'none') {
+    modifyBtn.style.display = 'block';
+  } else {
+    modifyBtn.style.display === 'none';
+  }
 };
 
 const modifyEntry = () => {

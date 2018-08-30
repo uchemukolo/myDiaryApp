@@ -83,12 +83,19 @@ window.addEventListener('load', () => {
     });
 });
 
-const updateProfile = () => {
+
+const edit = () => {
   firstName.contentEditable = true;
   lastName.contentEditable = true;
+  const updateBtn = document.getElementById('myProfileBtn2');
+  if (updateBtn.style.display === 'none') {
+    updateBtn.style.display = 'block';
+  } else {
+    updateBtn.style.display === 'none';
+  }
 };
 
-const modifyProfile = () => {
+const updateProfile = () => {
   firstName.contentEditable = false;
   lastName.contentEditable = false;
   const modify = {
