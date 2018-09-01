@@ -21,7 +21,7 @@ const Passwordmailer = {
     const subject = 'New Password reset link';
     const message = `<p>Dear ${username},
     </p> <p>kindly click on
-    <a href="https://uchemukolo.github.io/myDiaryApp/public/reset-password.html?i=${id}&t=${token}">Reset password</a>
+    <a href="https://uchemukolo.github.io/myDiaryApp/public/reset-password.html?id=${id}&token=${token}">Reset password</a>
     to create a new password</p>
     <p><strong>CHEERS!</strong></p>`;
     Passwordmailer.emailSender(email, subject, message);
