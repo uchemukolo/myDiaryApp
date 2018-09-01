@@ -74,4 +74,4 @@ const changePassword = () => {
       console.log(error);
     });
 };
-// document.getElementById('forgotBtn').addEventListener('submit', forgotPassword);
+document.getElementById('forgotBtn').addEventListener('submit', forgotPassword);
