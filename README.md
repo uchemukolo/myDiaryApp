@@ -21,6 +21,8 @@ myDiary has the following features:
 - It allows users to register by supplying details like: username, password, and email
 - Upon registration, a new user account will be created
 - Registered users can access all the routes
+- Authenticated users can view and update their profile
+- Registered Users can reset their password if forgotten
 
 # Entries
 - Authenticated users can create an entry by supplying the title and details of the entry
@@ -48,6 +50,11 @@ The API contains different endpoints with their respective payload in the table 
 |---------|---------|--------|--------------|
 |/api/v1/auth/signup| Create a new user|username, password, email| POST|
 |/api/v1/auth/login| Login a user|username, password| POST|
+|/api/v1/auth/profile| Get a user profile by Id|No payload|GET|
+|/api/v1/auth/profile/update| Update a user profile|firstName, lastName| PUT|
+|/api/v1/auth/reminder| Subscribe for daily email reminder|name, email| POST|
+|/api/v1/auth/password/resetLink| Update a user profile|email| POST|
+|/api/v1/auth/password/change| Reset user password|password| PUT|
 |/api/v1/entries| Get all entries for a user|No payload|GET|
 |/api/v1/entries| Post a new user entry|title, mood, entry| POST|
 |/api/v1/entries/:entryId| Get entry by Id|No payload| GET|
