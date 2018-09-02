@@ -171,7 +171,7 @@ class Users {
     } = request.body;
     db.query(updateProfile(firstName, lastName, request.decoded.id))
       .then(updated => response.status(200).send({
-        entry: updated.rows[0],
+        data: updated.rows[0],
         message: 'Profile updated sucessfully',
       }))
       .catch((error) => {

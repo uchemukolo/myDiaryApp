@@ -163,24 +163,25 @@ describe('MyDiary App ::: User', () => {
           done();
         });
     });
-    // it('should not let user login with wrong username', (done) => {
-    //   const user = {
-    //     username: 'johndo',
-    //     password: 'abcd1234'
-    //   };
-    //   chai.request(app)
-    //     .post('/api/v1/auth/login')
-    //     .send(user)
-    //     .end((error, response) => {
-    //       const message = {
-    //         error: ['Invalid Username or Email, please provide valid credentials']
-    //       };
-    //       token = response.body.token;
-    //       expect(response.status).to.equal(401);
-    //       expect(response.body.message).to.equal(message);
-    //       done();
-    //     });
-    // });
+    it('should not let user login with wrong username', (done) => {
+      const user = {
+        username: 'john',
+        password: 'abcd1234'
+      };
+      chai.request(app)
+        .post('/api/v1/auth/login')
+        .send(user)
+        .end((error, response) => {
+          // const message = {
+          //   error: ['Invalid Username or Email, please provide valid credentials'
+          //   ]
+          // };
+          token = response.body.token;
+          expect(response.status).to.equal(401);
+          // expect(response.body.message).to.equal(message);
+          done();
+        });
+    });
     it('should let user login with no errors', (done) => {
       const user = {
         username: 'johndoe',
