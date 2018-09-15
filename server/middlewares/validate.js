@@ -134,7 +134,7 @@ class Validate {
     const entryData = { title, mood, entry };
 
     const entryDataRules = {
-      title: 'required|string|min:6',
+      title: 'required|string',
       mood: 'required|string|alpha',
       entry: 'required|string|min:6'
     };
@@ -172,7 +172,7 @@ class Validate {
     const entryData = { title, mood, entry };
 
     const entryDataRules = {
-      title: 'string|min:6',
+      title: 'string',
       mood: 'string|alpha',
       entry: 'string|min:6'
     };
