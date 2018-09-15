@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "MyDiary is an online journal where users can pen down their thoughts and feelings.",
   "main": "index.js",
+  "engines": {
+    "node": "8.11.4",
+    "npm": "5.6.0"
+  },
   "scripts": {
     "start": "node ./server/build/app.js && npm run mailer",
     "mailer": "babel-node server/helpers/mailer.js",
