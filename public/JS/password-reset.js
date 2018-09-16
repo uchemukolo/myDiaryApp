@@ -1,7 +1,7 @@
 /*  global document:true, fetch:true, window:true */
 /*  eslint no-undef: "error"  */
 
-const resetUrl = 'http://localhost:9001/';
+const resetUrl = 'https://mydiary-challenge.herokuapp.com/';
 const token = localStorage.getItem('token');
 
 const userError = document.getElementById('user-error');
