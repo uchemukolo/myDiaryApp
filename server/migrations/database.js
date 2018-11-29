@@ -37,8 +37,8 @@ DROP TABLE IF EXISTS entries cascade;
 CREATE TABLE entries(
   id SERIAL PRIMARY KEY,
   userId int,
-  title VARCHAR(40) not null,
-  mood VARCHAR(40) not null,
+  title VARCHAR(225) not null,
+  mood VARCHAR(255) not null,
   entry TEXT not null,
   createdAt timestamp (0) with time zone default now(),
   FOREIGN KEY (userId) REFERENCES userDetails(id)
