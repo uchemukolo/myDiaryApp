@@ -195,5 +195,39 @@ class Entries {
         });
       });
   }
+
+  /**
+  *@description - Delete all entries
+   *
+  *@param {object} request - request object
+  *
+  * @param {object} response - response object
+  *
+  * @return {Array} return object as response
+  *
+  * @memberof Entries
+  */
+  static deleteAll(request, response) {
+    const { entryId } = request.params;
+
+    db.query(removeEntry(entryId, request.decoded.id))
+      .then((result) => {
+        if (result.rows[0]) {
+          return response.status(200).send({
+            entry: result.rows[0],
+            message: 'Entries successfully deleted',
+          });
+        }
+        return response.status(404).json({
+          message: 'Entry not found',
+        });
+      })
+      .catch((error) => {
+        response.status(500).send({
+          message: 'Some error occured!',
+          error: error.message,
+        });
+      });
+  }
 }
 export default Entries;
